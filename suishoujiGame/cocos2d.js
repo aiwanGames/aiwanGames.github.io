@@ -41,7 +41,9 @@
             'src/resource.js',
             'src/myApp.js',//add your own files in order here
             'src/mainLayer.js',
-            'src/overLayer.js'
+            'src/overLayer.js',
+            'src/loadScene.js'
+
         ]
     };
 
@@ -89,7 +91,7 @@
         }
         /*********Delete this section if you have packed all files into one*******/
 
-            s.src = 'suishoujiGame.js'; //IMPORTANT: Un-comment this line if you have packed all files into one
+           // s.src = 'suishoujiGame.js'; //IMPORTANT: Un-comment this line if you have packed all files into one
 
         d.body.appendChild(s);
         document.ccConfig = c;
