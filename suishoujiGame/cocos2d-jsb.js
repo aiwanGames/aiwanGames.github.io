@@ -33,7 +33,6 @@ var appFiles = [
     'src/myApp.js',
     'src/mainLayer.js',
     'src/overLayer.js',
-    'src/loadScene.js'
 ];
 
 cc.dumpConfig();

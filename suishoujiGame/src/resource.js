@@ -3,7 +3,6 @@ var s_kaishi="img_btn_kaishi.png";
 var s_zailaiyici="img_btn_zailaiyici.png";
 var s_catch="img_catch.png";
 var s_jiayou="img_jiayou.png";
-var s_pojilu="img_pojilu.png";
 var s_point="img_point_01.png";
 var s_result="img_result.png";
 var s_icon="img_icon.png";
@@ -18,7 +17,6 @@ var g_resources = [
     {src:s_zailaiyici},
     {src:s_catch},
     {src:s_jiayou},
-    {src:s_pojilu},
     {src:s_point},
     {src:s_result},
     {src:s_icon_bg},
