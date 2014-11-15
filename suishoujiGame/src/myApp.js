@@ -37,7 +37,7 @@ var beginLayer = cc.Layer.extend({
         sp_back.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(sp_back,0);
         //开始按钮
-        var kaishiItem = cc.MenuItemImage.create(s_kaishi,s_kaishi,this.startGame,this);
+        var kaishiItem = cc.MenuItemImage.create(s_kaishi,s_kaishi2,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
         menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.32));
         menu.setTag(100);
@@ -65,7 +65,7 @@ var beginLayer = cc.Layer.extend({
     startGame:function()
     {
         var scene=mainLayer.create();
-        cc.Director.getInstance().replaceScene(scene);
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     }
 
 });

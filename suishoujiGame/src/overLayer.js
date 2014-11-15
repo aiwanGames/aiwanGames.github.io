@@ -19,7 +19,7 @@ var overLayer = cc.Layer.extend({
         sp_back03.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.55));
         this.addChild(sp_back03, 1);
         //再来一次按钮
-        var zailaiItem = cc.MenuItemImage.create(s_zailaiyici,s_zailaiyici,this.gotoMainLayer,this);
+        var zailaiItem = cc.MenuItemImage.create(s_zailaiyici,s_zailaiyici2,this.gotoMainLayer,this);
         var menu = cc.Menu.create(zailaiItem);
         menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.29));
         this.addChild(menu, 1);
@@ -101,7 +101,7 @@ var overLayer = cc.Layer.extend({
     gotoMainLayer:function()
     {
         var scene=mainLayer.create();
-        cc.Director.getInstance().replaceScene(scene);
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     },
 
     update:function(dt)
