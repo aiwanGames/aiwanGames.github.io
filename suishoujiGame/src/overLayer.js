@@ -41,7 +41,7 @@ var overLayer = cc.Layer.extend({
         var ac3=cc.RepeatForever.create(ac2);
         sp_hand.runAction(ac3);
         //成绩
-        var scoreLb=cc.LabelTTF.create("Time   "+this.time+"s\n\nScore  "+this.score,"Consolas",30);
+        var scoreLb=cc.LabelTTF.create("Time   "+this.time+"s\n\nScore  "+this.score,"Consolas",32);
         scoreLb.setAnchorPoint(cc.p(0.0,0.5));
         scoreLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.605));
         scoreLb.setColor(cc.c3(245,245,40));
@@ -83,7 +83,7 @@ var overLayer = cc.Layer.extend({
         {
             cmtChar="无敌风火轮";
         }
-        var comentLb=cc.LabelTTF.create("反应速度 : "+cmtChar,"Consolas",27);
+        var comentLb=cc.LabelTTF.create("反应速度 : "+cmtChar,"Consolas",29);
         comentLb.setAnchorPoint(cc.p(0.0,0.5));
         comentLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.48));
         comentLb.setColor(cc.c3(245,245,40));

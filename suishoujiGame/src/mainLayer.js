@@ -31,7 +31,7 @@ var mainLayer = cc.Layer.extend({
         //this.sp_catch.setScale(0.9);
         this.addChild(this.sp_catch,1);
         //添加分数
-        this.sclabel=cc.LabelTTF.create("Time   "+parseInt(this.Time/60)+"s\nScore  "+this.score,"Consolas",30);
+        this.sclabel=cc.LabelTTF.create("Time   "+parseInt(this.Time/60)+"s\nScore  "+this.score,"Consolas",32);
         this.sclabel.setAnchorPoint(cc.p(0,0.5));
         this.sclabel.setColor(cc.c3(245,245,50));
         this.sclabel.setPosition(cc.p(this.winsize.width*0.02,this.winsize.height*0.82));
