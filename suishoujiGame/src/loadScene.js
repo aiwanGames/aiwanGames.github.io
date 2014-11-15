@@ -137,8 +137,7 @@ loadScene = cc.Scene.extend({
         if (percent >= 100)
             this.unschedule(this._updatePercent);
     }
-});
-
+})
 
 loadScene.preload = function (resources, selector, target) {
     if (!this._instance) {

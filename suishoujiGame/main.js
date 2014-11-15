@@ -36,15 +36,22 @@ var cocos2dApp = cc.Application.extend({
     },
     applicationDidFinishLaunching:function () {
         // initialize director
-        if(cc.RenderDoesnotSupport()){
-            //show Information to user
-            alert("Browser doesn't support WebGL");
-            return false;
-        }
-
-        // initialize director
         var director = cc.Director.getInstance();
-        //支持多分辨率
+
+        cc.EGLView.getInstance()._adjustSizeToBrowser();
+        var screenSize = cc.EGLView.getInstance().getFrameSize();
+
+        var searchPaths = [];
+        var resDirOrders = [];
+
+        searchPaths.push("res");
+        cc.FileUtils.getInstance().setSearchPaths(searchPaths);
+
+        resDirOrders.push("HD");
+
+        cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
+
+        //自适应屏幕尺寸
         cc.EGLView.getInstance().adjustViewPort(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
         cc.EGLView.getInstance()._resizeWithBrowserSize(true);
