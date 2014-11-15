@@ -4,6 +4,7 @@
 var overLayer = cc.Layer.extend({
     winsize:null,
     score:0,
+    time:0,
 
     init:function ()
     {
@@ -39,20 +40,16 @@ var overLayer = cc.Layer.extend({
         var ac2=cc.Sequence.create(ac0,ac1);
         var ac3=cc.RepeatForever.create(ac2);
         sp_hand.runAction(ac3);
-        //加油
-        var sp_jiayou=cc.Sprite.create(s_jiayou);
-        sp_jiayou.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.63));
-        this.addChild(sp_jiayou,1);
         //成绩
-        var scoreLb=cc.LabelTTF.create("Score : "+this.score,"Consolas",27);
+        var scoreLb=cc.LabelTTF.create("Time   "+this.time+"s\n\nScore  "+this.score,"Consolas",30);
         scoreLb.setAnchorPoint(cc.p(0.0,0.5));
-        scoreLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.52));
+        scoreLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.605));
         scoreLb.setColor(cc.c3(245,245,40));
         this.addChild(scoreLb,1);
         var cmtChar="";
         if(this.score<20)
         {
-            cmtChar="别逗,好好玩";
+            cmtChar="无力吐槽";
         }
         else if(this.score>=20&&this.score<40)
         {
@@ -88,7 +85,7 @@ var overLayer = cc.Layer.extend({
         }
         var comentLb=cc.LabelTTF.create("反应速度 : "+cmtChar,"Consolas",27);
         comentLb.setAnchorPoint(cc.p(0.0,0.5));
-        comentLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.45));
+        comentLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.48));
         comentLb.setColor(cc.c3(245,245,40));
         this.addChild(comentLb,1);
     },
@@ -116,17 +113,18 @@ var overLayer = cc.Layer.extend({
         return Math.floor(Math.random() * maxsize) % maxsize;
     },
 
-    setScore:function(_score)
+    setScore:function(_score,_time)
     {
         this.score=_score;
+        this.time=_time;
     }
 
 })
 
-overLayer.create=function(_score)
+overLayer.create=function(_score,_time)
 {
     var _overLayer=new overLayer();
-    _overLayer.setScore(_score);
+    _overLayer.setScore(_score,_time);
     _overLayer.init();
     var _scene=cc.Scene.create();
     _scene.addChild(_overLayer);

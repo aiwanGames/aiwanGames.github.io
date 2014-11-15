@@ -8,8 +8,10 @@ var mainLayer = cc.Layer.extend({
     itemSpeed:3.0,//图标下落时间
     schdSpeed:1.0,//生成图标间隔
     gameTime:0,
+    Time:0,
     gameOver:false,
     score:0,
+    sclabel:null,
 
     init:function ()
     {
@@ -26,7 +28,14 @@ var mainLayer = cc.Layer.extend({
         this.sp_catch=cc.Sprite.create(s_catch);
         this.sp_catch.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.1));
         this.sp_catch.setTag(200);
+        //this.sp_catch.setScale(0.9);
         this.addChild(this.sp_catch,1);
+        //添加分数
+        this.sclabel=cc.LabelTTF.create("Time   "+parseInt(this.Time/60)+"s\nScore  "+this.score,"Consolas",30);
+        this.sclabel.setAnchorPoint(cc.p(0,0.5));
+        this.sclabel.setColor(cc.c3(245,245,50));
+        this.sclabel.setPosition(cc.p(this.winsize.width*0.02,this.winsize.height*0.82));
+        this.addChild(this.sclabel,1);
     },
 
     onEnterTransitionDidFinish:function()
@@ -40,7 +49,7 @@ var mainLayer = cc.Layer.extend({
 
     gotoOverLayer:function()
     {
-        var scene=overLayer.create(this.score);
+        var scene=overLayer.create(this.score,parseInt(this.Time/60));
         cc.Director.getInstance().replaceScene(scene);
     },
 
@@ -79,6 +88,7 @@ var mainLayer = cc.Layer.extend({
         var item = cc.Sprite.create(s_icon, rec);
         item.setTag(_tag);
         item.setPosition(pos);
+        item.setScale(0.9);
         this.itemArray.push(item);
         this.addChild(item, 2);
         //图标向下掉落
@@ -152,6 +162,8 @@ var mainLayer = cc.Layer.extend({
                 this.itemSpeed-=0.29;
             }
         }
+        this.Time+=1;
+        this.sclabel.setString("Time   "+parseInt(this.Time/60)+"s\nScore  "+this.score);
     },
 
     getRandom:function(maxsize)
