@@ -54,7 +54,7 @@ var beginLayer = cc.Layer.extend({
         sp_back01.setTag(102);
         this.addChild(sp_back01, 1);
         //随手记图标
-        var sp_back02=cc.Sprite.create(s_icon_bg);
+        var sp_back02=cc.Sprite.create(s_icon,cc.rect(2, 2, 128, 128));
         sp_back02.setScale(0.7);
         sp_back02.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.68));
         sp_back02.setTag(103);
