@@ -46,7 +46,7 @@ var cocos2dApp = cc.Application.extend({
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
 
         //自适应屏幕尺寸
-        cc.EGLView.getInstance()._adjustSizeToBrowser();
+        //cc.EGLView.getInstance()._adjustSizeToBrowser();
         cc.EGLView.getInstance().adjustViewPort(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
         cc.EGLView.getInstance()._resizeWithBrowserSize(true);
