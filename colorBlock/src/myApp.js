@@ -36,11 +36,16 @@ var beginLayer = cc.Layer.extend({
         var sp_back=cc.Sprite.create(s_img01);
         sp_back.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(sp_back,1);
-        //开始按钮
+        //30秒
         var kaishiItem = cc.MenuItemImage.create(s_img02,s_img03,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.36));
         this.addChild(menu, 1);
+        //疯狂模式
+        var kaishiItem1 = cc.MenuItemImage.create(s_img12,s_img13,this.startGameCrazy,this);
+        var menu1 = cc.Menu.create(kaishiItem1);
+        menu1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
+        this.addChild(menu1, 1);
         //logo
         var sp_logo=cc.Sprite.create(s_img09);
         sp_logo.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
@@ -51,12 +56,19 @@ var beginLayer = cc.Layer.extend({
     startGame:function()
     {
         cc.log("go");
-        var scene=mainLayer.create();
+        var scene=mainLayer.create(1);
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
+    },
+
+    startGameCrazy:function()
+    {
+        cc.log("go");
+        var scene=mainLayer.create(2);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     }
 });
 
-var MyScene = cc.Scene.extend({
+MyScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
         var layer = new beginLayer();
@@ -64,3 +76,12 @@ var MyScene = cc.Scene.extend({
         layer.init();
     }
 });
+
+MyScene.create=function()
+{
+    var _beginLayer=new beginLayer();
+    _beginLayer.init();
+    var _scene=cc.Scene.create();
+    _scene.addChild(_beginLayer);
+    return _scene;
+}

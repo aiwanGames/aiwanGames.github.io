@@ -5,6 +5,7 @@ var overLayer = cc.LayerColor.extend({
     winsize:null,
     gameLevel:0,
     gameTime:0,
+    model:0,
 
     init:function ()
     {
@@ -43,33 +44,47 @@ var overLayer = cc.LayerColor.extend({
         //sp_gameTime.setAnchorPoint(cc.p(0,0.5));
         //sp_gameTime.setPosition(cc.p(this.winsize.width*0.6,this.winsize.height*0.58));
         //this.addChild(sp_gameTime,1);
-        var sp_gameLevel=cc.LabelTTF.create("你在30秒内共识别："+this.gameLevel+"组","Arial",25);
+        var resultStr;
+        if(this.model==1)
+        {
+            resultStr="你在30秒内识别：";
+        }
+        else
+        {
+            resultStr="你在疯狂模式中识别：";
+        }
+        var sp_gameLevel=cc.LabelTTF.create(resultStr+this.gameLevel+"组","Arial",26);
         sp_gameLevel.setAnchorPoint(cc.p(0.5,0.5));
         sp_gameLevel.setColor(cc.c3(245, 245, 50));
         sp_gameLevel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
         this.addChild(sp_gameLevel,1);
         var _comment;
-        if(this.gameLevel<20)
-        {
-            _comment="眼略瘸，骚年还需加油！"
-        }
-        else if(this.gameLevel>=15&&this.gameLevel<30)
-        {
-            _comment="恭喜，大众眼力！"
-        }
-        else if(this.gameLevel>=30&&this.gameLevel<50)
-        {
-            _comment="眼疾手快！"
-        }
-        else if(this.gameLevel>=50&&this.gameLevel<70)
-        {
-            _comment="法眼通天！"
-        }
-        else
-        {
-            _comment="请发送截图给我们抽取话费！"
-        }
-        var sp_comment=cc.LabelTTF.create(_comment,"Arial",25);
+            if (this.gameLevel < 20) {
+                _comment = "眼略瘸，骚年还需加油！";
+            }
+            else if (this.gameLevel >= 15 && this.gameLevel < 30) {
+                _comment = "恭喜，大众眼力！";
+            }
+            else if (this.gameLevel >= 30 && this.gameLevel < 50) {
+                _comment = "眼疾手快！";
+            }
+            else if (this.gameLevel >= 50 && this.gameLevel < 70) {
+                _comment = "法眼通天！";
+            }
+            else {
+                if(this.model==1)
+                _comment = "请发送截图给我们抽取话费！";
+                else
+                {
+                    if(this.gameLevel >= 70 && this.gameLevel < 100)
+                        _comment = "极限之光！";
+                    else if(this.gameLevel >= 100 && this.gameLevel < 150)
+                        _comment = "上帝之眼！";
+                    else
+                        _comment = "请发送截图给我们抽取话费！";
+                }
+            }
+        var sp_comment=cc.LabelTTF.create(_comment,"Arial",26);
         sp_comment.setAnchorPoint(cc.p(0.5,0.5));
         sp_comment.setColor(cc.c3(245, 245, 50));
         sp_comment.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
@@ -89,7 +104,7 @@ var overLayer = cc.LayerColor.extend({
 
     gotoMainLayer:function()
     {
-        var scene=mainLayer.create();
+        var scene=MyScene.create();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     },
 
@@ -99,17 +114,18 @@ var overLayer = cc.LayerColor.extend({
 
     },
 
-    setScore:function(_score,_time)
+    setScore:function(_score,_time,_model)
     {
         this.gameLevel=_score;
         this.gameTime=_time;
+        this.model=_model;
     }
 })
 
-overLayer.create=function(_score,_time)
+overLayer.create=function(_score,_time,_model)
 {
     var _overLayer=new overLayer();
-    _overLayer.setScore(_score,_time);
+    _overLayer.setScore(_score,_time,_model);
     _overLayer.init();
     var _scene=cc.Scene.create();
     _scene.addChild(_overLayer);

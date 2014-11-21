@@ -11,6 +11,9 @@ var mainLayer = cc.LayerColor.extend({
     posArray:null,
     toFindBlock:null,
     otherTag:200,
+    model:1,
+    schSpeed:2.0,
+    isTouched:false,
 
     init:function ()
     {
@@ -42,7 +45,6 @@ var mainLayer = cc.LayerColor.extend({
         //生成9个图块，慢慢隐现
         this.toFindBlock =cc.Sprite.createWithSpriteFrameName("img_red01.png");
         this.scheduleOnce(this.addBlocks);
-        this.schedule(this.timeTicking,1.0);
     },
 
     onEnterTransitionDidFinish:function()
@@ -50,9 +52,9 @@ var mainLayer = cc.LayerColor.extend({
 
     },
 
-    gotoOverLayer:function()
+    gotoOverLayer:function(_model)
     {
-        var scene=overLayer.create(this.gameLevel,this.gameTime);
+        var scene=overLayer.create(this.gameLevel,this.gameTime,_model);
         cc.Director.getInstance().replaceScene(scene);
     },
 
@@ -180,14 +182,48 @@ var mainLayer = cc.LayerColor.extend({
         //倒计时
         if(this.gameTime<=0)
         {
-            cc.log("unschedule");
             this.unschedule(this.timeTicking);
-            this.gotoOverLayer();
+            this.gotoOverLayer(this.model);
         }
         else
         {
             this.gameTime-=1;
             this.sp_gameTime.setString("时间 : "+this.gameTime);
+        }
+    },
+
+    crazyModel:function()
+    {
+        if(this.isTouched)
+        {
+            this.isTouched=false;
+            this.removeChildByTag(300);
+            this.addBlocks();
+            if(this.gameLevel==15)
+            {
+                this.schedule(this.crazyModel,1.5);
+            }
+            else if(this.gameLevel==35)
+            {
+                this.schedule(this.crazyModel,1.0);
+            }
+            else if(this.gameLevel==70)
+            {
+                this.schedule(this.crazyModel,0.8);
+            }
+            else if(this.gameLevel==100)
+            {
+                this.schedule(this.crazyModel,0.5);
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            this.unschedule(this.crazyModel);
+            this.gotoOverLayer(this.model);
         }
     },
 
@@ -205,6 +241,15 @@ var mainLayer = cc.LayerColor.extend({
             newId=this.getRandom(3)+1;
         }
         return newId;
+    },
+
+    setModel:function(_model)
+    {
+        this.model=_model;
+        if(_model==1)
+            this.schedule(this.timeTicking,1.0);
+        else
+            this.schedule(this.crazyModel,this.schSpeed,9999,2.5);
     },
 
     onTouchesMoved:function(touches, event)
@@ -227,20 +272,33 @@ var mainLayer = cc.LayerColor.extend({
             this.otherTag=200;
             this.gameLevel+=1;
             this.sp_gameLevel.setString("组数 : "+this.gameLevel);
-            this.scheduleOnce(this.addBlocks);
+            if(this.model==1)
+            {
+                this.scheduleOnce(this.addBlocks);
+            }
+            else
+            {
+                //this.toFindBlock.setColor(cc.c3(cc.GRAY));
+                var sp_good=cc.Sprite.create(s_img14);
+                sp_good.setPosition(this.toFindBlock.getPosition());
+                sp_good.setTag(300);
+                this.addChild(sp_good,2);
+                this.isTouched=true;
+            }
         }
         else
         {
-            this.gotoOverLayer();
+            this.gotoOverLayer(this.model);
         }
     }
 })
 
 //构造函数create
-mainLayer.create=function()
+mainLayer.create=function(_model)
 {
     var _mainLayer=new mainLayer();
     _mainLayer.init();
+    _mainLayer.setModel(_model);
     var _scene=cc.Scene.create();
     _scene.addChild(_mainLayer);
     return _scene;
