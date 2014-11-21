@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_pink01.png</key>
+            <key>img_lightgreen01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{810,204},{200,200}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_pink02.png</key>
+            <key>img_lightgreen02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,406},{200,200}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_pink03.png</key>
+            <key>img_lightgreen03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{204,406},{200,200}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_purple01.png</key>
+            <key>img_pink01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{406,406},{200,200}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_purple02.png</key>
+            <key>img_pink02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{608,406},{200,200}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_purple03.png</key>
+            <key>img_pink03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{810,406},{200,200}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_red01.png</key>
+            <key>img_purple01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,608},{200,200}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_red02.png</key>
+            <key>img_purple02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{204,608},{200,200}}</string>
@@ -225,10 +225,88 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>img_red03.png</key>
+            <key>img_purple03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{406,608},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
+            <key>img_red01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{608,608},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
+            <key>img_red02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{810,608},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
+            <key>img_red03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,810},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
+            <key>img_yellow01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{204,810},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
+            <key>img_yellow02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406,810},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
+            <key>img_yellow03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{608,810},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -248,7 +326,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c1edcc1476057e401ba5c7681165eb10$</string>
+            <string>$TexturePacker:SmartUpdate:d7c177c36f307c6e76ef48673ebed65e$</string>
             <key>textureFileName</key>
             <string>colorBlocks.png</string>
         </dict>

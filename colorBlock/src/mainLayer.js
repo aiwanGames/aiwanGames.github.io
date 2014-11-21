@@ -42,7 +42,7 @@ var mainLayer = cc.LayerColor.extend({
         //生成9个图块，慢慢隐现
         this.toFindBlock =cc.Sprite.createWithSpriteFrameName("img_red01.png");
         this.scheduleOnce(this.addBlocks);
-        this.schedule(this.timeTicking,1.0,cc.REPEAT_FOREVER,0.05);
+        this.schedule(this.timeTicking,1.0);
     },
 
     onEnterTransitionDidFinish:function()
@@ -52,7 +52,7 @@ var mainLayer = cc.LayerColor.extend({
 
     gotoOverLayer:function()
     {
-        var scene=overLayer.create(this.gameLevel,parseInt(this.gameTime/60));
+        var scene=overLayer.create(this.gameLevel,this.gameTime);
         cc.Director.getInstance().replaceScene(scene);
     },
 
@@ -92,6 +92,9 @@ var mainLayer = cc.LayerColor.extend({
                 break;
             case 6:
                 blockstr="img_red";
+                break;
+            case 7:
+                blockstr="img_yellow";
                 break;
         }
         switch(toFindId)
@@ -148,25 +151,25 @@ var mainLayer = cc.LayerColor.extend({
         switch(_px)
         {
             case 1:
-                px=this.winsize.width*0.5+200;
+                px=this.winsize.width*0.815;
                 break;
             case 2:
                 px=this.winsize.width*0.5;
                 break;
             case 3:
-                px=this.winsize.width*0.5-200;
+                px=this.winsize.width*0.185;
                 break;
         }
         switch(_py)
         {
             case 1:
-                py=this.winsize.height*0.45+200;
+                py=this.winsize.height*0.66;
                 break;
             case 2:
                 py=this.winsize.height*0.45;
                 break;
             case 3:
-                py=this.winsize.height*0.45-200;
+                py=this.winsize.height*0.24;
                 break;
         }
         return cc.p(px,py);
@@ -175,12 +178,16 @@ var mainLayer = cc.LayerColor.extend({
     timeTicking:function()
     {
         //倒计时
-        this.gameTime-=1;
-        this.sp_gameTime.setString("时间 : "+this.gameTime);
-        if(this.gameOver==0)
+        if(this.gameTime<=0)
         {
+            cc.log("unschedule");
             this.unschedule(this.timeTicking);
-            this.gotoOverLayer(this.gameTime,this.gameLevel);
+            this.gotoOverLayer();
+        }
+        else
+        {
+            this.gameTime-=1;
+            this.sp_gameTime.setString("时间 : "+this.gameTime);
         }
     },
 
@@ -224,7 +231,7 @@ var mainLayer = cc.LayerColor.extend({
         }
         else
         {
-            this.gotoOverLayer(this.gameTime,this.gameLevel);
+            this.gotoOverLayer();
         }
     }
 })

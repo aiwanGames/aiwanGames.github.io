@@ -53,17 +53,21 @@ var overLayer = cc.LayerColor.extend({
         {
             _comment="眼略瘸，骚年还需加油！"
         }
-        else if(this.gameLevel>=15&&this.gameLevel<40)
+        else if(this.gameLevel>=15&&this.gameLevel<30)
         {
-            _comment="别急，平常眼力而已！"
+            _comment="恭喜，大众眼力！"
+        }
+        else if(this.gameLevel>=30&&this.gameLevel<50)
+        {
+            _comment="眼疾手快！"
         }
         else if(this.gameLevel>=50&&this.gameLevel<70)
         {
-            _comment="眼力出众，你已脱颖而出！"
+            _comment="法眼通天！"
         }
         else
         {
-            _comment="你的眼力绝非地球人可比！"
+            _comment="请发送截图给我们抽取话费！"
         }
         var sp_comment=cc.LabelTTF.create(_comment,"Arial",25);
         sp_comment.setAnchorPoint(cc.p(0.5,0.5));
