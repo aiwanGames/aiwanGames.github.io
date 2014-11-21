@@ -78,7 +78,7 @@ var overLayer = cc.LayerColor.extend({
                 {
                     if(this.gameLevel >= 70 && this.gameLevel < 100)
                         _comment = "极限之光！";
-                    else if(this.gameLevel >= 100 && this.gameLevel < 150)
+                    else if(this.gameLevel >= 100 && this.gameLevel < 125)
                         _comment = "上帝之眼！";
                     else
                         _comment = "请发送截图给我们抽取话费！";

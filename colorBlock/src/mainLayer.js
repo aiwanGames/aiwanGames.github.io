@@ -203,17 +203,21 @@ var mainLayer = cc.LayerColor.extend({
             {
                 this.schedule(this.crazyModel,1.5);
             }
-            else if(this.gameLevel==35)
+            else if(this.gameLevel==30)
+            {
+                this.schedule(this.crazyModel,1.25);
+            }
+            else if(this.gameLevel==60)
             {
                 this.schedule(this.crazyModel,1.0);
             }
-            else if(this.gameLevel==70)
+            else if(this.gameLevel==90)
             {
                 this.schedule(this.crazyModel,0.8);
             }
-            else if(this.gameLevel==100)
+            else if(this.gameLevel==120)
             {
-                this.schedule(this.crazyModel,0.5);
+                this.schedule(this.crazyModel,0.7);
             }
             else
             {
