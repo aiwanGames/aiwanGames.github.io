@@ -12,7 +12,7 @@ var mainLayer = cc.LayerColor.extend({
     toFindBlock:null,
     otherTag:200,
     model:1,
-    schSpeed:2.0,
+    schSpeed:1.0,
     isTouched:false,
 
     init:function ()
@@ -66,8 +66,6 @@ var mainLayer = cc.LayerColor.extend({
             var _blk=this.getChildByTag(i);
                 this.removeChild(_blk,true);
         }
-        cc.log("schedule");
-
         //生成一个图块
         var colorId=this.getRandom(6)+1;
         var toFindId=this.getRandom(3)+1;
@@ -199,29 +197,44 @@ var mainLayer = cc.LayerColor.extend({
             this.isTouched=false;
             this.removeChildByTag(300);
             this.addBlocks();
-            if(this.gameLevel==15)
+            if(this.gameLevel==10)
             {
-                this.schedule(this.crazyModel,1.5);
+                this.schedule(this.crazyModel,0.8);
+            }
+            else if(this.gameLevel==15)
+            {
+                this.schedule(this.crazyModel,1.0);
+            }
+            else if(this.gameLevel==25)
+            {
+                this.schedule(this.crazyModel,0.8);
             }
             else if(this.gameLevel==30)
             {
-                this.schedule(this.crazyModel,1.25);
+                this.schedule(this.crazyModel,1.0);
+            }
+            else if(this.gameLevel==40)
+            {
+                this.schedule(this.crazyModel,0.8);
+            }
+            else if(this.gameLevel==45)
+            {
+                this.schedule(this.crazyModel,1.0);
+            }
+            else if(this.gameLevel==55)
+            {
+                this.schedule(this.crazyModel,0.8);
             }
             else if(this.gameLevel==60)
             {
                 this.schedule(this.crazyModel,1.0);
             }
-            else if(this.gameLevel==90)
+            else if(this.gameLevel==70)
             {
                 this.schedule(this.crazyModel,0.8);
             }
-            else if(this.gameLevel==120)
-            {
-                this.schedule(this.crazyModel,0.7);
-            }
             else
             {
-
             }
         }
         else
@@ -253,7 +266,7 @@ var mainLayer = cc.LayerColor.extend({
         if(_model==1)
             this.schedule(this.timeTicking,1.0);
         else
-            this.schedule(this.crazyModel,this.schSpeed,9999,2.5);
+            this.schedule(this.crazyModel,this.schSpeed,9999,1.5);
     },
 
     onTouchesMoved:function(touches, event)
