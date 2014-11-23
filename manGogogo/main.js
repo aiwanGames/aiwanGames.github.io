@@ -35,8 +35,11 @@ var cocos2dApp = cc.Application.extend({
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
     applicationDidFinishLaunching:function () {
-        // initialize director
-        var director = cc.Director.getInstance();
+        if(cc.RenderDoesnotSupport()){
+            //show Information to user
+            alert("Browser doesn't support WebGL");
+            return false;
+        }
 
         var searchPaths = [];
         var resDirOrders = [];
@@ -45,11 +48,12 @@ var cocos2dApp = cc.Application.extend({
         resDirOrders.push("HD");
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
 
-        //自适应屏幕尺寸
-        //cc.EGLView.getInstance()._adjustSizeToBrowser();//此处不需要，不然用微信打开后，屏幕会有偏移
+        // initialize director
+        var director = cc.Director.getInstance();
+
         cc.EGLView.getInstance().adjustViewPort(true);
+        cc.EGLView.getInstance().resizeWithBrowserSize(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
-        cc.EGLView.getInstance()._resizeWithBrowserSize(true);
 
         // turn on display FPS
         //director.setDisplayStats(this.config['showFPS']);
