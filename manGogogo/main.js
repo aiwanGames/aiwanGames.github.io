@@ -51,6 +51,7 @@ var cocos2dApp = cc.Application.extend({
         // initialize director
         var director = cc.Director.getInstance();
 
+        //必须按照以下步骤，才能使游戏自动适配屏幕的大小（如微信或者QQ的内置浏览器）
         cc.EGLView.getInstance().adjustViewPort(true);
         cc.EGLView.getInstance().resizeWithBrowserSize(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
