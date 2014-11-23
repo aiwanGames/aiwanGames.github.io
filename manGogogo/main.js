@@ -48,8 +48,8 @@ var cocos2dApp = cc.Application.extend({
         //自适应屏幕尺寸
         //cc.EGLView.getInstance()._adjustSizeToBrowser();//此处不需要，不然用微信打开后，屏幕会有偏移
         cc.EGLView.getInstance().adjustViewPort(true);
-        cc.EGLView.getInstance()._resizeWithBrowserSize(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
+        cc.EGLView.getInstance()._resizeWithBrowserSize(true);
 
         // turn on display FPS
         //director.setDisplayStats(this.config['showFPS']);
