@@ -36,10 +36,10 @@ var mainLayer = cc.LayerColor.extend({
         this.setColor(cc.c4(255,255,255,255));
         //倒计时和层数
         var sp_time=cc.Sprite.create(s_time);
-        sp_time.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.82));
+        sp_time.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.96));
         this.addChild(sp_time,2);
         var sp_level=cc.Sprite.create(s_level);
-        sp_level.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.82));
+        sp_level.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.96));
         this.addChild(sp_level,2);
 
         //初始化物品数组和block数组
@@ -49,28 +49,28 @@ var mainLayer = cc.LayerColor.extend({
         //添加时间，层数
         this.sp_gameTime=cc.LabelAtlas.create(""+this.gameTime,s_number,26,32,'0');
         this.sp_gameTime.setAnchorPoint(cc.p(0,0.5));
-        this.sp_gameTime.setPosition(cc.p(this.winsize.width*0.23,this.winsize.height*0.82));
+        this.sp_gameTime.setPosition(cc.p(this.winsize.width*0.23,this.winsize.height*0.96));
         this.addChild(this.sp_gameTime,2);
 
         this.sp_gameLevel=cc.LabelAtlas.create(""+this.gameLevel,s_number,26,32,'0');
         this.sp_gameLevel.setAnchorPoint(cc.p(0,0.5));
-        this.sp_gameLevel.setPosition(cc.p(this.winsize.width*0.83,this.winsize.height*0.82));
+        this.sp_gameLevel.setPosition(cc.p(this.winsize.width*0.83,this.winsize.height*0.96));
         this.addChild(this.sp_gameLevel,2);
 
         //方向按钮
         this.sp_left=cc.Sprite.create(s_left);
-        this.sp_left.setPosition(cc.p(this.winsize.width*0.2,this.winsize.height*0.1));
+        this.sp_left.setPosition(cc.p(this.winsize.width*0.15,this.winsize.height*0.1));
         this.addChild(this.sp_left,2);
         this.sp_right=cc.Sprite.create(s_right);
-        this.sp_right.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.1));
+        this.sp_right.setPosition(cc.p(this.winsize.width*0.85,this.winsize.height*0.1));
         this.addChild(this.sp_right,2);
 
         //初始block和角色位置
         this.sp_man=cc.Sprite.createWithSpriteFrameName("img_man_01.png");
-        this.sp_man.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.47));
+        this.sp_man.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.57));
         this.addChild(this.sp_man,1);
         var block_bgn =cc.Sprite.create(s_block1);
-        block_bgn.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.4));
+        block_bgn.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(block_bgn,1);
         this.blockArray.push(block_bgn);
         var ac0=cc.MoveBy.create(this.winsize.height/960*this.blockSpeed1*0.6,cc.p(0,this.winsize.height*0.37));
@@ -124,7 +124,7 @@ var mainLayer = cc.LayerColor.extend({
         this.addChild(block1,1);
         //加入石块数组
         this.blockArray.push(block1);
-        var ac0=cc.MoveBy.create(this.winsize.height/960*_speed,cc.p(0,this.winsize.height*0.62));
+        var ac0=cc.MoveBy.create(this.winsize.height/860*_speed,cc.p(0,this.winsize.height*0.70));
         var ac1=cc.CallFunc.create(this.removeSprite,this);
         block1.runAction(cc.Sequence.create(ac0,ac1));
     },

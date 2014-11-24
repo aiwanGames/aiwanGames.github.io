@@ -36,7 +36,7 @@ var beginLayer = cc.LayerColor.extend({
         //go按钮
         var kaishiItem = cc.MenuItemImage.create(s_go,s_go2,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.36));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.46));
         this.addChild(menu, 1);
 
         //主角动画
@@ -55,7 +55,7 @@ var beginLayer = cc.LayerColor.extend({
          var _animate=cc.Animate.create(_animation);
          */
         var man=cc.Sprite.createWithSpriteFrameName("img_man_01.png");
-        man.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.54));
+        man.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.64));
         this.addChild(man,1);
         //man.runAction(_animate);
 
@@ -76,7 +76,7 @@ var beginLayer = cc.LayerColor.extend({
         var block1 =cc.Sprite.create(block_img);
         block1.setPosition(cc.p(this.winsize.width*0.15,this.winsize.height));
         this.addChild(block1,1);
-        var ac0=cc.MoveBy.create(this.winsize.height/960*5.0,cc.p(0,-this.winsize.height));
+        var ac0=cc.MoveBy.create(this.winsize.height/860*5.0,cc.p(0,-this.winsize.height));
         var ac1=cc.CallFunc.create(this.removeSprite,this);
         block1.runAction(cc.Sequence.create(ac0,ac1));
 
@@ -85,7 +85,7 @@ var beginLayer = cc.LayerColor.extend({
         var block2 =cc.Sprite.create(block_img);
         block2.setPosition(cc.p(this.winsize.width*0.85,0.0));
         this.addChild(block2,1);
-        var ac0=cc.MoveBy.create(this.winsize.height/960*5.0,cc.p(0,this.winsize.height));
+        var ac0=cc.MoveBy.create(this.winsize.height/860*5.0,cc.p(0,this.winsize.height));
         var ac1=cc.CallFunc.create(this.removeSprite,this);
         block2.runAction(cc.Sequence.create(ac0,ac1));
     },
