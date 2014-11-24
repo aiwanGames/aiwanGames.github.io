@@ -37,7 +37,7 @@ var beginLayer = cc.LayerColor.extend({
         //go按钮
         var kaishiItem = cc.MenuItemImage.create(s_go,s_go2,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.46));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.36));
         this.addChild(menu, 1);
 
         //主角动画
@@ -56,7 +56,7 @@ var beginLayer = cc.LayerColor.extend({
         var _animate=cc.Animate.create(_animation);
         */
         var man=cc.Sprite.createWithSpriteFrameName("img_man_01.png");
-        man.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.62));
+        man.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.54));
         this.addChild(man,1);
         //man.runAction(_animate);
 

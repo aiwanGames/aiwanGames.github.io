@@ -35,11 +35,8 @@ var cocos2dApp = cc.Application.extend({
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
     applicationDidFinishLaunching:function () {
-        if(cc.RenderDoesnotSupport()){
-            //show Information to user
-            alert("Browser doesn't support WebGL");
-            return false;
-        }
+        // initialize director
+        var director = cc.Director.getInstance();
 
         var searchPaths = [];
         var resDirOrders = [];
@@ -48,16 +45,14 @@ var cocos2dApp = cc.Application.extend({
         resDirOrders.push("HD");
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
 
-        // initialize director
-        var director = cc.Director.getInstance();
-
-        //必须按照以下步骤，才能使游戏自动适配屏幕的大小（如微信或者QQ的内置浏览器）
-        //cc.EGLView.getInstance().adjustViewPort(true);
-        cc.EGLView.getInstance().resizeWithBrowserSize(true);
+        //自适应屏幕尺寸
+        //cc.EGLView.getInstance()._adjustSizeToBrowser();//此处不需要，不然用微信打开后，屏幕会有偏移
+        cc.EGLView.getInstance().adjustViewPort(true);
+        cc.EGLView.getInstance()._resizeWithBrowserSize(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
 
         // turn on display FPS
-        director.setDisplayStats(this.config['showFPS']);
+        //director.setDisplayStats(this.config['showFPS']);
 
         // set FPS. the default value is 1.0/60 if you don't call this
         director.setAnimationInterval(1.0 / this.config['frameRate']);

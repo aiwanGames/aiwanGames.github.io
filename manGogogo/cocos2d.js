@@ -30,8 +30,8 @@
         box2d:false,
         chipmunk:false,
         showFPS:true,
-        frameRate:60,
         loadExtension:false,
+        frameRate:60,
         renderMode:0,       //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
         tag:'gameCanvas', //the dom element to run cocos2d on
         engineDir:'../cocos2d/',
@@ -47,8 +47,8 @@
     if(!d.createElement('canvas').getContext){
         var s = d.createElement('div');
         s.innerHTML = '<h2>Your browser does not support HTML5 canvas!</h2>' +
-        '<p>Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.Click the logo to download.</p>' +
-        '<a href="http://www.google.com/chrome" target="_blank"><img src="http://www.google.com/intl/zh-CN/chrome/assets/common/images/chrome_logo_2x.png" border="0"/></a>';
+            '<p>Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.Click the logo to download.</p>' +
+            '<a href="http://www.google.com/chrome" target="_blank"><img src="http://www.google.com/intl/zh-CN/chrome/assets/common/images/chrome_logo_2x.png" border="0"/></a>';
         var p = d.getElementById(c.tag).parentNode;
         p.style.background = 'none';
         p.style.border = 'none';
@@ -58,6 +58,7 @@
         return;
     }
 
+
     window.addEventListener('DOMContentLoaded', function () {
         this.removeEventListener('DOMContentLoaded', arguments.callee, false);
         //first load engine file if specified
@@ -65,9 +66,22 @@
         /*********Delete this section if you have packed all files into one*******/
         if (c.SingleEngineFile && !c.engineDir) {
             s.src = c.SingleEngineFile;
+
+            var loadJsImg = document.createElement('img');
+            loadJsImg.src = "data:image/gif;base64,R0lGODlhEAAQALMNAD8/P7+/vyoqKlVVVX9/fxUVFUBAQGBgYMDAwC8vL5CQkP///wAAAP///wAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFAAANACwAAAAAEAAQAAAEO5DJSau9OOvNex0IMnDIsiCkiW6g6BmKYlBFkhSUEgQKlQCARG6nEBwOgl+QApMdCIRD7YZ5RjlGpCUCACH5BAUAAA0ALAAAAgAOAA4AAAQ6kLGB0JA4M7QW0hrngRllkYyhKAYqKUGguAws0ypLS8JxCLQDgXAIDg+FRKIA6v0SAECCBpXSkstMBAAh+QQFAAANACwAAAAACgAQAAAEOJDJORAac6K1kDSKYmydpASBUl0mqmRfaGTCcQgwcxDEke+9XO2WkxQSiUIuAQAkls0n7JgsWq8RACH5BAUAAA0ALAAAAAAOAA4AAAQ6kMlplDIzTxWC0oxwHALnDQgySAdBHNWFLAvCukc215JIZihVIZEogDIJACBxnCSXTcmwGK1ar1hrBAAh+QQFAAANACwAAAAAEAAKAAAEN5DJKc4RM+tDyNFTkSQF5xmKYmQJACTVpQSBwrpJNteZSGYoFWjIGCAQA2IGsVgglBOmEyoxIiMAIfkEBQAADQAsAgAAAA4ADgAABDmQSVZSKjPPBEDSGucJxyGA1XUQxAFma/tOpDlnhqIYN6MEAUXvF+zldrMBAjHoIRYLhBMqvSmZkggAIfkEBQAADQAsBgAAAAoAEAAABDeQyUmrnSWlYhMASfeFVbZdjHAcgnUQxOHCcqWylKEohqUEAYVkgEAMfkEJYrFA6HhKJsJCNFoiACH5BAUAAA0ALAIAAgAOAA4AAAQ3kMlJq704611SKloCAEk4lln3DQgyUMJxCBKyLAh1EMRR3wiDQmHY9SQslyIQUMRmlmVTIyRaIgA7";
+
+            var canvasNode = document.getElementById(c.tag);
+            canvasNode.style.backgroundColor = "black";
+            canvasNode.parentNode.appendChild(loadJsImg);
+            
+            var canvasStyle = getComputedStyle?getComputedStyle(canvasNode):canvasNode.currentStyle;
+            loadJsImg.style.left = canvasNode.offsetLeft + (parseFloat(canvasStyle.width) - loadJsImg.width)/2 + "px";
+            loadJsImg.style.top = canvasNode.offsetTop + (parseFloat(canvasStyle.height) - loadJsImg.height)/2 + "px";
+            loadJsImg.style.position = "absolute";
+            loadJsImg.id = "cocos2d_loadJsImg";
         }
         else if (c.engineDir && !c.SingleEngineFile) {
-            s.src = c.engineDir + 'jsloader.js';
+            s.src = c.engineDir + 'platform/jsloader.js';
         }
         else {
             alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');
@@ -76,9 +90,9 @@
 
         s.src = 'manGogogo.js'; //IMPORTANT: Un-comment this line if you have packed all files into one
 
+        d.body.appendChild(s);
         document.ccConfig = c;
         s.id = 'cocos2d-html5';
-        d.body.appendChild(s);
         //else if single file specified, load singlefile
     });
 })();
