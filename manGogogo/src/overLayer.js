@@ -27,11 +27,10 @@ var overLayer = cc.LayerColor.extend({
         this.addChild(sp_tip,1);
         //手
         var sp_hand=cc.Sprite.create(s_share);
-        sp_hand.setFlippedX(true);
-        sp_hand.setPosition(cc.p(this.winsize.width*0.2,this.winsize.height*0.9));
+        sp_hand.setPosition(cc.p(this.winsize.width*0.85,this.winsize.height*0.9));
         this.addChild(sp_hand,1);
-        var ac0=cc.MoveTo.create(0.4,cc.p(this.winsize.width*0.15,this.winsize.height*0.95));
-        var ac1=cc.MoveTo.create(0.4,cc.p(this.winsize.width*0.2,this.winsize.height*0.9));
+        var ac0=cc.MoveTo.create(0.4,cc.p(this.winsize.width*0.9,this.winsize.height*0.95));
+        var ac1=cc.MoveTo.create(0.4,cc.p(this.winsize.width*0.85,this.winsize.height*0.9));
         var ac2=cc.Sequence.create(ac0,ac1);
         var ac3=cc.RepeatForever.create(ac2);
         sp_hand.runAction(ac3);
