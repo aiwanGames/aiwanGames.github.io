@@ -47,7 +47,7 @@ var cocos2dApp = cc.Application.extend({
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
 
         //director.setContentScaleFactor(640 / 960);
-        cc.EGLView.getInstance().setDesignResolutionSize(640, 960, cc.RESOLUTION_POLICY.SHOW_ALL);
+        cc.EGLView.getInstance().setDesignResolutionSize(640, 900, cc.RESOLUTION_POLICY.SHOW_ALL);
         cc.EGLView.getInstance().resizeWithBrowserSize(true);
 
         // turn on display FPS
