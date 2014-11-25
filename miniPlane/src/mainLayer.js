@@ -133,7 +133,8 @@ var mainLayer = cc.LayerColor.extend({
         particle.setPosition(this.sp_plane.getPosition());
         particle.setAutoRemoveOnFinish(true);
         particle.setScale(0.5);
-        particle.setDuration(0.5);
+        particle.setDuration(0.2);
+        particle.setParticleCount(50);
         particle.setRotation(-35.0);
         particle.setTag(205);
         this.addChild(particle,2);
