@@ -38,7 +38,8 @@ var beginLayer = cc.LayerColor.extend({
         label.setColor(cc.c3(245,245,50));
         label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(label,1);
-
+        document.title = window.wxData.desc = "分享到朋友圈的描述";
+        document.title = window.wxFriend.desc = "分享给朋友的描述";
         return true;
     }
 });

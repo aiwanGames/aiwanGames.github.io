@@ -23,5 +23,48 @@
 <body style="padding:0; margin: 0; background: #000;">
 <canvas id="gameCanvas" width="640" height="900"></canvas>
 <script src="cocos2d.js"></script>
+<script type="text/javascript" src="WeixinApi.js"></script>
+<script>
+    //百度站点统计
+    /*var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?91f4361e83cf34ffe3b6dd0471ee205a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();*/
+
+    window.wxData = {
+        "appId": "wxcd0f49bcc34dabc7", // 服务号可以填写appId
+        "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
+        "link":'http://aiwanGames.github.io/testApp/',
+        "desc":"testApp：这是描述",
+        "title":"testApp：这是标题"
+    };
+    window.wxFriend = {
+        "appId": "wxcd0f49bcc34dabc7", // 服务号可以填写appId
+        "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
+        "link":'http://aiwanGames.github.io/testApp/',
+        "desc":"testApp：这是描述",
+        "title":"testApp：这是标题"
+    };
+    WeixinApi.ready(function(Api) {
+        var wxCallbacks = {
+            ready : function() {
+            },
+            cancel : function(resp) {
+            },
+            fail : function(resp) {
+            },
+            confirm : function(resp) {
+            },
+            all : function(resp) {
+            }
+        };
+        Api.shareToFriend(wxFriend, wxCallbacks);
+        Api.shareToTimeline(wxData, wxCallbacks);
+        Api.shareToWeibo(wxData, wxCallbacks);
+    });
+</script>
 </body>
 </html>
