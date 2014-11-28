@@ -220,7 +220,6 @@
                 <file name="main.js"/>
                 <file name="src/mainLayer.js" />
                 <file name="src/overLayer.js" />
-                <file name="src/WeixinApi.js" />
             </sources>
         </jscomp>
     </target>

@@ -41,8 +41,7 @@
             'src/resource.js',
             'src/mainLayer.js',
             'src/overLayer.js',
-            'src/myApp.js',//add your own files in order here
-            'src/WeixinApi.js'
+            'src/myApp.js'//add your own files in order here
         ]
     };
 
