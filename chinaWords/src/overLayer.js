@@ -1,3 +1,4 @@
+window.shared=false;
 var overLayer = cc.LayerColor.extend({
     winsize:null,
     gameLevel:0,
@@ -59,7 +60,6 @@ var overLayer = cc.LayerColor.extend({
         document.title = window.wxData.desc = shareText;
         document.title = window.wxFriend.desc = shareText;
 
-        window.shared=false;
         this.scheduleUpdate();
     },
 
