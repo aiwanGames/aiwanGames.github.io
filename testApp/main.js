@@ -39,7 +39,7 @@ var cocos2dApp = cc.Application.extend({
         var platform = cc.Application.getInstance().getTargetPlatform();
         if(platform == cc.TARGET_PLATFORM.PC_BROWSER)
         {
-            return true;
+            //return true;
         }
         // initialize director
         var director = cc.Director.getInstance();

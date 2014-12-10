@@ -40,11 +40,11 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(label,1);
         var descrData=window.wxData.desc;
         var descrFriend=window.wxFriend.desc;
-        if(descrData.indexOf("2nd"))
+        if(descrData.indexOf("2nd")>=0)
         {
             this.setColor(cc.c4(0,0,0,255));
         }
-        if(descrFriend.indexOf("2nd"))
+        if(descrFriend.indexOf("2nd")>=0)
         {
             this.setColor(cc.c4(0,0,0,255));
         }
