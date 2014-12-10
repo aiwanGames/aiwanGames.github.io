@@ -49,8 +49,9 @@ var beginLayer = cc.LayerColor.extend({
         }
         //document.title=window.wxData.desc = "2nd";
         //document.title=window.wxFriend.desc = "2nd";
-        window.wxData.link=window.wxData.link|"index.html?id=2";
-        window.wxFriend.link=window.wxFriend.link|"index.html?id=2";
+        window.wxData.link=window.wxData.link+"index.html?id=2";
+        window.wxFriend.link=window.wxFriend.link+"index.html?id=2";
+        //cc.log(window.wxFriend.link);
         return true;
     }
 });
