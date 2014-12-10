@@ -38,8 +38,18 @@ var beginLayer = cc.LayerColor.extend({
         label.setColor(cc.c3(245,245,50));
         label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(label,1);
-        document.title = window.wxData.desc = "分享到朋友圈的描述";
-        document.title = window.wxFriend.desc = "分享给朋友的描述";
+        var descrData=window.wxData.desc;
+        var descrFriend=window.wxFriend.desc;
+        if(descrData.indexOf("2nd"))
+        {
+            this.setColor(cc.c4(0,0,0,255));
+        }
+        if(descrFriend.indexOf("2nd"))
+        {
+            this.setColor(cc.c4(0,0,0,255));
+        }
+        document.title = window.wxData.desc = "2nd";
+        document.title = window.wxFriend.desc = "2nd";
         return true;
     }
 });
