@@ -88,7 +88,7 @@ var beginLayer = cc.LayerColor.extend({
 
         //用按钮实现跳转，URL必须有http前缀，比如只填写www.baidu.com是跳转不了的
         //var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
-        var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
+        var newURL="http://a.app.qq.com/o/simple.jsp?pkgname=com.mymoney&g_f=992857#rd";
         window.location.href=newURL;
         //window.open(newURL);
     }
