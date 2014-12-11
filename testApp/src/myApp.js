@@ -60,7 +60,7 @@ var beginLayer = cc.LayerColor.extend({
         //<meta http-equiv=refresh content=10;URL="http://www.baidu.com">
 
         //用按钮实现跳转，URL必须有http前缀，比如只填写www.baidu.com是跳转不了的
-        var newURL="https://itunes.apple.com/cn/app/sui-shou-ji-zhuan-ye-ban-for/id373454750";
+        var newURL="http://bcs.91.com/rbreszy/iphone/soft/2014/8/16/11d60f426cad4f0e8174b556c069c69c/com.tencent.mqq_5.0_5.0.0.165_635437869724736024.ipa";
         window.location.href=newURL;
         //window.open("www.baidu.com","_self");
     }
