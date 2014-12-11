@@ -39,10 +39,25 @@ var beginLayer = cc.LayerColor.extend({
         label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(label,1);
 
-        var menuItem=cc.MenuItemImage.create(s_img02,s_img03,this.gotoURL,this);
-        var menu=cc.Menu.create(menuItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
-        this.addChild(menu,1);
+        var menuItem1=cc.MenuItemImage.create(s_img02,s_img03,this.gotoURLApp,this);
+        //menuItem1.setColor(cc.c3(cc.RED));
+        var menu1=cc.Menu.create(menuItem1);
+        menu1.setPosition(cc.p(this.winsize.width*0.3,this.winsize.height*0.2));
+        this.addChild(menu1,1);
+
+        var label1=cc.LabelTTF.create("App Store","黑体",30);
+        label1.setPosition(cc.p(this.winsize.width*0.3,this.winsize.height*0.2));
+        this.addChild(label1,1);
+
+        var menuItem2=cc.MenuItemImage.create(s_img02,s_img03,this.gotoURL,this);
+        //menuItem2.setColor(cc.c3(cc.GRAY));
+        var menu2=cc.Menu.create(menuItem2);
+        menu2.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.2));
+        this.addChild(menu2,1);
+
+        var label2=cc.LabelTTF.create("Http链接","黑体",30);
+        label2.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.2));
+        this.addChild(label2,1);
 
         //在URL中加入ID可根据URL判断显示内容哟，如index.html?age=10size=5！！！
         if(document.URL.indexOf("id=2")>=0)
@@ -61,9 +76,21 @@ var beginLayer = cc.LayerColor.extend({
 
         //用按钮实现跳转，URL必须有http前缀，比如只填写www.baidu.com是跳转不了的
         //var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
-        var newURL="http://itunes.apple.com/us/app/id364183992";
+        var newURL="http://www.baidu.com";
         //window.location.href=newURL;
         window.open(newURL);
+    },
+
+    gotoURLApp:function()
+    {
+        //在index.html中定时跳转
+        //<meta http-equiv=refresh content=3;URL="itms-apps://itunes.apple.com/us/app/id364183992">
+
+        //用按钮实现跳转，URL必须有http前缀，比如只填写www.baidu.com是跳转不了的
+        //var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
+        var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
+        window.location.href=newURL;
+        //window.open(newURL);
     }
 });
 
