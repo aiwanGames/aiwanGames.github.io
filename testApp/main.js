@@ -43,7 +43,7 @@ var cocos2dApp = cc.Application.extend({
         }
         // initialize director
         var director = cc.Director.getInstance();
-        cc.EGLView.getInstance()._adjustSizeToBrowser();
+        //cc.EGLView.getInstance()._adjustSizeToBrowser();
 
         var searchPaths = [];
         var resDirOrders = [];
@@ -53,6 +53,7 @@ var cocos2dApp = cc.Application.extend({
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
 
         //director.setContentScaleFactor(640 / 960);
+        cc.EGLView.getInstance().adjustViewPort(true);
         cc.EGLView.getInstance().setDesignResolutionSize(640, 900, cc.RESOLUTION_POLICY.SHOW_ALL);
         cc.EGLView.getInstance().resizeWithBrowserSize(true);
 
