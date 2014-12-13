@@ -33,6 +33,10 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.setColor(cc.c4(0,0,200,255));
 
+        var audio = document.getElementById("myAudio");
+        audio.src = "res/Audio/bg.mp3";
+        audio.play();
+
         var label=cc.LabelTTF.create("Test App","宋体",40);
         label.setAnchorPoint(cc.p(0.5,0.5));
         label.setColor(cc.c3(245,245,50));
