@@ -1,6 +1,5 @@
 var s_img01="img_kaishi.png";
 var s_img02="img_chakan.png";
-var s_img03="img_queding.png";
 var s_img04="img_fangqi.png";
 var s_img05="img_zailaiyici.png";
 var s_img06="img_yaoqing.png";
@@ -21,7 +20,6 @@ var g_resources = [
     //image
     {src:s_img01},
     {src:s_img02},
-    {src:s_img03},
     {src:s_img04},
     {src:s_img05},
     {src:s_img06},
