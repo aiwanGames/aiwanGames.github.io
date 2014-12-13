@@ -26,28 +26,44 @@ var overLayer = cc.LayerColor.extend({
         this.addChild(yaoqingmenu, 1);
 
         //统计图
-        var sp_cal=cc.Sprite.create(s_img18);
-        sp_cal.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.62));
-        sp_cal.setScale(0.01);
-        this.addChild(sp_cal,1);
-        sp_cal.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.Spawn.create(cc.ScaleTo.create(0.5,0.85),cc.RotateBy.create(0.5,360))));
+        var prs0=cc.Sprite.create(s_img18);
+        prs0.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.54));
+        prs0.setColor(cc.GRAY);
+        this.addChild(prs0,1);
+
+        var prs=cc.ProgressTimer.create(cc.Sprite.create(s_img18));
+        prs.setPercentage(0);
+        prs.setBarChangeRate(1);
+        prs.setType(cc.PROGRESS_TIMER_TYPE_RADIAL);
+        prs.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.54));
+        this.addChild(prs,1);
+        var perc=0;
+        if(this.gameLevel==0)
+        {
+            perc=5;
+        }
+        else
+        {
+            perc=this.gameLevel/10*100;
+        }
+        prs.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.ProgressTo.create(1.0,perc)));
 
         //文字
-        this.label1=cc.LabelTTF.create("", "黑体",25,cc.size(500,100),cc.TEXT_ALIGNMENT_CENTER);
+        this.label1=cc.LabelTTF.create("", "黑体",25,cc.size(500,150),cc.TEXT_ALIGNMENT_CENTER);
         this.label1.setColor(cc.c3(255,220,135));
         this.label1.setAnchorPoint(cc.p(0.5,0.5));
-        this.label1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.87));
+        this.label1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.75));
         this.addChild(this.label1,1);
         var hasSharedBefore=sys.localStorage.getItem("isChinaGovShared");
         var resultStr="";
         if(hasSharedBefore=="1")
         {
-            resultStr="你共答对"+this.gameLevel+"道,以下是全国答题分布图.";
+            resultStr="你共答对"+this.gameLevel+"道题\n推理强度为："+perc+"%";
             this.label1.setString(resultStr);
         }
         else
         {
-            resultStr="你共答对"+this.gameLevel+"道,以下是全国答题分布图.\n邀请好友帮忙揭晓答案.";
+            resultStr="你共答对"+this.gameLevel+"道题\n推理强度为："+perc+"%"+"\n分享给好友可立即揭晓答案";
             this.label1.setString(resultStr);
             this.scheduleUpdate();
         }
@@ -60,7 +76,7 @@ var overLayer = cc.LayerColor.extend({
         this.addChild(guanzhu,1);
 
         //分享标题和描述
-        var shareToPengyou="测测你的图形推理能力到底有多强，我竟答对了"+this.gameLevel+"道！";
+        var shareToPengyou="超准的图形推理能力测试题，我的推理强度是"+perc+"%";
         document.title = window.wxData.desc = shareToPengyou;
         document.title = window.wxFriend.desc = shareToPengyou;
     },
@@ -83,7 +99,8 @@ var overLayer = cc.LayerColor.extend({
         {
             window.shared=false;
             sys.localStorage.setItem("isChinaGovShared","1");
-            this.label1.stopAllActions();
+            this.removeChildByTag(170);
+            this.label1.setVisible(true);
             this.label1.setString("分享成功!\n点击再来一次,即可查看答案.");
         }
     },
@@ -103,23 +120,14 @@ var overLayer = cc.LayerColor.extend({
         this.isSharedC=true;
         //手
         var sp_hand=cc.Sprite.create(s_img09);
-        sp_hand.setPosition(cc.p(this.winsize.width*0.93,this.winsize.height*0.92));
-        sp_hand.setRotation(35);
-        sp_hand.setScale(0.65);
+        sp_hand.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*1.2));
+        sp_hand.setScale(1.05);
+        sp_hand.setTag(170);
         this.addChild(sp_hand,1);
-        var ac0=cc.MoveTo.create(0.4,cc.p(this.winsize.width*0.96,this.winsize.height*0.95));
-        var ac1=cc.MoveTo.create(0.4,cc.p(this.winsize.width*0.93,this.winsize.height*0.92));
-        var ac2=cc.Sequence.create(ac0,ac1);
-        var ac3=cc.RepeatForever.create(ac2);
-        sp_hand.runAction(ac3);
-        //提示分享
-        this.label1.setString("点击右上角[分享至朋友圈]推荐给好友.");
-        var ac10=cc.RotateTo.create(0.1,7);
-        var ac11=cc.RotateTo.create(0.1,0);
-        var ac12=cc.RotateTo.create(0.1,-7);
-        var ac13=cc.RotateTo.create(0.1,0);
-        var ac14=cc.DelayTime.create(1.0);
-        this.label1.runAction(cc.RepeatForever.create(cc.Sequence.create(ac10,ac11,ac12,ac13,ac14)));
+        var ac0=cc.EaseElasticOut.create(cc.MoveTo.create(0.5,cc.p(this.winsize.width*0.5,this.winsize.height*0.899)));
+        sp_hand.runAction(ac0);
+
+        this.label1.setVisible(false);
     }
 })
 

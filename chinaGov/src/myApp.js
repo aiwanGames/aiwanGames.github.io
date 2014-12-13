@@ -37,7 +37,7 @@ var beginLayer = cc.LayerColor.extend({
         sp_ui01.setPosition(this.winsize.width*0.5,this.winsize.height*0.7);
         this.addChild(sp_ui01,1);
         //前言
-        var tips=cc.LabelTTF.create("规则：从第一张图中寻找规律，匹配第二张图中空缺的部分.","黑体",25,cc.size(500,120),cc.TEXT_ALIGNMENT_CENTER);
+        var tips=cc.LabelTTF.create(" 规则(1):从第1张图中寻找潜在规律.\n规则(2):匹配第2张图中空缺的部分.","黑体",25,cc.size(500,120),cc.TEXT_ALIGNMENT_CENTER);
         tips.setAnchorPoint(cc.p(0.5,0.5));
         tips.setColor(cc.c3(255,220,135));
         tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.42));
