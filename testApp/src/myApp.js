@@ -26,6 +26,7 @@
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
     isPlaying:false,
+    audio:null,
 
     init:function ()
     {
@@ -33,6 +34,8 @@ var beginLayer = cc.LayerColor.extend({
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         this.setColor(cc.c4(0,0,200,255));
+
+        this.audio=cc.AudioEngine.getInstance();
 
         var label=cc.LabelTTF.create("Test App","宋体",40);
         label.setAnchorPoint(cc.p(0.5,0.5));
@@ -106,25 +109,16 @@ var beginLayer = cc.LayerColor.extend({
 
     playMusic:function()
     {
-        var audio=cc.AudioEngine.getInstance();
         if(this.isPlaying==false)
         {
-            audio.playMusic("res/Audio/bg.mp3",true);
+            this.audio.playMusic(s_music,true);
             this.isPlaying=true;
         }
         else
         {
-            audio.stopMusic();
+            this.audio.stopMusic();
             this.isPlaying=false;
         }
-    },
-
-    onEnter:function()
-    {
-        cc.log("onEnter");
-        var audio=cc.AudioEngine.getInstance();
-        audio.playMusic("res/Audio/bg.mp3",true);
-        this.isPlaying=true;
     }
 });
 
