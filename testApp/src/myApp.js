@@ -25,6 +25,7 @@
  ****************************************************************************/
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
+    isPlaying:false,
 
     init:function ()
     {
@@ -33,35 +34,38 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.setColor(cc.c4(0,0,200,255));
 
-        var audio = document.getElementById("myAudio");
-        audio.src = "res/Audio/bg.mp3";
-        audio.play();
-
         var label=cc.LabelTTF.create("Test App","宋体",40);
         label.setAnchorPoint(cc.p(0.5,0.5));
         label.setColor(cc.c3(245,245,50));
-        label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.7));
         this.addChild(label,1);
 
         var menuItem1=cc.MenuItemImage.create(s_img02,s_img03,this.gotoURLApp,this);
-        //menuItem1.setColor(cc.c3(cc.RED));
         var menu1=cc.Menu.create(menuItem1);
-        menu1.setPosition(cc.p(this.winsize.width*0.3,this.winsize.height*0.2));
+        menu1.setPosition(cc.p(this.winsize.width*0.2,this.winsize.height*0.2));
         this.addChild(menu1,1);
 
-        var label1=cc.LabelTTF.create("App Store","黑体",30);
-        label1.setPosition(cc.p(this.winsize.width*0.3,this.winsize.height*0.2));
+        var label1=cc.LabelTTF.create("AppStore","黑体",25);
+        label1.setPosition(cc.p(this.winsize.width*0.2,this.winsize.height*0.2));
         this.addChild(label1,1);
 
         var menuItem2=cc.MenuItemImage.create(s_img02,s_img03,this.gotoURL,this);
-        //menuItem2.setColor(cc.c3(cc.GRAY));
         var menu2=cc.Menu.create(menuItem2);
-        menu2.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.2));
+        menu2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.2));
         this.addChild(menu2,1);
 
-        var label2=cc.LabelTTF.create("Http链接","黑体",30);
-        label2.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.2));
+        var label2=cc.LabelTTF.create("Http链接","黑体",25);
+        label2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.2));
         this.addChild(label2,1);
+
+        var menuItem3=cc.MenuItemImage.create(s_img02,s_img03,this.playMusic,this);
+        var menu3=cc.Menu.create(menuItem3);
+        menu3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
+        this.addChild(menu3,1);
+
+        var label3=cc.LabelTTF.create("音效","黑体",25);
+        label3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
+        this.addChild(label3,1);
 
         //在URL中加入ID可根据URL判断显示内容哟，如index.html?age=10size=5！！！
         if(document.URL.indexOf("id=2")>=0)
@@ -95,6 +99,21 @@ var beginLayer = cc.LayerColor.extend({
         var newURL="http://a.app.qq.com/o/simple.jsp?pkgname=com.mymoney&g_f=992857#rd";
         window.location.href=newURL;
         //window.open(newURL);
+    },
+
+    playMusic:function()
+    {
+        var audio=cc.AudioEngine.getInstance();
+        if(!this.isPlaying)
+        {
+            audio.playMusic("res/Audio/bg.mp3",true);
+            this.isPlaying=true;
+        }
+        else
+        {
+            audio.stopMusic();
+            this.isPlaying=false;
+        }
     }
 });
 
