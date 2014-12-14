@@ -69,6 +69,22 @@ var cocos2dApp = cc.Application.extend({
         }, this);
 
         return true;
+    },
+
+    applicationDidEnterBackground:function () {
+        //cc.Application.getInstance().applicationDidEnterBackground();
+        var audio=cc.AudioEngine.getInstance();
+        audio.pauseMusic();
+        var director=cc.Director.getInstance();
+        director.pause();
+    },
+
+    applicationWillEnterForeground:function () {
+        //cc.Application.getInstance().applicationWillEnterForeground();
+        var audio=cc.AudioEngine.getInstance();
+        audio.resumeMusic();
+        var director=cc.Director.getInstance();
+        director.resume();
     }
 });
 
