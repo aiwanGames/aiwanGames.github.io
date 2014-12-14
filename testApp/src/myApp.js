@@ -47,6 +47,7 @@ var beginLayer = cc.LayerColor.extend({
 
         var label1=cc.LabelTTF.create("AppStore","黑体",25);
         label1.setPosition(cc.p(this.winsize.width*0.2,this.winsize.height*0.2));
+        label1.setColor(cc.c3(0,0,0));
         this.addChild(label1,1);
 
         var menuItem2=cc.MenuItemImage.create(s_img02,s_img03,this.gotoURL,this);
@@ -56,6 +57,7 @@ var beginLayer = cc.LayerColor.extend({
 
         var label2=cc.LabelTTF.create("Http链接","黑体",25);
         label2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.2));
+        label2.setColor(cc.c3(0,0,0));
         this.addChild(label2,1);
 
         var menuItem3=cc.MenuItemImage.create(s_img02,s_img03,this.playMusic,this);
@@ -65,6 +67,7 @@ var beginLayer = cc.LayerColor.extend({
 
         var label3=cc.LabelTTF.create("音效","黑体",25);
         label3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
+        label3.setColor(cc.c3(0,0,0));
         this.addChild(label3,1);
 
         //在URL中加入ID可根据URL判断显示内容哟，如index.html?age=10size=5！！！
