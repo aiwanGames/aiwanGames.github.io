@@ -93,8 +93,11 @@ var overLayer = cc.LayerColor.extend({
 
         //分享标题和描述
         window.wxData.imgUrl=imgURL;
+        window.wxData.imgUrl=imgURL;
         document.title = window.wxData.desc = shareToPengyou;
         document.title = window.wxFriend.desc = shareToPengyou;
+
+        this.scheduleUpdate();
     },
 
     update:function(dt)
@@ -126,6 +129,7 @@ var overLayer = cc.LayerColor.extend({
             yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
             this.addChild(yaoqingmenu, 1);
             window.wxData.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
+            window.wxFriend.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
             document.title = window.wxData.desc = "我刚驱散了身边的一只[恶灵]，恐怖！";
             document.title = window.wxFriend.desc = "我刚驱散了身边的一只[恶灵]，恐怖！";
         }
