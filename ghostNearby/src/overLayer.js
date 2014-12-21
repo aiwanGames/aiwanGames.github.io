@@ -76,6 +76,7 @@ var overLayer = cc.LayerColor.extend({
             var yaoqingItem = cc.MenuItemImage.create(s_img05,s_img05,this.share2Friend,this);
             var yaoqingmenu = cc.Menu.create(yaoqingItem);
             yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
+            yaoqingmenu.setTag(173);
             this.addChild(yaoqingmenu, 1);
         }
         else
@@ -111,6 +112,7 @@ var overLayer = cc.LayerColor.extend({
             this.removeChildByTag(170);
             this.removeChildByTag(171);
             this.removeChildByTag(172);
+            this.removeChildByTag(173);
             var tip=cc.LabelTTF.create("[恶灵] 已被驱散，你安全了.", "Arial",30);
             tip.setColor(cc.c3(245,245,50));
             tip.setAnchorPoint(cc.p(0.5,0.5));
