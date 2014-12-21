@@ -93,7 +93,7 @@ var overLayer = cc.LayerColor.extend({
 
         //分享标题和描述
         window.wxData.imgUrl=imgURL;
-        window.wxData.imgUrl=imgURL;
+        window.wxFriend.imgUrl=imgURL;
         document.title = window.wxData.desc = shareToPengyou;
         document.title = window.wxFriend.desc = shareToPengyou;
 
