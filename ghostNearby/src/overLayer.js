@@ -35,10 +35,10 @@ var overLayer = cc.LayerColor.extend({
 
         if(this.ghostIndex==0)
         {
-            var tip=cc.LabelTTF.create("看来鬼鬼们对你不感兴趣.", "Arial",35);
+            var tip=cc.LabelTTF.create("看来鬼鬼们对你不感兴趣.", "Arial",30);
             tip.setColor(cc.c3(245,245,50));
             tip.setAnchorPoint(cc.p(0.5,0.5));
-            tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.7));
+            tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.77));
             this.addChild(tip,1);
         }
         else
@@ -49,26 +49,27 @@ var overLayer = cc.LayerColor.extend({
             var imgURL="";
             switch(this.ghostIndex)
             {
-                case 1:gh=cc.Sprite.create(s_img12);con="[嗓门鬼]  危险指数 30";shareToPengyou="我抓到一个[嗓门鬼]，大家也来试试！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_02.png";break;
-                case 2:gh=cc.Sprite.create(s_img13);con="[长舌鬼]  危险指数 60";shareToPengyou="我抓到一个[长舌鬼]，大家也来试试！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_03.png";break;
-                case 3:gh=cc.Sprite.create(s_img14);con="[胆小鬼]  危险指数 10";shareToPengyou="我抓到一个[胆小鬼]，大家也来试试！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_04.png";break;
-                case 4:gh=cc.Sprite.create(s_img15);con="[勾魂鬼]  危险指数 80";shareToPengyou="我抓到一个[勾魂鬼]，大家也来试试！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_05.png";break;
-                case 5:gh=cc.Sprite.create(s_img16);con="[恶灵]  危险指数 100";shareToPengyou="我抓到一个[恶灵]，被缠上了，恐怖！晒出来把它驱散！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_06.png";break;
+                case 1:gh=cc.Sprite.create(s_img11);con="[饿死鬼]  危险指数 50\n晚上吃饭的时候注意勺子.";shareToPengyou="我抓到一个[饿死鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_01.png";break;
+                case 2:gh=cc.Sprite.create(s_img12);con="[嗓门鬼]  危险指数 30\n一个人走听见有人喊时莫回头.";shareToPengyou="我抓到一个[嗓门鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_02.png";break;
+                case 3:gh=cc.Sprite.create(s_img13);con="[长舌鬼]  危险指数 60\n晚上小心耳边的窃窃私语";shareToPengyou="我抓到一个[长舌鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_03.png";break;
+                case 4:gh=cc.Sprite.create(s_img14);con="[胆小鬼]  危险指数 10\n今天可以放心出行.";shareToPengyou="我抓到一个[胆小鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_04.png";break;
+                case 5:gh=cc.Sprite.create(s_img15);con="[勾魂鬼]  危险指数 80\n睡觉时莫要睁眼看床头.";shareToPengyou="我抓到一个[勾魂鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_05.png";break;
+                case 6:gh=cc.Sprite.create(s_img16);con="[恶灵]  危险指数 100\n危险！快借助朋友的力量驱散恶灵！";shareToPengyou="我抓到一个[恶灵]，被缠上了，恐怖！快帮我把它驱散！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_06.png";break;
             }
             gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
             this.addChild(gh,1);
 
-            var tip1=cc.LabelTTF.create(con, "Arial",35);
+            var tip1=cc.LabelTTF.create(con, "Arial",30,cc.size(500,100),cc.TEXT_ALIGNMENT_CENTER);
             tip1.setColor(cc.c3(245,245,50));
             tip1.setAnchorPoint(cc.p(0.5,0.5));
-            tip1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.7));
+            tip1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.73));
             tip1.setTag(171);
             this.addChild(tip1,1);
         }
 
         sys.localStorage.setItem("ghostIndex",this.ghostIndex);
 
-        if(this.ghostIndex==5)
+        if(this.ghostIndex==6)
         {
             sys.localStorage.setItem("isGhostShared","0");
             //去除恶灵
@@ -76,12 +77,6 @@ var overLayer = cc.LayerColor.extend({
             var yaoqingmenu = cc.Menu.create(yaoqingItem);
             yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
             this.addChild(yaoqingmenu, 1);
-            var tip2=cc.LabelTTF.create("你被[恶灵]盯上了，赶紧借助朋友的力量驱散！", "Arial",30);
-            tip2.setColor(cc.c3(245,245,50));
-            tip2.setAnchorPoint(cc.p(0.5,0.5));
-            tip2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
-            tip2.setTag(172);
-            this.addChild(tip2,1);
         }
         else
         {
@@ -90,6 +85,10 @@ var overLayer = cc.LayerColor.extend({
             var zailaimenu = cc.Menu.create(zailaiItem);
             zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
             this.addChild(zailaimenu, 1);
+            var yaoqingItem = cc.MenuItemImage.create(s_img17,s_img17,this.share2Friend,this);
+            var yaoqingmenu = cc.Menu.create(yaoqingItem);
+            yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
+            this.addChild(yaoqingmenu, 1);
         }
 
         //分享标题和描述
@@ -109,19 +108,26 @@ var overLayer = cc.LayerColor.extend({
             this.removeChildByTag(170);
             this.removeChildByTag(171);
             this.removeChildByTag(172);
-            var tip=cc.LabelTTF.create("[恶灵] 已被驱散，你安全了.", "Arial",35);
+            var tip=cc.LabelTTF.create("[恶灵] 已被驱散，你安全了.", "Arial",30);
             tip.setColor(cc.c3(245,245,50));
             tip.setAnchorPoint(cc.p(0.5,0.5));
-            tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.7));
+            tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.77));
             this.addChild(tip,1);
+            var gh=cc.Sprite.create(s_img18);
+            gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+            this.addChild(gh,1);
             //再来一次
             var zailaiItem = cc.MenuItemImage.create(s_img04,s_img04,this.gotoMainLayer,this);
             var zailaimenu = cc.Menu.create(zailaiItem);
             zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
             this.addChild(zailaimenu, 1);
+            var yaoqingItem = cc.MenuItemImage.create(s_img17,s_img17,this.share2Friend,this);
+            var yaoqingmenu = cc.Menu.create(yaoqingItem);
+            yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
+            this.addChild(yaoqingmenu, 1);
             window.wxData.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
-            document.title = window.wxData.desc = "我刚驱散了身边的一只[恶灵]，恐怖！大家也来试试！";
-            document.title = window.wxFriend.desc = "我刚驱散了身边的一只[恶灵]，恐怖！大家也来试试！";
+            document.title = window.wxData.desc = "我刚驱散了身边的一只[恶灵]，恐怖！";
+            document.title = window.wxFriend.desc = "我刚驱散了身边的一只[恶灵]，恐怖！";
         }
     },
 

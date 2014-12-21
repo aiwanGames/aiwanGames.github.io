@@ -44,9 +44,9 @@ var beginLayer = cc.LayerColor.extend({
         //sys.localStorage.setItem("ghostIndex",5);
         var isShared=sys.localStorage.getItem("isGhostShared");
         var ghostindex=sys.localStorage.getItem("ghostIndex");
-        if(isShared=="0"&&ghostindex==5)
+        if(isShared=="0"&&ghostindex==6)
         {
-            this.ghostIndex=5;
+            this.ghostIndex=6;
             this.gotoGameOver();
         }
         else
@@ -177,13 +177,23 @@ var beginLayer = cc.LayerColor.extend({
 
         if(this.getRandom(rate)==1&&this.searchCount>3)
         {
-            this.ghostIndex=this.getRandom(5);
+            var index=this.getRandom(3);
+            if(index==1)
+            {
+                this.ghostIndex=6;
+            }
+            else
+            {
+                this.ghostIndex=this.getRandom(6)+1;
+            }
+            this.searchCount=0;
             this.gotoGameOver();
         }
 
-        if(this.searchCount==15)
+        if(this.searchCount==11)
         {
             this.ghostIndex=0;
+            this.searchCount=0;
             this.gotoGameOver();
         }
         this.searchCount+=1;
