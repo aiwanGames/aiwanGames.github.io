@@ -49,14 +49,15 @@ var overLayer = cc.LayerColor.extend({
             var imgURL="";
             switch(this.ghostIndex)
             {
-                case 1:gh=cc.Sprite.create(s_img11);con="[饿死鬼]  危险指数 50\n晚上吃饭的时候注意勺子.";shareToPengyou="我抓到一个[饿死鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_01.png";break;
-                case 2:gh=cc.Sprite.create(s_img12);con="[嗓门鬼]  危险指数 30\n一个人走听见有人喊时莫回头.";shareToPengyou="我抓到一个[嗓门鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_02.png";break;
-                case 3:gh=cc.Sprite.create(s_img13);con="[长舌鬼]  危险指数 60\n晚上小心耳边的窃窃私语";shareToPengyou="我抓到一个[长舌鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_03.png";break;
-                case 4:gh=cc.Sprite.create(s_img14);con="[胆小鬼]  危险指数 10\n今天可以放心出行.";shareToPengyou="我抓到一个[胆小鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_04.png";break;
-                case 5:gh=cc.Sprite.create(s_img15);con="[勾魂鬼]  危险指数 80\n睡觉时莫要睁眼看床头.";shareToPengyou="我抓到一个[勾魂鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_05.png";break;
-                case 6:gh=cc.Sprite.create(s_img16);con="[恶灵]  危险指数 100\n危险！快借助朋友的力量驱散恶灵！";shareToPengyou="我抓到一个[恶灵]，被缠上了，恐怖！快帮我把它驱散！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_06.png";break;
+                case 1:gh=cc.Sprite.create(s_img11);con="[饿死鬼]  危险指数 50\n晚上不要留剩饭哦.";shareToPengyou="我抓到一只[饿死鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_01.png";break;
+                case 2:gh=cc.Sprite.create(s_img12);con="[嗓门鬼]  危险指数 30\n晚上听见有人喊叫莫回头.";shareToPengyou="我抓到一只[嗓门鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_02.png";break;
+                case 3:gh=cc.Sprite.create(s_img13);con="[长舌鬼]  危险指数 60\n晚上小心耳边的窃窃私语.";shareToPengyou="我抓到一只[长舌鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_03.png";break;
+                case 4:gh=cc.Sprite.create(s_img14);con="[胆小鬼]  危险指数 10\n今天可以放心出行.";shareToPengyou="我抓到一只[胆小鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_04.png";break;
+                case 5:gh=cc.Sprite.create(s_img15);con="[勾魂鬼]  危险指数 80\n睡觉时莫要睁眼看床头.";shareToPengyou="我抓到一只[勾魂鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_05.png";break;
+                case 6:gh=cc.Sprite.create(s_img16);con="[恶灵]  危险指数 100\n危险！快借助朋友的力量驱散恶灵！";shareToPengyou="我抓到一只[恶灵]，恐怖！快帮我把它驱散！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_06.png";break;
             }
             gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+            gh.setTag(174);
             this.addChild(gh,1);
 
             var tip1=cc.LabelTTF.create(con, "Arial",30,cc.size(500,100),cc.TEXT_ALIGNMENT_CENTER);
@@ -113,7 +114,8 @@ var overLayer = cc.LayerColor.extend({
             this.removeChildByTag(171);
             this.removeChildByTag(172);
             this.removeChildByTag(173);
-            var tip=cc.LabelTTF.create("[恶灵] 已被驱散，你安全了.", "Arial",30);
+            this.removeChildByTag(174);
+            var tip=cc.LabelTTF.create("鬼鬼已魂飞魄散，你安全了.", "Arial",30);
             tip.setColor(cc.c3(245,245,50));
             tip.setAnchorPoint(cc.p(0.5,0.5));
             tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.77));
@@ -132,8 +134,8 @@ var overLayer = cc.LayerColor.extend({
             this.addChild(yaoqingmenu, 1);
             window.wxData.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
             window.wxFriend.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
-            document.title = window.wxData.desc = "我刚驱散了身边的一只[恶灵]，恐怖！";
-            document.title = window.wxFriend.desc = "我刚驱散了身边的一只[恶灵]，恐怖！";
+            document.title = window.wxData.desc = "我刚驱散了身边的一只鬼鬼，恐怖！";
+            document.title = window.wxFriend.desc = "我刚驱散了身边的一只鬼鬼，恐怖！";
         }
     },
 
