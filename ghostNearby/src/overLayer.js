@@ -33,6 +33,9 @@ var overLayer = cc.LayerColor.extend({
         guanzhu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.05));
         this.addChild(guanzhu,1);
 
+        var shareToPengyou=" ";
+        var imgURL="";
+
         if(this.ghostIndex==0)
         {
             var tip=cc.LabelTTF.create("看来鬼鬼们对你不感兴趣.", "Arial",30);
@@ -40,13 +43,13 @@ var overLayer = cc.LayerColor.extend({
             tip.setAnchorPoint(cc.p(0.5,0.5));
             tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.77));
             this.addChild(tip,1);
+            shareToPengyou="探测你身边的鬼鬼，胆小慎入！";
+            imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
         }
         else
         {
             var gh=null;
             var con="";
-            var shareToPengyou=" ";
-            var imgURL="";
             switch(this.ghostIndex)
             {
                 case 1:gh=cc.Sprite.create(s_img11);con="[饿死鬼]  危险指数 50\n晚上不要留剩饭哦.";shareToPengyou="我抓到一只[饿死鬼]，有点恐怖，慎入！";imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/img_01.png";break;
@@ -108,6 +111,7 @@ var overLayer = cc.LayerColor.extend({
         if(window.shared)
         {
             window.shared=false;
+            this.isSharedC=false;
             sys.localStorage.setItem("isGhostShared","1");
             sys.localStorage.setItem("ghostIndex",0);
             this.removeChildByTag(170);

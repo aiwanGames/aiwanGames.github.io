@@ -109,6 +109,17 @@ var beginLayer = cc.LayerColor.extend({
             gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height-gh.getContentSize().height*0.5));
             this.addChild(gh,1);
 
+            var tishi=cc.LabelTTF.create("按住按钮开始探测", "Arial",25);
+            tishi.setColor(cc.c3(245,245,50));
+            tishi.setAnchorPoint(cc.p(0.5,0.5));
+            tishi.setPosition(cc.p(this.winsize.width*0.5,tishi.getContentSize().height*0.3));
+            tishi.setTag(150);
+            this.addChild(tishi,1);
+
+            var ac2=cc.FadeOut.create(1.0);
+            var ac3=cc.FadeIn.create(0.1);
+            tishi.runAction(cc.RepeatForever.create(cc.Sequence.create(ac2,ac3)));
+
             this.schedule(this.updateLight,1.5);
         }
 
@@ -229,6 +240,7 @@ var beginLayer = cc.LayerColor.extend({
         if (!this.inSearch&&(cc.rectContainsPoint(search.getBoundingBox(),location)))
         {
             this.inSearch = true;
+            this.removeChildByTag(150,true);
             this.schedule(this.updateCircle,1.0,9999,0.0);
         }
     },
