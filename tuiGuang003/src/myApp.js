@@ -32,7 +32,7 @@ var beginLayer = cc.LayerColor.extend({
     spTag:200,
     Score:0,
     scoreLabel:null,
-    gameTime:5,
+    gameTime:30,
     countSp:null,
 
     init:function ()
