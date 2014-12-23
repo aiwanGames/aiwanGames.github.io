@@ -26,14 +26,13 @@
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
     audio:null,
-    startTouch:0.0,
-    endTouch:0.0,
+    canTouch:true,
     sound:false,
     deerIn:false,
     spTag:200,
     Score:0,
     scoreLabel:null,
-    gameTime:30,
+    gameTime:5,
     countSp:null,
 
     init:function ()
@@ -58,7 +57,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(man,1);
         //花
         var flower=cc.Sprite.create(s_img05);
-        flower.setScale(0.75);
+        flower.setScale(0.8);
         flower.setAnchorPoint(cc.p(0.5,1));
         flower.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.88));
         this.addChild(flower,1);
@@ -75,7 +74,7 @@ var beginLayer = cc.LayerColor.extend({
         sound.setPosition(cc.p(this.winsize.width-sound.getContentSize().width*0.5*0.3,this.winsize.height*0.64));
         this.addChild(sound,1);
         //分数
-        this.scoreLabel=cc.LabelTTF.create("0","Arial",35);
+        this.scoreLabel=cc.LabelTTF.create("0","Arial",44);
         this.scoreLabel.setAnchorPoint(cc.p(0.5,0.5));
         this.scoreLabel.setPosition(cc.p(flower.getContentSize().width*0.5,flower.getContentSize().height*0.57));
         this.scoreLabel.setColor(cc.c3(255,230,40));
@@ -85,18 +84,41 @@ var beginLayer = cc.LayerColor.extend({
         this.countSp.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.countSp.setVisible(false);
         this.addChild(this.countSp,5);
+        //提示
+        var label=cc.LabelTTF.create("收集驯鹿洒落的许愿币，\n圣诞愿望就会实现哦！","黑体",35);
+        label.setAnchorPoint(cc.p(0.5,0.5));
+        label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.53));
+        label.setTag(106);
+        label.setColor(cc.c3(255,230,40));
+        this.addChild(label,5);
+        //开始按钮
+        var kaishiItem=cc.MenuItemImage.create(s_img07,s_img07,this.startGame,this);
+        kaishiItem.setScale(0.8);
+        var kaishiMenu=cc.Menu.create(kaishiItem);
+        kaishiMenu.setTag(105);
+        kaishiMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
+        this.addChild(kaishiMenu, 6);
 
         //开启触摸
         this.setTouchEnabled(true);
-        this.schedule(this.deerUpdate,6.0,9999,0.1);
-        this.schedule(this.updateScore,0.7,9999,0.1);
-        this.schedule(this.timeTicking,1.0);
-
         var shareText="我正在猛抢许愿币，圣诞礼物快到碗里来！一起来抢吧！";
         document.title = window.wxData.desc = shareText;
         document.title = window.wxFriend.desc = shareText;
 
         return true;
+    },
+
+    startGame:function()
+    {
+        this.schedule(this.deerUpdate,6.0,9999,0.1);
+        this.schedule(this.updateScore,0.7,9999,0.1);
+        this.schedule(this.timeTicking,1.0);
+        this.sound=true;
+        var sn=this.getChildByTag(100);
+        sn.initWithFile(s_img10);
+        this.audio.playMusic(s_music,true);
+        this.removeChildByTag(105,true);
+        this.removeChildByTag(106,true);
     },
 
     timeTicking:function()
@@ -111,32 +133,33 @@ var beginLayer = cc.LayerColor.extend({
             var zailaiItem=cc.MenuItemImage.create(s_img18,s_img18,this.restart,this);
             zailaiItem.setScale(0.8);
             var zailaiMenu=cc.Menu.create(zailaiItem);
-            zailaiMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.24));
+            zailaiMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
+            zailaiMenu.setTag(120);
             this.addChild(zailaiMenu, 6);
             var guanzhuItem=cc.MenuItemImage.create(s_img19,s_img19,this.guanzhu,this);
             guanzhuItem.setScale(0.8);
             var guanzhuMenu=cc.Menu.create(guanzhuItem);
-            guanzhuMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.15));
+            guanzhuMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
+            guanzhuMenu.setTag(121);
             this.addChild(guanzhuMenu, 6);
-            var back03=cc.Sprite.create(s_img03);
-            back03.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-            this.addChild(back03,1);
-            var label=cc.LabelTTF.create("恭喜你收集到"+this.Score+"个许愿币！\n \n截屏发送至随手记公众号，\n就有机会获得圣诞礼物哦！","Arial",28,cc.size(440,200),cc.TEXT_ALIGNMENT_CENTER);
+            var fenxiangItem=cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
+            fenxiangItem.setScale(0.8);
+            var fenxiangMenu=cc.Menu.create(fenxiangItem);
+            fenxiangMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.17));
+            fenxiangMenu.setTag(122);
+            this.addChild(fenxiangMenu, 6);
+
+            var label=cc.LabelTTF.create("恭喜你收集到"+this.Score+"个许愿币！","黑体",40);
             label.setAnchorPoint(cc.p(0.5,0.5));
-            label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+            label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.55));
             label.setColor(cc.c3(255,230,40));
             this.addChild(label,5);
-            var label1=cc.LabelTTF.create("小提示：分数越高，中奖几率越大.","Arial",28);
-            label1.setAnchorPoint(cc.p(0.5,0.5));
-            label1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.41));
-            label1.setColor(cc.c3(255,230,40));
-            this.addChild(label1,5);
             var ac0=cc.RotateTo.create(0.1,7);
             var ac1=cc.RotateTo.create(0.1,0);
             var ac2=cc.RotateTo.create(0.1,-7);
             var ac3=cc.RotateTo.create(0.1,0);
             var ac4=cc.DelayTime.create(1.0);
-            label1.runAction(cc.RepeatForever.create(cc.Sequence.create(ac0,ac1,ac2,ac3,ac4)));
+            label.runAction(cc.RepeatForever.create(cc.Sequence.create(ac0,ac1,ac2,ac3,ac4)));
             var shareText="我收集到了"+this.Score+"个许愿币，圣诞礼物快到碗里来！一起来抢吧！";
             document.title = window.wxData.desc = shareText;
             document.title = window.wxFriend.desc = shareText;
@@ -270,6 +293,7 @@ var beginLayer = cc.LayerColor.extend({
 
     restart:function()
     {
+        this.audio.stopMusic();
         var scene=beginLayer.create();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     },
@@ -278,6 +302,28 @@ var beginLayer = cc.LayerColor.extend({
     {
         var newURL="http://mp.weixin.qq.com/s?__biz=MjM5NzAwNDAyMA==&mid=202683154&idx=1&sn=30c8c2dea75cc6729e017eaf8c745c56#rd";
         window.location.href=newURL;
+    },
+
+    share2Friend:function()
+    {
+        var back02=cc.Sprite.create(s_img08);
+        back02.setTag(107);
+        back02.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        this.addChild(back02,6);
+        var arrow=cc.Sprite.create(s_img09);
+        arrow.setTag(109);
+        arrow.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
+        this.addChild(arrow,6);
+        var label=cc.LabelTTF.create("点击这里分享","黑体",35);
+        label.setAnchorPoint(cc.p(0.5,0.5));
+        label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
+        label.setColor(cc.c3(255,255,255));
+        label.setTag(108);
+        this.addChild(label,6);
+        this.getChildByTag(120).setEnabled(false);
+        this.getChildByTag(121).setEnabled(false);
+        this.getChildByTag(122).setEnabled(false);
+        this.canTouch=false;
     },
 
     onTouchesEnded:function(touches, event)
@@ -291,7 +337,7 @@ var beginLayer = cc.LayerColor.extend({
         var location = touch.getLocation();
         var sn=this.getChildByTag(100);
         var soundRect=sn.getBoundingBox();
-        if(cc.rectContainsPoint(soundRect,location))
+        if(cc.rectContainsPoint(soundRect,location)&&this.canTouch)
         {
             if(this.sound==false)
             {
@@ -305,6 +351,16 @@ var beginLayer = cc.LayerColor.extend({
                 sn.initWithFile(s_img11);
                 this.audio.stopMusic();
             }
+        }
+        if(this.canTouch==false)
+        {
+            this.getChildByTag(120).setEnabled(true);
+            this.getChildByTag(121).setEnabled(true);
+            this.getChildByTag(122).setEnabled(true);
+            this.canTouch=true;
+            this.removeChildByTag(107,true);
+            this.removeChildByTag(108,true);
+            this.removeChildByTag(109,true);
         }
         for(var i=200;i<=300;i++)
         {
