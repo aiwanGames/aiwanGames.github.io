@@ -73,17 +73,11 @@ var beginLayer = cc.LayerColor.extend({
         sound.setTag(100);
         sound.setPosition(cc.p(this.winsize.width-sound.getContentSize().width*0.5*0.3,this.winsize.height*0.64));
         this.addChild(sound,1);
-        //分数
-        this.scoreLabel=cc.LabelTTF.create("0","Arial",44);
-        this.scoreLabel.setAnchorPoint(cc.p(0.5,0.5));
-        this.scoreLabel.setPosition(cc.p(flower.getContentSize().width*0.5,flower.getContentSize().height*0.57));
-        this.scoreLabel.setColor(cc.c3(255,230,40));
-        flower.addChild(this.scoreLabel,1);
         //倒计时
-        this.countSp=cc.Sprite.create(s_img13);
-        this.countSp.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-        this.countSp.setVisible(false);
-        this.addChild(this.countSp,5);
+        this.countSp=cc.LabelTTF.create("30","Arial",45);
+        this.countSp.setPosition(cc.p(flower.getContentSize().width*0.51,flower.getContentSize().height*0.56));
+        this.countSp.setColor(cc.c3(255,230,40));
+        flower.addChild(this.countSp,5);
         //提示
         var label=cc.LabelTTF.create("收集驯鹿洒落的许愿币，\n圣诞愿望就会实现哦！","黑体",35);
         label.setAnchorPoint(cc.p(0.5,0.5));
@@ -101,7 +95,7 @@ var beginLayer = cc.LayerColor.extend({
 
         //开启触摸
         this.setTouchEnabled(true);
-        var shareText="我正在猛抢许愿币，圣诞礼物快到碗里来！一起来抢吧！";
+        var shareText="我正在猛抢许愿币，收集35个就能召唤圣诞老人哦！";
         document.title = window.wxData.desc = shareText;
         document.title = window.wxFriend.desc = shareText;
 
@@ -110,6 +104,12 @@ var beginLayer = cc.LayerColor.extend({
 
     startGame:function()
     {
+        //分数
+        this.scoreLabel=cc.LabelAtlas.create(this.Score,s_img13,64,86,'0');
+        this.scoreLabel.setAnchorPoint(cc.p(0.5,0.5));
+        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        this.addChild(this.scoreLabel,1);
+
         this.schedule(this.deerUpdate,6.0,9999,0.1);
         this.schedule(this.updateScore,0.7,9999,0.1);
         this.schedule(this.timeTicking,1.0);
@@ -126,20 +126,20 @@ var beginLayer = cc.LayerColor.extend({
         if(this.gameTime==0)
         {
             this.removeChildByTag(101,true);
-            this.removeChild(this.countSp,true);
+            this.removeChild(this.scoreLabel,true);
             this.unschedule(this.timeTicking);
             this.unschedule(this.deerUpdate);
             this.unschedule(this.updateScore);
             var zailaiItem=cc.MenuItemImage.create(s_img18,s_img18,this.restart,this);
             zailaiItem.setScale(0.8);
             var zailaiMenu=cc.Menu.create(zailaiItem);
-            zailaiMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
+            zailaiMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
             zailaiMenu.setTag(120);
             this.addChild(zailaiMenu, 6);
             var guanzhuItem=cc.MenuItemImage.create(s_img19,s_img19,this.guanzhu,this);
             guanzhuItem.setScale(0.8);
             var guanzhuMenu=cc.Menu.create(guanzhuItem);
-            guanzhuMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
+            guanzhuMenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
             guanzhuMenu.setTag(121);
             this.addChild(guanzhuMenu, 6);
             var fenxiangItem=cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
@@ -160,30 +160,15 @@ var beginLayer = cc.LayerColor.extend({
             var ac3=cc.RotateTo.create(0.1,0);
             var ac4=cc.DelayTime.create(1.0);
             label.runAction(cc.RepeatForever.create(cc.Sequence.create(ac0,ac1,ac2,ac3,ac4)));
-            var shareText="我收集到了"+this.Score+"个许愿币，圣诞礼物快到碗里来！一起来抢吧！";
+            var shareText="我收集到了"+this.Score+"个许愿币！只要35个就可以召唤圣诞老人啦~";
             document.title = window.wxData.desc = shareText;
             document.title = window.wxFriend.desc = shareText;
         }
         else
         {
             this.gameTime-=1;
-            if(this.gameTime==3)
-            {
-                this.countSp.setVisible(true);
-            }
-            if(this.gameTime==2)
-            {
-                this.countSp.initWithFile(s_img14);
-            }
-            if(this.gameTime==1)
-            {
-                this.countSp.initWithFile(s_img15);
-            }
-            if(this.gameTime==0)
-            {
-                this.countSp.initWithFile(s_img16);
-            }
         }
+        this.countSp.setString(this.gameTime);
     },
 
     updateScore:function()
@@ -362,18 +347,21 @@ var beginLayer = cc.LayerColor.extend({
             this.removeChildByTag(108,true);
             this.removeChildByTag(109,true);
         }
-        for(var i=200;i<=300;i++)
+        if(this.gameTime>0)
         {
-            var sp=this.getChildByTag(i);
-            if(sp!=null)
+            for(var i=200;i<=300;i++)
             {
-                var spp=sp.getBoundingBox();
-                if(cc.rectContainsPoint(spp,location))
+                var sp=this.getChildByTag(i);
+                if(sp!=null)
                 {
-                    this.removeChildByTag(i,true);
-                    this.Score+=1;
-                    this.scoreLabel.setString(""+this.Score);
-                    this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.3),cc.ScaleTo.create(0.1,1.0)));
+                    var spp=sp.getBoundingBox();
+                    if(cc.rectContainsPoint(spp,location))
+                    {
+                        this.removeChildByTag(i,true);
+                        this.Score+=1;
+                        this.scoreLabel.setString(this.Score);
+                        this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.3),cc.ScaleTo.create(0.1,1.0)));
+                    }
                 }
             }
         }
