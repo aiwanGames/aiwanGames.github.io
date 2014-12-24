@@ -95,7 +95,7 @@ var beginLayer = cc.LayerColor.extend({
 
         //开启触摸
         this.setTouchEnabled(true);
-        var shareText="我正在猛抢许愿币，收集35个就能召唤圣诞老人哦！";
+        var shareText="我正在猛抢许愿币，收集56个就能召唤圣诞老人哦！";
         document.title = window.wxData.desc = shareText;
         document.title = window.wxFriend.desc = shareText;
 
@@ -160,7 +160,7 @@ var beginLayer = cc.LayerColor.extend({
             var ac3=cc.RotateTo.create(0.1,0);
             var ac4=cc.DelayTime.create(1.0);
             label.runAction(cc.RepeatForever.create(cc.Sequence.create(ac0,ac1,ac2,ac3,ac4)));
-            var shareText="我收集到了"+this.Score+"个许愿币！只要35个就可以召唤圣诞老人啦~";
+            var shareText="我收集到了"+this.Score+"个许愿币！只要56个就可以召唤圣诞老人啦~";
             document.title = window.wxData.desc = shareText;
             document.title = window.wxFriend.desc = shareText;
         }
