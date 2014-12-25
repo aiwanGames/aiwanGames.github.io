@@ -24,27 +24,29 @@
 <canvas id="gameCanvas" width="640" height="880"></canvas>
 <script src="cocos2d.js"></script>
 <script type="text/javascrpt" language="javascript">
-    //方法一
-    function noMenuOne()
+    function noMenuTwo()
     {
-        alert('禁止右键菜单!');
-        return false;
+        if(event.button == 2)
+        {
+            alert('禁止右键菜单!');
+            return false;
+        }
     }
-    document.oncontextmenu = noMenuOne;
+    document.onmousedown = noMenuTwo;
 </script>
 <script type="text/javascript" src="WeixinApi.js"></script>
 <script>
     window.wxData = {
         "appId": "wx087d2602173998d6",
-        "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
-        "link":'http://aiwanGames.github.io/testApp/',
+        "imgUrl":'http://aiwanGames.com/testApp/res/HD/img_me.png',
+        "link":'http://aiwanGames.com/testApp/',
         "desc":"TestApp：描述",
         "title":"TestApp：标题"
     };
     window.wxFriend = {
         "appId": "wx087d2602173998d6",
-        "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
-        "link":'http://aiwanGames.github.io/testApp/',
+        "imgUrl":'http://aiwanGames.com/testApp/res/HD/img_me.png',
+        "link":'http://aiwanGames.com/testApp/',
         "desc":"TestApp：描述",
         "title":"TestApp：标题"
     };
