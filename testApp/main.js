@@ -24,6 +24,20 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+window.wxData = {
+    "appId": "wx087d2602173998d6",
+    "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
+    "link":'http://aiwanGames.github.io/testApp/',
+    "desc":"TestApp：描述",
+    "title":"TestApp：标题"
+};
+window.wxFriend = {
+    "appId": "wx087d2602173998d6",
+    "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
+    "link":'http://aiwanGames.github.io/testApp/',
+    "desc":"TestApp：描述",
+    "title":"TestApp：标题"
+};
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
     ctor:function (scene) {

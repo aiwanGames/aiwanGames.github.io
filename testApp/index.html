@@ -26,16 +26,16 @@
 <script type="text/javascript" src="WeixinApi.js"></script>
 <script>
     window.wxData = {
-        "appId": "wx087d2602173998d6",
-        "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
-        "link":'http://aiwanGames.github.io/testApp/',
+        "appId": "",
+        "imgUrl":'',
+        "link":'',
         "desc":"TestApp：描述",
         "title":"TestApp：标题"
     };
     window.wxFriend = {
-        "appId": "wx087d2602173998d6",
-        "imgUrl":'http://aiwanGames.github.io/testApp/res/HD/img_me.png',
-        "link":'http://aiwanGames.github.io/testApp/',
+        "appId": "",
+        "imgUrl":'',
+        "link":'',
         "desc":"TestApp：描述",
         "title":"TestApp：标题"
     };
@@ -54,7 +54,6 @@
         };
         Api.shareToFriend(wxFriend, wxCallbacks);
         Api.shareToTimeline(wxData, wxCallbacks);
-        Api.shareToWeibo(wxData, wxCallbacks);
     });
 </script>
 </body>
