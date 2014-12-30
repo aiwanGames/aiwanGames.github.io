@@ -89,10 +89,12 @@ var overLayer = cc.LayerColor.extend({
             var zailaiItem = cc.MenuItemImage.create(s_img04,s_img04,this.gotoMainLayer,this);
             var zailaimenu = cc.Menu.create(zailaiItem);
             zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
+            zailaimenu.setTag(167);
             this.addChild(zailaimenu, 1);
             var yaoqingItem = cc.MenuItemImage.create(s_img17,s_img17,this.share2Friend,this);
             var yaoqingmenu = cc.Menu.create(yaoqingItem);
             yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
+            yaoqingmenu.setTag(173);
             this.addChild(yaoqingmenu, 1);
         }
 
@@ -165,15 +167,37 @@ var overLayer = cc.LayerColor.extend({
         {
             return;
         }
-        //分享提醒
-        var sp_hand=cc.Sprite.create(s_img06);
-        sp_hand.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*1.2));
-        sp_hand.setScale(1.05);
-        sp_hand.setTag(170);
-        this.addChild(sp_hand,1);
-        var ac0=cc.EaseElasticOut.create(cc.MoveTo.create(0.5,cc.p(this.winsize.width*0.5,this.winsize.height*0.899)));
-        sp_hand.runAction(ac0);
+        //屏蔽层
+        var shield1=cc.Sprite.create(s_img06);
+        shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        shield1.setTag(170);
+        this.addChild(shield1,1);
+        var shield2=cc.Sprite.create(s_img19);
+        shield2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.9));
+        shield2.setTag(169);
+        this.addChild(shield2,1);
+        var label=cc.LabelTTF.create("点击这里分享","黑体",35);
+        label.setAnchorPoint(cc.p(0.5,0.5));
+        label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
+        label.setColor(cc.c3(255,255,255));
+        label.setTag(168);
+        this.addChild(label,1);
+        this.getChildByTag(167).setEnabled(false);
+        this.getChildByTag(173).setEnabled(false);
         this.isSharedC=true;
+    },
+
+    onTouchesBegan:function(touches, event)
+    {
+        if(this.isSharedC==false)
+        {
+            this.getChildByTag(167).setEnabled(true);
+            this.getChildByTag(173).setEnabled(true);
+            this.isSharedC=true;
+            this.removeChildByTag(168,true);
+            this.removeChildByTag(169,true);
+            this.removeChildByTag(170,true);
+        }
     }
 })
 

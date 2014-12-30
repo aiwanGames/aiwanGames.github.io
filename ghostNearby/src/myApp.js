@@ -40,7 +40,7 @@ var beginLayer = cc.LayerColor.extend({
         var myDate=new Date();
         this.curHour=myDate.getHours();
 
-        //sys.localStorage.setItem("isGhostShared","0");
+        //sys.localStorage.setItem("isGhostShared","1");
         //sys.localStorage.setItem("ghostIndex",5);
         var isShared=sys.localStorage.getItem("isGhostShared");
         var ghostindex=sys.localStorage.getItem("ghostIndex");

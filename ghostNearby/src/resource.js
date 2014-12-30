@@ -3,7 +3,7 @@ var s_img02="img_circle.png";
 var s_img03="img_ui.png";
 var s_img04="img_zailaiyici.png";
 var s_img05="img_yaoqing.png";
-var s_img06="img_share.png";
+var s_img06="img_shield.png";
 var s_img07="img_back.png";
 var s_img08="img_scback.png";
 var s_img09="img_ghost.png";
@@ -16,6 +16,7 @@ var s_img15="img_05.png";
 var s_img16="img_06.png";
 var s_img17="img_fenxiang.png";
 var s_img18="shareImage.png";
+var s_img19="img_arrow.png";
 
 var g_resources = [
     //image
@@ -36,7 +37,8 @@ var g_resources = [
     {src:s_img15},
     {src:s_img16},
     {src:s_img17},
-    {src:s_img18}
+    {src:s_img18},
+    {src:s_img19}
 
     //plist
 
