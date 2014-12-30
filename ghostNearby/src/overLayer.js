@@ -117,19 +117,26 @@ var overLayer = cc.LayerColor.extend({
             //this.isSharedC=false;
             sys.localStorage.setItem("isGhostShared","1");
             sys.localStorage.setItem("ghostIndex",0);
-            this.removeChildByTag(170);
+            this.removeChildByTag(165);
+            this.removeChildByTag(166);
+            this.removeChildByTag(167);
             this.removeChildByTag(171);
             this.removeChildByTag(172);
             this.removeChildByTag(173);
             this.removeChildByTag(174);
-            var tip=cc.LabelTTF.create("鬼鬼已魂飞魄散，你安全了.", "Arial",30);
-            tip.setColor(cc.c3(245,245,50));
-            tip.setAnchorPoint(cc.p(0.5,0.5));
-            tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.77));
-            this.addChild(tip,1);
-            var gh=cc.Sprite.create(s_img18);
-            gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-            this.addChild(gh,1);
+            if(this.ghostIndex>0)
+            {
+                var tip=cc.LabelTTF.create("鬼鬼已魂飞魄散，你安全了.", "Arial",30);
+                tip.setColor(cc.c3(245,245,50));
+                tip.setAnchorPoint(cc.p(0.5,0.5));
+                tip.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.77));
+                tip.setTag(166);
+                this.addChild(tip,1);
+                var gh=cc.Sprite.create(s_img18);
+                gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+                gh.setTag(165);
+                this.addChild(gh,1);
+            }
             //再来一次
             var zailaiItem = cc.MenuItemImage.create(s_img04,s_img04,this.gotoMainLayer,this);
             var zailaimenu = cc.Menu.create(zailaiItem);
