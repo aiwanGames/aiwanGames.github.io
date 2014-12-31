@@ -4,7 +4,8 @@ var s_img04="img_fangqi.png";
 var s_img05="img_zailaiyici.png";
 var s_img06="img_yaoqing.png";
 var s_img07="img_huanyige.png";
-var s_img09="img_share.png";
+var s_img09_1="img_shield.png";
+var s_img09_2="img_arrow.png";
 var s_img10="img_ui.png";
 var s_img11="img_A.png";
 var s_img12="img_B.png";
@@ -23,7 +24,8 @@ var g_resources = [
     {src:s_img05},
     {src:s_img06},
     {src:s_img07},
-    {src:s_img09},
+    {src:s_img09_1},
+    {src:s_img09_2},
     {src:s_img10},
     {src:s_img11},
     {src:s_img12},
