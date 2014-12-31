@@ -116,7 +116,7 @@ var overLayer = cc.LayerColor.extend({
 
     share2Friend:function()
     {
-        if(this.isSharedC)
+        if(this.isSharedC==false)
         {
             var back=cc.Sprite.create(s_img09_1);
             back.setTag(42);
