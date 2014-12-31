@@ -120,6 +120,13 @@ var beginLayer = cc.LayerColor.extend({
             var ac3=cc.FadeIn.create(0.1);
             tishi.runAction(cc.RepeatForever.create(cc.Sequence.create(ac2,ac3)));
 
+            var shareToPengyou="探测你身边的鬼鬼，胆小慎入！";
+            var imgURL="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
+            window.wxData.imgUrl=imgURL;
+            window.wxFriend.imgUrl=imgURL;
+            document.title = window.wxData.desc = shareToPengyou;
+            document.title = window.wxFriend.desc = shareToPengyou;
+
             this.schedule(this.updateLight,1.5);
         }
 

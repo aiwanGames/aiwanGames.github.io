@@ -136,6 +136,10 @@ var overLayer = cc.LayerColor.extend({
                 gh.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
                 gh.setTag(165);
                 this.addChild(gh,1);
+                window.wxData.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
+                window.wxFriend.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
+                document.title = window.wxData.desc = "我刚驱散了身边的一只鬼鬼，恐怖！";
+                document.title = window.wxFriend.desc = "我刚驱散了身边的一只鬼鬼，恐怖！";
             }
             //再来一次
             var zailaiItem = cc.MenuItemImage.create(s_img04,s_img04,this.gotoMainLayer,this);
@@ -148,10 +152,6 @@ var overLayer = cc.LayerColor.extend({
             yaoqingmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.2));
             yaoqingmenu.setTag(173);
             this.addChild(yaoqingmenu, 1);
-            window.wxData.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
-            window.wxFriend.imgUrl="http://aiwanGames.github.io/ghostNearby/res/HD/shareImage.png";
-            document.title = window.wxData.desc = "我刚驱散了身边的一只鬼鬼，恐怖！";
-            document.title = window.wxFriend.desc = "我刚驱散了身边的一只鬼鬼，恐怖！";
         }
     },
 
@@ -179,17 +179,17 @@ var overLayer = cc.LayerColor.extend({
         var shield1=cc.Sprite.create(s_img06);
         shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         shield1.setTag(170);
-        this.addChild(shield1,1);
+        this.addChild(shield1,5);
         var shield2=cc.Sprite.create(s_img19);
         shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
         shield2.setTag(169);
-        this.addChild(shield2,1);
+        this.addChild(shield2,5);
         var label=cc.LabelTTF.create("点击这里分享","黑体",35);
         label.setAnchorPoint(cc.p(0.5,0.5));
         label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
         label.setColor(cc.c3(255,255,255));
         label.setTag(168);
-        this.addChild(label,1);
+        this.addChild(label,5);
         this.getChildByTag(167).setEnabled(false);
         this.getChildByTag(173).setEnabled(false);
         this.isSharedC=true;
