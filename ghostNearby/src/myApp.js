@@ -112,7 +112,7 @@ var beginLayer = cc.LayerColor.extend({
             var tishi=cc.LabelTTF.create("按住按钮开始探测", "Arial",25);
             tishi.setColor(cc.c3(245,245,50));
             tishi.setAnchorPoint(cc.p(0.5,0.5));
-            tishi.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
+            tishi.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
             tishi.setTag(150);
             this.addChild(tishi,1);
 
@@ -208,7 +208,7 @@ var beginLayer = cc.LayerColor.extend({
             this.gotoGameOver();
         }
 
-        if(this.searchCount==11)
+        if(this.searchCount==8)
         {
             this.ghostIndex=0;
             this.searchCount=0;

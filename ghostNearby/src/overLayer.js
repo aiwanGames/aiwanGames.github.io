@@ -190,8 +190,8 @@ var overLayer = cc.LayerColor.extend({
         label.setColor(cc.c3(255,255,255));
         label.setTag(168);
         this.addChild(label,5);
-        this.getChildByTag(167).setEnabled(false);
-        this.getChildByTag(173).setEnabled(false);
+            if(this.getChildByTag(167))this.getChildByTag(167).setEnabled(false);
+            if(this.getChildByTag(173))this.getChildByTag(173).setEnabled(false);
         this.isSharedC=true;
         }
     },
@@ -200,8 +200,8 @@ var overLayer = cc.LayerColor.extend({
     {
         if(this.isSharedC==true)
         {
-            this.getChildByTag(167).setEnabled(true);
-            this.getChildByTag(173).setEnabled(true);
+            if(this.getChildByTag(167))this.getChildByTag(167).setEnabled(true);
+            if(this.getChildByTag(173))this.getChildByTag(173).setEnabled(true);
             this.removeChildByTag(168,true);
             this.removeChildByTag(169,true);
             this.removeChildByTag(170,true);
