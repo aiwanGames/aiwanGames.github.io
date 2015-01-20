@@ -33,6 +33,7 @@ var mainLayer = cc.LayerColor.extend({
         //开启schedule
         this.schedule(this.addDropItems,this.schdSpeed);
         this.scheduleUpdate();
+        cc.log("hello");
     },
 
     gotoOverLayer:function()
