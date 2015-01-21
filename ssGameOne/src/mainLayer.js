@@ -28,13 +28,13 @@ var mainLayer = cc.LayerColor.extend({
         this.sp_catch.setPosition(cc.p(this.winsize.width*0.5,this.sp_catch.getContentSize().height*0.5));
         this.addChild(this.sp_catch,10);
         //分数时间
-        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",25);
+        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",30);
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
         this.timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.timeLabel,1);
 
-        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",25);
+        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",30);
         this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.scoreLabel.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.95));
         this.scoreLabel.setColor(cc.c3(235,90,55));
@@ -215,10 +215,10 @@ var mainLayer = cc.LayerColor.extend({
         }
         else
         {
-            if(this.gameTime%350==0)
+            if(this.gameTime%400==0)
             {
                 this.schdSpeed-=0.10;
-                this.itemSpeed-=0.25;
+                this.itemSpeed-=0.28;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
         }
