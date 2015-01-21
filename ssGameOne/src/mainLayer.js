@@ -215,7 +215,7 @@ var mainLayer = cc.LayerColor.extend({
             var cw=this.sp_catch.getContentSize().width;
             var ch=this.sp_catch.getContentSize().height;
             //发生碰撞则移除
-            if(iy-cy>ch*0.35&&iy-cy<ih*0.5+ch*0.35&&Math.abs(ix-cx)<cw*0.5)
+            if(iy-cy>ch*0.45&&iy-cy<ih*0.3+ch*0.45&&Math.abs(ix-cx)<cw*0.45)
             {
                 var _iTag=_item.getTag();
                 var ac1=cc.ScaleTo.create(0.1,1.2);
