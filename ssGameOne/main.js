@@ -55,6 +55,7 @@ var cocos2dApp = cc.Application.extend({
         cc.EGLView.getInstance().setDesignResolutionSize(640, 840, cc.RESOLUTION_POLICY.SHOW_ALL);
         cc.EGLView.getInstance().resizeWithBrowserSize(true);
 
+        //director.setDisplayStats(this.config['showFPS']);
         director.setAnimationInterval(1.0 / this.config['frameRate']);
 
         cc.LoaderScene.preload(g_resources, function () {

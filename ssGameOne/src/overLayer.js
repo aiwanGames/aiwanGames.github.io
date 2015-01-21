@@ -1,83 +1,90 @@
 var overLayer = cc.LayerColor.extend({
     winsize:null,
     score:0,
+    isShared:false,
 
     init:function ()
     {
-        // 1. super init first
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         //背景
         var sp_back=cc.Sprite.create(s_img01);
-        sp_back.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        sp_back.setAnchorPoint(cc.p(0.5,0));
+        sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        //添加游戏结束UI
-        var sp_back03=cc.Sprite.create(s_img06);
-        sp_back03.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.55));
-        this.addChild(sp_back03, 1);
+        var sp_back1=cc.Sprite.create(s_img13);
+        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
+        this.addChild(sp_back1,1);
+        var sp_back2=cc.Sprite.create(s_img08);
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
+        this.addChild(sp_back2,1);
+        var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
+        sp_back1.runAction(ac1);
+        //分数
+        var timeLabel=cc.LabelTTF.create("恭喜,你共抢到"+this.score+"分.","Arial",30);
+        timeLabel.setAnchorPoint(cc.p(0.5,0.5));
+        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.75));
+        timeLabel.setColor(cc.c3(235,90,55));
+        this.addChild(timeLabel,1);
         //再来一次按钮
-        var zailaiItem = cc.MenuItemImage.create(s_img04,s_img05,this.gotoMainLayer,this);
-        var menu = cc.Menu.create(zailaiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.24));
-        this.addChild(menu, 1);
-        //加油
-        var sp_jiayou=cc.Sprite.create(s_img07);
-        sp_jiayou.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.63));
-        this.addChild(sp_jiayou,1);
-        //成绩
-        var scoreLb=cc.LabelTTF.create("Score : "+this.score,"Consolas",27);
-        scoreLb.setAnchorPoint(cc.p(0.0,0.5));
-        scoreLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.52));
-        scoreLb.setColor(cc.c3(245,245,40));
-        this.addChild(scoreLb,1);
-        var cmtChar="";
-        if(this.score<20)
-        {
-            cmtChar="别逗,好好玩";
-        }
-        else if(this.score>=20&&this.score<40)
-        {
-            cmtChar="重度手残";
-        }
-        else if(this.score>=40&&this.score<60)
-        {
-            cmtChar="手残";
-        }
-        else if(this.score>=60&&this.score<80)
-        {
-            cmtChar="表现不错";
-        }
-        else if(this.score>=80&&this.score<100)
-        {
-            cmtChar="小有成就";
-        }
-        else if(this.score>=100&&this.score<120)
-        {
-            cmtChar="惊呆小伙伴";
-        }
-        else if(this.score>=120&&this.score<150)
-        {
-            cmtChar="疾风手";
-        }
-        else if(this.score>=150&&this.score<200)
-        {
-            cmtChar="无影手";
-        }
-        else
-        {
-            cmtChar="无敌风火轮";
-        }
-        var comentLb=cc.LabelTTF.create("反应速度 : "+cmtChar,"Consolas",27);
-        comentLb.setAnchorPoint(cc.p(0.0,0.5));
-        comentLb.setPosition(cc.p(this.winsize.width*0.27,this.winsize.height*0.45));
-        comentLb.setColor(cc.c3(245,245,40));
-        this.addChild(comentLb,1);
+        var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
+        var zailaimenu = cc.Menu.create(zailaiItem);
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.37));
+        zailaimenu.setTag(100);
+        this.addChild(zailaimenu, 1);
+        //分享按钮
+        var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
+        var fenxiangmenu = cc.Menu.create(fenxiangItem);
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.20));
+        fenxiangmenu.setTag(101);
+        this.addChild(fenxiangmenu, 1);
+        document.title = window.wxData.desc = "我在《接财神》小游戏中共抢到了"+this.score+"分，快来挑战我吧！";
+        document.title = window.wxFriend.desc = "我在《接财神》小游戏中共抢到了"+this.score+"分，快来挑战我吧！";
+        this.setTouchEnabled(true);
     },
 
     gotoMainLayer:function()
     {
         var scene=mainLayer.create();
-        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.3,scene));
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
+    },
+
+    share2Friend:function()
+    {
+        if(this.isShared==false)
+        {
+            //屏蔽层
+            var shield1=cc.Sprite.create(s_img10);
+            shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+            shield1.setTag(102);
+            this.addChild(shield1,5);
+            var shield2=cc.Sprite.create(s_img11);
+            shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
+            shield2.setTag(103);
+            this.addChild(shield2,5);
+            var label=cc.LabelTTF.create("点击这里分享","黑体",35);
+            label.setAnchorPoint(cc.p(0.5,0.5));
+            label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
+            label.setColor(cc.c3(255,255,255));
+            label.setTag(104);
+            this.addChild(label,5);
+            if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(false);
+            if(this.getChildByTag(100))this.getChildByTag(101).setEnabled(false);
+            this.isShared=true;
+        }
+    },
+
+    onTouchesBegan:function(touches, event)
+    {
+        if(this.isShared==true)
+        {
+            if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(true);
+            if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(true);
+            this.removeChildByTag(102,true);
+            this.removeChildByTag(103,true);
+            this.removeChildByTag(104,true);
+            this.isShared=false;
+        }
     },
 
     setScore:function(_score)

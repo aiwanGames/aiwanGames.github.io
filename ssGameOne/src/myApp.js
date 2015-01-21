@@ -31,30 +31,41 @@ var beginLayer = cc.LayerColor.extend({
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         //背景
-        var sp_back=cc.Sprite.create(s_img01);
-        sp_back.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-        this.addChild(sp_back,0);
+        var sp_back1=cc.Sprite.create(s_img01);
+        sp_back1.setAnchorPoint(cc.p(0.5,0));
+        sp_back1.setPosition(cc.p(this.winsize.width*0.5,0));
+        this.addChild(sp_back1,0);
         //开始按钮
-        var kaishiItem = cc.MenuItemImage.create(s_img02,s_img03,this.startGame,this);
+        var kaishiItem = cc.MenuItemImage.create(s_img02,s_img02,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
         menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.32));
         this.addChild(menu, 1);
-        //聚宝盆图标
-        var sp_back01=cc.Sprite.create(s_img11);
-        sp_back01.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
-        this.addChild(sp_back01, 1);
-        //随手记图标
-        var sp_back02=cc.Sprite.create(s_img14);
-        sp_back02.setScale(0.7);
-        sp_back02.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.68));
-        this.addChild(sp_back02, 1);
+        //logo
+        var sp_back2=cc.Sprite.create(s_img05);
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.53));
+        this.addChild(sp_back2, 2);
+
+        var sp_back3=cc.Sprite.create(s_img09);
+        sp_back3.setPosition(cc.p(this.winsize.width*0.44,this.winsize.height*0.66));
+        this.addChild(sp_back3,1);
+
+        var sp_back4=cc.Sprite.create(s_img09);
+        sp_back4.setPosition(cc.p(this.winsize.width*0.56,this.winsize.height*0.66));
+        this.addChild(sp_back4,1);
+
+        var sp_back5=cc.Sprite.create(s_img08);
+        sp_back5.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.70));
+        this.addChild(sp_back5,0);
+        var ac3=cc.RepeatForever.create(cc.Sequence.create(cc.MoveBy.create(1.0,cc.p(0,15)),cc.MoveBy.create(1.0,cc.p(0,-15))));
+        sp_back5.runAction(ac3);
+
         return true;
     },
 
     startGame:function()
     {
         var scene=mainLayer.create();
-        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.3,scene));
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     }
 });
 
