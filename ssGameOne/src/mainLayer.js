@@ -1,7 +1,7 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    itemSpeed:2.3,//图标下落时间
+    itemSpeed:2.0,//图标下落时间
     schdSpeed:0.7,//生成图标间隔
     gameTime:0,
     gameScore:0,
@@ -36,7 +36,7 @@ var mainLayer = cc.LayerColor.extend({
 
         this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",35);
         this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
-        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.95));
+        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.65,this.winsize.height*0.95));
         this.scoreLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.scoreLabel,1);
     },
@@ -216,10 +216,10 @@ var mainLayer = cc.LayerColor.extend({
         }
         else
         {
-            if(this.gameTime%400==0)
+            if(this.gameTime%300==0)
             {
-                this.schdSpeed-=0.10;
-                this.itemSpeed-=0.30;
+                this.schdSpeed-=0.08;
+                this.itemSpeed-=0.20;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
         }
