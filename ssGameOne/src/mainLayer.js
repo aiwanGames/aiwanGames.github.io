@@ -1,7 +1,7 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    itemSpeed:2.5,//图标下落时间
+    itemSpeed:2.3,//图标下落时间
     schdSpeed:0.7,//生成图标间隔
     gameTime:0,
     gameScore:0,
@@ -28,13 +28,13 @@ var mainLayer = cc.LayerColor.extend({
         this.sp_catch.setPosition(cc.p(this.winsize.width*0.5,this.sp_catch.getContentSize().height*0.5));
         this.addChild(this.sp_catch,10);
         //分数时间
-        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",30);
+        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",35);
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
         this.timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.timeLabel,1);
 
-        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",30);
+        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",35);
         this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.scoreLabel.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.95));
         this.scoreLabel.setColor(cc.c3(235,90,55));
@@ -104,14 +104,15 @@ var mainLayer = cc.LayerColor.extend({
                 this._tag3=220;
             }
         }
-        var posid = this.getRandom(5);
+        var posid = this.getRandom(6);
         var pos = null;
         switch (posid) {
             case 0:pos = cc.p(this.winsize.width * 0.1, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 1:pos = cc.p(this.winsize.width * 0.3, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 2:pos = cc.p(this.winsize.width * 0.5, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 3:pos = cc.p(this.winsize.width * 0.7, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 4:pos = cc.p(this.winsize.width * 0.9, this.winsize.height + item.getContentSize().height*0.5);break;
+            case 1:pos = cc.p(this.winsize.width * 0.26, this.winsize.height + item.getContentSize().height*0.5);break;
+            case 2:pos = cc.p(this.winsize.width * 0.42, this.winsize.height + item.getContentSize().height*0.5);break;
+            case 3:pos = cc.p(this.winsize.width * 0.58, this.winsize.height + item.getContentSize().height*0.5);break;
+            case 4:pos = cc.p(this.winsize.width * 0.75, this.winsize.height + item.getContentSize().height*0.5);break;
+            case 5:pos = cc.p(this.winsize.width * 0.9, this.winsize.height + item.getContentSize().height*0.5);break;
             default:break;
         }
         item.setTag(_tag);
@@ -136,7 +137,7 @@ var mainLayer = cc.LayerColor.extend({
         var ac1=null,ac2=null,ac3=null;
 
         var sp1=cc.Sprite.create(s_img12);
-        sp1.setScale(0.5);
+        sp1.setScale(0.6);
         sp1.setPosition(pos);
         this.addChild(sp1,2);
         ac1=cc.Spawn.create(cc.MoveBy.create(0.35,cc.p(-60,50)),cc.RotateBy.create(0.35,180));
@@ -145,7 +146,7 @@ var mainLayer = cc.LayerColor.extend({
         sp1.runAction(ac3);
 
         var sp2=cc.Sprite.create(s_img12);
-        sp2.setScale(0.5);
+        sp2.setScale(0.6);
         sp2.setPosition(pos);
         this.addChild(sp2,2);
         ac1=cc.Spawn.create(cc.MoveBy.create(0.35,cc.p(0,70)),cc.RotateBy.create(0.35,180));
@@ -154,7 +155,7 @@ var mainLayer = cc.LayerColor.extend({
         sp2.runAction(ac3);
 
         var sp3=cc.Sprite.create(s_img12);
-        sp3.setScale(0.5);
+        sp3.setScale(0.6);
         sp3.setPosition(pos);
         this.addChild(sp3,2);
         ac1=cc.Spawn.create(cc.MoveBy.create(0.35,cc.p(60,50)),cc.RotateBy.create(0.35,180));
@@ -218,7 +219,7 @@ var mainLayer = cc.LayerColor.extend({
             if(this.gameTime%400==0)
             {
                 this.schdSpeed-=0.10;
-                this.itemSpeed-=0.28;
+                this.itemSpeed-=0.30;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
         }
