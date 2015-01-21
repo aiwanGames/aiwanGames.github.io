@@ -13,11 +13,13 @@ var mainLayer = cc.LayerColor.extend({
     _tag1:200,
     _tag2:210,
     _tag3:220,
+    sound:false,
 
     init:function ()
     {
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
+        this.audio=cc.AudioEngine.getInstance();
         //背景
         var sp_back=cc.Sprite.create(s_img01);
         sp_back.setAnchorPoint(cc.p(0.5,0));
@@ -28,17 +30,44 @@ var mainLayer = cc.LayerColor.extend({
         this.sp_catch.setPosition(cc.p(this.winsize.width*0.5,this.sp_catch.getContentSize().height*0.5));
         this.addChild(this.sp_catch,10);
         //分数时间
-        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",35);
-        this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
-        this.timeLabel.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
+        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",45);
+        this.timeLabel.setAnchorPoint(cc.p(0.5,0.5));
+        this.timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.95));
         this.timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.timeLabel,1);
 
-        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",35);
-        this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
-        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.65,this.winsize.height*0.95));
-        this.scoreLabel.setColor(cc.c3(235,90,55));
+        //this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",35);
+        //this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
+        //this.scoreLabel.setPosition(cc.p(this.winsize.width*0.65,this.winsize.height*0.95));
+        //this.scoreLabel.setColor(cc.c3(235,90,55));
+        //this.addChild(this.scoreLabel,1);
+
+        this.scoreLabel=cc.LabelAtlas.create(this.gameScore,s_img16,64,86,'0');
+        this.scoreLabel.setAnchorPoint(cc.p(0.5,0.5));
+        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
         this.addChild(this.scoreLabel,1);
+
+        //音效开关
+        var sound=null;
+        if(this.sound==false)
+        {
+            sound=cc.Sprite.create(s_img15);
+            cc.log("sound off");
+        }
+        else
+            sound=cc.Sprite.create(s_img14);
+        sound.setScale(0.7);
+        sound.setTag(300);
+        sound.setAnchorPoint(cc.p(1.0,0));
+        sound.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
+        this.addChild(sound,5);
+
+        var ac0=cc.RotateBy.create(0.5,10.0);
+        var ac1=cc.RotateBy.create(0.5,-10.0);
+        var ac2=cc.RotateBy.create(0.5,-10.0);
+        var ac3=cc.RotateBy.create(0.5,10.0);
+        var ac4=cc.Sequence.create(ac0,ac1,ac2,ac3);
+        sound.runAction(cc.RepeatForever.create(ac4));
     },
 
     onEnterTransitionDidFinish:function()
@@ -54,6 +83,7 @@ var mainLayer = cc.LayerColor.extend({
     {
         var scene=overLayer.create(this.gameScore);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
+        this.audio.stopMusic();
     },
 
     addDropItems:function()
@@ -185,38 +215,39 @@ var mainLayer = cc.LayerColor.extend({
             var cw=this.sp_catch.getContentSize().width;
             var ch=this.sp_catch.getContentSize().height;
             //发生碰撞则移除
-            if(iy-cy>ih*0.5&&iy-cy<ih*0.5+ch*0.35&&Math.abs(ix-cx)<cw*0.5)
+            if(iy-cy>ch*0.35&&iy-cy<ih*0.5+ch*0.35&&Math.abs(ix-cx)<cw*0.5)
             {
                 var _iTag=_item.getTag();
                 var ac1=cc.ScaleTo.create(0.1,1.2);
                 var ac2=cc.ScaleTo.create(0.1,1.0);
                 var ac3=cc.Sequence.create(ac1,ac2);
-                this.scoreLabel.runAction(ac3);
-
+                //this.scoreLabel.runAction(ac3);
                 this.removeItem(_item);
                 if(_iTag>=200&&_iTag<210)
                 {
-                    this.gameScore+=10;
+                    this.gameScore+=5;
                 }
                 else if(_iTag>=210&&_iTag<220)
                 {
-                    this.gameScore+=20;
+                    this.gameScore+=10;
                 }
                 else
                 {
-                    this.gameScore+=50;
+                    this.gameScore+=30;
                 }
+                this.scoreLabel.setString(this.gameScore);
+                this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.3),cc.ScaleTo.create(0.1,1.0)));
             }
         }
 
         this.gameTime+=1;
-        if(this.gameTime==2100)
+        if(this.gameTime==1800)
         {
             this.gotoOverLayer();
         }
         else
         {
-            if(this.gameTime%500==0)
+            if(this.gameTime%400==0)
             {
                 if(this.schdSpeed<=0.1)
                 {
@@ -226,8 +257,8 @@ var mainLayer = cc.LayerColor.extend({
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
         }
-        this.timeLabel.setString("Time: "+Math.round(35-this.gameTime/60));
-        this.scoreLabel.setString("Score: "+this.gameScore);
+        this.timeLabel.setString("Time: "+Math.round(30-this.gameTime/60));
+        //this.scoreLabel.setString("Score: "+this.gameScore);
     },
 
     getRandom:function(maxsize)
@@ -266,13 +297,37 @@ var mainLayer = cc.LayerColor.extend({
         {
             this.onClickFlag = true;
         }
+        var sn = this.getChildByTag(300);
+        var soundRect = sn.getBoundingBox();
+        if (cc.rectContainsPoint(soundRect, location))
+        {
+            if (this.sound == false)
+            {
+                this.sound = true;
+                sn.initWithFile(s_img14);
+                this.audio.playMusic(s_music,true);
+            }
+            else
+            {
+                this.sound = false;
+                sn.initWithFile(s_img15);
+                this.audio.stopMusic();
+            }
+            sn.setAnchorPoint(cc.p(1.0,0));
+            sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
+        }
+    },
+    setSound:function(_sound)
+    {
+        this.sound=_sound;
     }
 });
 
 //构造函数create
-mainLayer.create=function()
+mainLayer.create=function(_sound)
 {
     var _mainLayer=new mainLayer();
+    _mainLayer.setSound(_sound);
     _mainLayer.init();
     var _scene=cc.Scene.create();
     _scene.addChild(_mainLayer);

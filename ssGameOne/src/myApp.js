@@ -25,11 +25,13 @@
  ****************************************************************************/
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
+    sound:false,
 
     init:function ()
     {
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
+        this.audio=cc.AudioEngine.getInstance();
         //背景
         var sp_back1=cc.Sprite.create(s_img01);
         sp_back1.setAnchorPoint(cc.p(0.5,0));
@@ -56,16 +58,59 @@ var beginLayer = cc.LayerColor.extend({
         var sp_back5=cc.Sprite.create(s_img08);
         sp_back5.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.70));
         this.addChild(sp_back5,0);
-        var ac3=cc.RepeatForever.create(cc.Sequence.create(cc.MoveBy.create(1.0,cc.p(0,15)),cc.MoveBy.create(1.0,cc.p(0,-15))));
-        sp_back5.runAction(ac3);
+        var ac=cc.RepeatForever.create(cc.Sequence.create(cc.MoveBy.create(1.0,cc.p(0,15)),cc.MoveBy.create(1.0,cc.p(0,-15))));
+        sp_back5.runAction(ac);
 
+        //音效开关
+        var sound=cc.Sprite.create(s_img15);
+        sound.setScale(0.7);
+        sound.setTag(100);
+        sound.setAnchorPoint(cc.p(1.0,0));
+        sound.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
+        this.addChild(sound,1);
+
+        var ac0=cc.RotateBy.create(0.5,10.0);
+        var ac1=cc.RotateBy.create(0.5,-10.0);
+        var ac2=cc.RotateBy.create(0.5,-10.0);
+        var ac3=cc.RotateBy.create(0.5,10.0);
+        var ac4=cc.Sequence.create(ac0,ac1,ac2,ac3);
+        sound.runAction(cc.RepeatForever.create(ac4));
+
+        this.setTouchEnabled(true);
         return true;
     },
 
     startGame:function()
     {
-        var scene=mainLayer.create();
+        var scene=mainLayer.create(this.sound);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
+        if (this.sound == true)
+        {
+            this.audio.playMusic(s_music, true);
+        }
+    },
+
+    onTouchesBegan:function(touches, event)
+    {
+        var touch = touches[0];
+        var location = touch.getLocation();
+        var sn = this.getChildByTag(100);
+        var soundRect = sn.getBoundingBox();
+        if (cc.rectContainsPoint(soundRect, location))
+        {
+            if (this.sound == false)
+            {
+                this.sound = true;
+                sn.initWithFile(s_img14);
+            }
+            else
+            {
+                this.sound = false;
+                sn.initWithFile(s_img15);
+            }
+            sn.setAnchorPoint(cc.p(1.0,0));
+            sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
+        }
     }
 });
 
@@ -79,3 +124,12 @@ var MyScene = cc.Scene.extend({
         layer.init();
     }
 });
+
+beginLayer.create=function()
+{
+    var _beginLayer=new beginLayer();
+    _beginLayer.init();
+    var _scene=cc.Scene.create();
+    _scene.addChild(_beginLayer);
+    return _scene;
+};

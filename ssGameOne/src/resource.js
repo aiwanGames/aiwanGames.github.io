@@ -10,6 +10,10 @@ var s_img10="img_shield.png";
 var s_img11="img_arrow.png";
 var s_img12="img_star.png";
 var s_img13="img_flash.png";
+var s_img14="img_sound_on.png";
+var s_img15="img_sound_off.png";
+var s_img16="img_number.png";
+var s_music="res/HD/music.mp3";
 
 var g_resources = [
     //image
@@ -24,7 +28,11 @@ var g_resources = [
     {src:s_img10},
     {src:s_img11},
     {src:s_img12},
-    {src:s_img13}
+    {src:s_img13},
+    {src:s_img14},
+    {src:s_img15},
+    {src:s_img16},
+    {src:s_music}
 
     //plist
 
