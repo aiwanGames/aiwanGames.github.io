@@ -1,8 +1,8 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    itemSpeed:2.0,//图标下落时间
-    schdSpeed:0.7,//生成图标间隔
+    itemSpeed:1.8,//图标下落时间
+    schdSpeed:0.3,//生成图标间隔
     gameTime:0,
     gameScore:0,
     gameOver:false,
@@ -216,10 +216,13 @@ var mainLayer = cc.LayerColor.extend({
         }
         else
         {
-            if(this.gameTime%300==0)
+            if(this.gameTime%500==0)
             {
-                this.schdSpeed-=0.08;
-                this.itemSpeed-=0.20;
+                if(this.schdSpeed<=0.1)
+                {
+                    this.schdSpeed=0.1;
+                }
+                this.itemSpeed-=0.2;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
         }
