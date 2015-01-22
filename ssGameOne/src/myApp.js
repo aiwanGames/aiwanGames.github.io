@@ -40,29 +40,29 @@ var beginLayer = cc.LayerColor.extend({
         //提示
         var tips=cc.LabelTTF.create("移动小羊，接财神","Arial",35);
         tips.setAnchorPoint(cc.p(0.5,0.5));
-        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
+        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.4));
         tips.setColor(cc.c3(235,90,55));
         this.addChild(tips,1);
         //开始按钮
         var kaishiItem = cc.MenuItemImage.create(s_img02,s_img02,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.22));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.27));
         this.addChild(menu, 1);
         //logo
         var sp_back2=cc.Sprite.create(s_img05);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.53));
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
         this.addChild(sp_back2, 2);
 
         var sp_back3=cc.Sprite.create(s_img09);
-        sp_back3.setPosition(cc.p(this.winsize.width*0.44,this.winsize.height*0.66));
+        sp_back3.setPosition(cc.p(this.winsize.width*0.44,this.winsize.height*0.71));
         this.addChild(sp_back3,1);
 
         var sp_back4=cc.Sprite.create(s_img09);
-        sp_back4.setPosition(cc.p(this.winsize.width*0.56,this.winsize.height*0.66));
+        sp_back4.setPosition(cc.p(this.winsize.width*0.56,this.winsize.height*0.71));
         this.addChild(sp_back4,1);
 
         var sp_back5=cc.Sprite.create(s_img08);
-        sp_back5.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.70));
+        sp_back5.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.75));
         this.addChild(sp_back5,0);
         var ac=cc.RepeatForever.create(cc.Sequence.create(cc.MoveBy.create(1.0,cc.p(0,15)),cc.MoveBy.create(1.0,cc.p(0,-15))));
         sp_back5.runAction(ac);
