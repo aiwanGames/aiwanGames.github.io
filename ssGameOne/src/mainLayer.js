@@ -15,6 +15,7 @@ var mainLayer = cc.LayerColor.extend({
     _tag3:240,
     _tag4:260,
     sound:false,
+    isStop:false,
 
     init:function ()
     {
@@ -169,7 +170,7 @@ var mainLayer = cc.LayerColor.extend({
     removeItem:function(sprite)
     {
         var _pos=sprite.getPosition();
-        var pos=cc.p(_pos.x,_pos.y-sprite.getContentSize().height*0.5);
+        var pos=cc.p(_pos.x,_pos.y-sprite.getContentSize().height*0.35);//+sprite.getContentSize().height*0.5
         var ac1=null,ac2=null,ac3=null;
         var sp1=null,sp2=null,sp3=null;
 
@@ -193,26 +194,32 @@ var mainLayer = cc.LayerColor.extend({
         }
         sp1.setPosition(pos);
         this.addChild(sp1,2);
-        ac1=cc.Spawn.create(cc.MoveBy.create(0.35,cc.p(-60,50)),cc.RotateBy.create(0.35,180));
+        ac1=cc.Spawn.create(cc.MoveBy.create(0.4,cc.p(-50,60)),cc.RotateBy.create(0.4,180));
         ac2 = cc.CallFunc.create(this.removeStar, this);
         ac3=cc.Sequence.create(ac1,ac2);
         sp1.runAction(ac3);
 
         sp2.setPosition(pos);
         this.addChild(sp2,2);
-        ac1=cc.Spawn.create(cc.MoveBy.create(0.35,cc.p(0,70)),cc.RotateBy.create(0.35,180));
+        ac1=cc.Spawn.create(cc.MoveBy.create(0.4,cc.p(0,70)),cc.RotateBy.create(0.4,180));
         ac2 = cc.CallFunc.create(this.removeStar, this);
         ac3=cc.Sequence.create(ac1,ac2);
         sp2.runAction(ac3);
 
         sp3.setPosition(pos);
         this.addChild(sp3,2);
-        ac1=cc.Spawn.create(cc.MoveBy.create(0.35,cc.p(60,50)),cc.RotateBy.create(0.35,180));
+        ac1=cc.Spawn.create(cc.MoveBy.create(0.4,cc.p(50,60)),cc.RotateBy.create(0.4,180));
         ac2 = cc.CallFunc.create(this.removeStar, this);
         ac3=cc.Sequence.create(ac1,ac2);
         sp3.runAction(ac3);
 
         this.removeChild(sprite,true);
+    },
+
+    setStop:function()
+    {
+        this.isStop=false;
+        this.sp_catch.initWithFile(s_img05);
     },
 
     update:function(dt)
@@ -264,6 +271,13 @@ var mainLayer = cc.LayerColor.extend({
                     this.gameScore-=50;
                     _sclabel.setString("-50");
                     _sclabel.setColor(cc.c3(195,135,45));
+                    this.isStop=true;
+                    this.sp_catch.initWithFile(s_img06);
+                    this.sp_catch.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.CallFunc.create(this.setStop,this)));
+                    if(this.sound)
+                    {
+                        this.audio.playEffect(s_effect);
+                    }
                 }
                 _sclabel.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeOut.create(0.8),cc.MoveBy.create(0.8,cc.p(0,70))),cc.CallFunc.create(this.removeStar,this)));
                 var ac1=cc.ScaleTo.create(0.1,1.1);
@@ -313,7 +327,7 @@ var mainLayer = cc.LayerColor.extend({
     {
         var touch = touches[0];
         var location = touch.getLocation();
-        if(this.onClickFlag)
+        if(this.onClickFlag&&this.isStop==false)
         {
             this.sp_catch.setPosition(cc.p(location.x, this.sp_catch.getPositionY()));
             if(this.sp_catch.getPositionX() < this.sp_catch.getContentSize().width * 0.5)
