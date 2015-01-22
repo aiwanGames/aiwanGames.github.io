@@ -21,7 +21,7 @@ var overLayer = cc.LayerColor.extend({
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back1.runAction(ac1);
         //分数
-        var timeLabel=cc.LabelTTF.create("恭喜,你共抢到"+this.score+"分.","Arial",35);
+        var timeLabel=cc.LabelTTF.create("恭喜,你共抢到"+this.score+"分.","Arial",37);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.75));
         timeLabel.setColor(cc.c3(235,90,55));

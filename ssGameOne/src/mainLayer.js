@@ -31,15 +31,15 @@ var mainLayer = cc.LayerColor.extend({
         this.sp_catch.setPosition(cc.p(this.winsize.width*0.5,this.sp_catch.getContentSize().height*0.5));
         this.addChild(this.sp_catch,10);
         //时间
-        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",45);
+        this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",32);
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
         this.timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.timeLabel,1);
 
-        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",45);
+        this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",32);
         this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
-        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.65,this.winsize.height*0.95));
+        this.scoreLabel.setPosition(cc.p(this.winsize.width*0.63,this.winsize.height*0.95));
         this.scoreLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.scoreLabel,1);
 
@@ -169,7 +169,7 @@ var mainLayer = cc.LayerColor.extend({
     removeItem:function(sprite)
     {
         var _pos=sprite.getPosition();
-        var pos=cc.p(_pos.x,_pos.y-sprite.getContentSize().height*0.3);
+        var pos=cc.p(_pos.x,_pos.y-sprite.getContentSize().height*0.5);
         var ac1=null,ac2=null,ac3=null;
         var sp1=null,sp2=null,sp3=null;
 
@@ -265,7 +265,7 @@ var mainLayer = cc.LayerColor.extend({
                     _sclabel.setString("-50");
                     _sclabel.setColor(cc.c3(195,135,45));
                 }
-                _sclabel.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeOut.create(0.5),cc.MoveBy.create(0.5,cc.p(0,40)),cc.CallFunc.create(this.removeSprite,this))));
+                _sclabel.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeOut.create(0.8),cc.MoveBy.create(0.8,cc.p(0,70))),cc.CallFunc.create(this.removeStar,this)));
                 var ac1=cc.ScaleTo.create(0.1,1.1);
                 var ac2=cc.ScaleTo.create(0.1,1.0);
                 var ac3=cc.Sequence.create(ac1,ac2);
