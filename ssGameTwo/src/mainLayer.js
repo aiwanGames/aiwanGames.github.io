@@ -52,11 +52,11 @@ var mainLayer = cc.LayerColor.extend({
             cc.log("sound off");
         }
         else
-            sound=cc.Sprite.create(s_img14);
+            sound=cc.Sprite.create(s_img10);
         sound.setScale(0.7);
         sound.setTag(300);
         sound.setAnchorPoint(cc.p(1.0,0));
-        sound.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
+        sound.setPosition(cc.p(this.winsize.width,this.winsize.height*0.55));
         this.addChild(sound,5);
 
         var ac0=cc.RotateBy.create(0.5,10.0);

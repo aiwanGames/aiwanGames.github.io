@@ -104,7 +104,7 @@ var beginLayer = cc.LayerColor.extend({
                 sn.initWithFile(s_img10);
             }
             sn.setAnchorPoint(cc.p(1.0,0));
-            sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
+            sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.55));
         }
     }
 });
