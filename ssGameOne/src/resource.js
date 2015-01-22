@@ -12,7 +12,11 @@ var s_img12="img_star.png";
 var s_img13="img_flash.png";
 var s_img14="img_sound_on.png";
 var s_img15="img_sound_off.png";
-var s_img16="img_number.png";
+var s_img16="img_icon04.png";
+var s_img17="img_icon05.png";
+var s_img18="img_icon06.png";
+var s_img19="img_icon07.png";
+var s_img20="img_icon08.png";
 var s_music="res/HD/music.mp3";
 
 var g_resources = [
@@ -32,6 +36,7 @@ var g_resources = [
     {src:s_img14},
     {src:s_img15},
     {src:s_img16},
+    {src:s_img17},
     {src:s_music}
 
     //plist

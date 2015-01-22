@@ -25,7 +25,7 @@
  ****************************************************************************/
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
-    sound:false,
+    sound:true,
 
     init:function ()
     {
@@ -37,10 +37,16 @@ var beginLayer = cc.LayerColor.extend({
         sp_back1.setAnchorPoint(cc.p(0.5,0));
         sp_back1.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back1,0);
+        //提示
+        var tips=cc.LabelTTF.create("移动小羊，接财神","Arial",35);
+        tips.setAnchorPoint(cc.p(0.5,0.5));
+        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
+        tips.setColor(cc.c3(235,90,55));
+        this.addChild(tips,1);
         //开始按钮
         var kaishiItem = cc.MenuItemImage.create(s_img02,s_img02,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.32));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.22));
         this.addChild(menu, 1);
         //logo
         var sp_back2=cc.Sprite.create(s_img05);
@@ -62,7 +68,7 @@ var beginLayer = cc.LayerColor.extend({
         sp_back5.runAction(ac);
 
         //音效开关
-        var sound=cc.Sprite.create(s_img15);
+        var sound=cc.Sprite.create(s_img14);
         sound.setScale(0.7);
         sound.setTag(100);
         sound.setAnchorPoint(cc.p(1.0,0));

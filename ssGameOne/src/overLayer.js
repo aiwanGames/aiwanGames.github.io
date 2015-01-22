@@ -16,7 +16,6 @@ var overLayer = cc.LayerColor.extend({
         sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
         this.addChild(sp_back1,1);
         var sp_back2=cc.Sprite.create(s_img07);
-        sp_back2.setScale(0.6);
         sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
         this.addChild(sp_back2,1);
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
