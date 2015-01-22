@@ -1,8 +1,8 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    itemSpeed:1.5,
-    schdSpeed:0.3,
+    showTime:1.5,
+    schdTime:2.0,
     gameTime:0,
     gameScore:0,
     scoreLabel:null,
@@ -41,11 +41,11 @@ var mainLayer = cc.LayerColor.extend({
         var sound=null;
         if(this.sound==false)
         {
-            sound=cc.Sprite.create(s_img09);
+            sound=cc.Sprite.create(s_img10);
         }
         else
         {
-            sound=cc.Sprite.create(s_img10);
+            sound=cc.Sprite.create(s_img09);
         }
         sound.setScale(0.7);
         sound.setTag(300);
@@ -66,7 +66,7 @@ var mainLayer = cc.LayerColor.extend({
         //开启触摸
         this.setTouchEnabled(true);
         //开启schedule
-        this.schedule(this.addItems,this.schdSpeed);
+        this.schedule(this.addItems,this.schdTime,999,0.1);
         this.scheduleUpdate();
     },
 
@@ -82,15 +82,40 @@ var mainLayer = cc.LayerColor.extend({
         var itemid = this.getRandom(2);
         var item=null;
         var _tag = 0;
+        var pos = null;
         if (itemid)
         {
             _tag = this._tag1;
             item = cc.Sprite.create(s_img06);
+            var posid1 = this.getRandom(8);
+            switch (posid1) {
+                case 0:pos = cc.p(94, 672);break;
+                case 1:pos = cc.p(418, 672);break;
+                case 2:pos = cc.p(94, 482);break;
+                case 3:pos = cc.p(418, 482);break;
+                case 4:pos = cc.p(67, 293);break;
+                case 5:pos = cc.p(441, 293);break;
+                case 6:pos = cc.p(250, 575);break;
+                case 7:pos = cc.p(250, 387);break;
+                default:break;
+            }
         }
         else
         {
             _tag = this._tag2;
             item = cc.Sprite.create(s_img07);
+            var posid2 = this.getRandom(8);
+            switch (posid2) {
+                case 0:pos = cc.p(120, 679);break;
+                case 1:pos = cc.p(445, 679);break;
+                case 2:pos = cc.p(121, 491);break;
+                case 3:pos = cc.p(445, 491);break;
+                case 4:pos = cc.p(94, 303);break;
+                case 5:pos = cc.p(469, 303);break;
+                case 6:pos = cc.p(278, 587);break;
+                case 7:pos = cc.p(278, 399);break;
+                default:break;
+            }
         }
 
         if(_tag>=200&&_tag<220)
@@ -109,26 +134,13 @@ var mainLayer = cc.LayerColor.extend({
                 this._tag2=220;
             }
         }
-
-        var posid = this.getRandom(8);
-        var pos = null;
-        switch (posid) {
-            case 0:pos = cc.p(this.winsize.width * 0.1, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 1:pos = cc.p(this.winsize.width * 0.26, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 2:pos = cc.p(this.winsize.width * 0.42, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 3:pos = cc.p(this.winsize.width * 0.58, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 4:pos = cc.p(this.winsize.width * 0.75, this.winsize.height + item.getContentSize().height*0.5);break;
-            case 5:pos = cc.p(this.winsize.width * 0.9, this.winsize.height + item.getContentSize().height*0.5);break;
-            default:break;
-        }
         item.setTag(_tag);
-        item.setPosition(pos);
+        item.setPosition(cc.p(pos.x+item.getContentSize().width*0.5,pos.y-item.getContentSize().height*0.6));
+        item.setScale(0.5);
         this.addChild(item, 2);
-        //图标向下掉落
-        var ac0 = cc.MoveBy.create(this.itemSpeed, cc.p(0, -this.winsize.height));
-        var ac1 = cc.CallFunc.create(this.removeItem, this);
-        var ac2 = cc.Sequence.create(ac0, ac1);
-        item.runAction(ac2);
+
+        var ac0 = cc.Sequence.create(cc.Spawn.create(cc.MoveBy.create(0.1,cc.p(0.0,item.getContentSize().height*0.1)),cc.ScaleTo.create(0.1,1.0)),cc.DelayTime.create(1.5),cc.CallFunc.create(this.removeItem, this));
+        item.runAction(ac0);
     },
 
     removeSprite:function(sprite)
@@ -162,9 +174,9 @@ var mainLayer = cc.LayerColor.extend({
         {
             if(this.gameTime==900)
             {
-                this.schdSpeed=0.20;
-                this.itemSpeed=1.00;
-                this.schedule(this.addDropItems,this.schdSpeed);
+                this.schdTime=0.20;
+                this.showTime=1.00;
+                this.schedule(this.addItems,this.schdTime);
             }
         }
         this.timeLabel.setString("Time: "+Math.round(30-this.gameTime/60));
@@ -184,10 +196,6 @@ var mainLayer = cc.LayerColor.extend({
     {
         var touch = touches[0];
         var location = touch.getLocation();
-        if(cc.rectContainsPoint(this.sp_catch.getBoundingBox(),location))
-        {
-            this.onClickFlag = true;
-        }
         var sn = this.getChildByTag(300);
         var soundRect = sn.getBoundingBox();
         if (cc.rectContainsPoint(soundRect, location))
