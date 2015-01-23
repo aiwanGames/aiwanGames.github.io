@@ -12,16 +12,16 @@ var overLayer = cc.LayerColor.extend({
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        var sp_back1=cc.Sprite.create(s_img13);
-        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.63));
+        var sp_back1=cc.Sprite.create(s_img06);
+        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.56));
         this.addChild(sp_back1,1);
-        var sp_back2=cc.Sprite.create(s_img07);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.63));
-        this.addChild(sp_back2,1);
+        var sp_back2=cc.Sprite.create(s_img12);
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.56));
+        this.addChild(sp_back2,0);
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
-        sp_back1.runAction(ac1);
+        sp_back2.runAction(ac1);
         //分数
-        var timeLabel=cc.LabelTTF.create("恭喜,你共抢到"+this.score+"分.","Arial",37);
+        var timeLabel=cc.LabelTTF.create("你的最终得分为"+this.score+"分.","Arial",37);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.8));
         timeLabel.setColor(cc.c3(235,90,55));
@@ -29,17 +29,17 @@ var overLayer = cc.LayerColor.extend({
         //再来一次按钮
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.42));
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
         //分享按钮
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.17));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
-        document.title = window.wxData.desc = "我在《接财神》小游戏中共抢到了"+this.score+"分，快来挑战我吧！";
-        document.title = window.wxFriend.desc = "我在《接财神》小游戏中共抢到了"+this.score+"分，快来挑战我吧！";
+        document.title = window.wxData.desc = "我在《打穷神》小游戏中获得"+this.score+"分，快来挑战我吧！";
+        document.title = window.wxFriend.desc = "我在《打穷神》小游戏中获得"+this.score+"分，快来挑战我吧！";
         this.setTouchEnabled(true);
     },
 
