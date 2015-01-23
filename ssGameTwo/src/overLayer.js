@@ -24,7 +24,7 @@ var overLayer = cc.LayerColor.extend({
         var timeLabel=cc.LabelTTF.create("你的最终得分为"+this.score+"分.","Arial",37);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.8));
-        timeLabel.setColor(cc.c3(235,90,55));
+        timeLabel.setColor(cc.c3(255,235,55));
         this.addChild(timeLabel,1);
         //再来一次按钮
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);

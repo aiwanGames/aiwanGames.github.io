@@ -17,6 +17,7 @@ var s_img15="img_shield.png";
 var s_img16="img_chuizi2.png";
 var s_music="res/HD/music.mp3";
 var s_effect="res/HD/effect.mp3";
+var s_effect1="res/HD/effect1.mp3";
 
 var g_resources = [
     //image
@@ -38,7 +39,8 @@ var g_resources = [
     {src:s_img15},
     {src:s_img16},
     {src:s_music},
-    {src:s_effect}
+    {src:s_effect},
+    {src:s_effect1}
 
     //plist
 

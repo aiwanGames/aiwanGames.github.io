@@ -203,6 +203,11 @@ var mainLayer = cc.LayerColor.extend({
         this.removeChild(sprite,true);
     },
 
+    removeSprite1:function(sprite)
+    {
+        this.removeChild(sprite,true);
+    },
+
     removeItem:function(sprite)
     {
         var _tag=sprite.getTag();
@@ -315,9 +320,9 @@ var mainLayer = cc.LayerColor.extend({
                     if(cc.rectContainsPoint(rect,location)&&this.canHit==true)
                     {
                         var chuizi=null;
-                        var _sclabel=cc.LabelTTF.create("","Arial",30);
+                        var _sclabel=cc.LabelTTF.create("","Arial",35);
                         _sclabel.setPosition(pos);
-                        _sclabel.setColor(cc.c3(255,140,115));
+                        _sclabel.setColor(cc.c3(235,90,55));
                         this.addChild(_sclabel,6);
                         if(_tag>=200&&_tag<220)
                         {
@@ -340,6 +345,10 @@ var mainLayer = cc.LayerColor.extend({
                         }
                         else
                         {
+                            if(this.sound==true)
+                            {
+                                this.audio.playEffect(s_effect1);
+                            }
                             chuizi=cc.Sprite.create(s_img05);
                             chuizi.setAnchorPoint(cc.p(1.0,0.0));
                             chuizi.setRotation(30.0);
@@ -352,7 +361,7 @@ var mainLayer = cc.LayerColor.extend({
                         }
                         this.scoreLabel.setString("Score: "+this.gameScore);
                         this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.1),cc.ScaleTo.create(0.1,1.0)));
-                        _sclabel.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeOut.create(0.8),cc.MoveBy.create(0.8,cc.p(0,70))),cc.CallFunc.create(this.removeStar,this)));
+                        _sclabel.runAction(cc.Sequence.create(cc.MoveBy.create(0.8,cc.p(0,70)),cc.CallFunc.create(this.removeSprite1,this)));
                     }
                 }
             }

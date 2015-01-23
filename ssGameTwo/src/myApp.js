@@ -38,16 +38,16 @@ var beginLayer = cc.LayerColor.extend({
         sp_back1.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back1,0);
         //提示
-        var tips=cc.LabelTTF.create("移动小羊，接财神","Arial",35);
+        var tips=cc.LabelTTF.create("不要砸到财神哟！","Arial",35);
         tips.setAnchorPoint(cc.p(0.5,0.5));
-        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.4));
-        tips.setColor(cc.c3(235,90,55));
-        //this.addChild(tips,1);
+        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.35));
+        tips.setColor(cc.c3(255,235,55));
+        this.addChild(tips,1);
 
         //开始按钮
         var kaishiItem = cc.MenuItemImage.create(s_img02,s_img02,this.startGame,this);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
         this.addChild(menu, 1);
         //logo
         var sp_back2=cc.Sprite.create(s_img06);
