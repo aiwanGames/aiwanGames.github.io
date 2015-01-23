@@ -288,7 +288,6 @@ var mainLayer = cc.LayerColor.extend({
         var location = touch.getLocation();
         var sn = this.getChildByTag(300);
         var soundRect = sn.getBoundingBox();
-        cc.log("x:"+location.x+",y:"+location.y);
         if (cc.rectContainsPoint(soundRect, location))
         {
             if (this.sound == false)
