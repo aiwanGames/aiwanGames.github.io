@@ -361,7 +361,7 @@ var mainLayer = cc.LayerColor.extend({
                         }
                         this.scoreLabel.setString("Score: "+this.gameScore);
                         this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.1),cc.ScaleTo.create(0.1,1.0)));
-                        _sclabel.runAction(cc.Sequence.create(cc.MoveBy.create(0.8,cc.p(0,70)),cc.CallFunc.create(this.removeSprite1,this)));
+                        _sclabel.runAction(cc.Sequence.create(cc.MoveBy.create(0.6,cc.p(0,60)),cc.CallFunc.create(this.removeSprite1,this)));
                     }
                 }
             }

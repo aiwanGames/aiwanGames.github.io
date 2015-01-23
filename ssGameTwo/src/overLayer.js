@@ -54,11 +54,11 @@ var overLayer = cc.LayerColor.extend({
         if(this.isShared==false)
         {
             //屏蔽层
-            var shield1=cc.Sprite.create(s_img10);
+            var shield1=cc.Sprite.create(s_img15);
             shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
             shield1.setTag(102);
             this.addChild(shield1,5);
-            var shield2=cc.Sprite.create(s_img11);
+            var shield2=cc.Sprite.create(s_img14);
             shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
             shield2.setTag(103);
             this.addChild(shield2,5);
