@@ -12,18 +12,24 @@ var overLayer = cc.LayerColor.extend({
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
+        //光环
         var sp_back1=cc.Sprite.create(s_img13);
-        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
-        //sp_back1.setScale(1.5);
+        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
         this.addChild(sp_back1,1);
-        var sp_back2=cc.Sprite.create(s_img19);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
-        this.addChild(sp_back2,1);
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back1.runAction(ac1);
+        //礼物
+        var sp_back2=cc.Sprite.create(s_img23);
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
+        sp_back2.setTag(800);
+        sp_back2.setRotation(-20);
+        this.addChild(sp_back2,1);
+        var ac2=cc.Sequence.create(cc.DelayTime.create(0.25),cc.RotateBy.create(0.2,40),cc.RotateBy.create(0.2,-40),cc.RotateBy.create(0.2,40),cc.RotateBy.create(0.1,-20),cc.Spawn.create(cc.FadeOut.create(0.15),cc.ScaleTo.create(0.15,1.2)),cc.CallFunc.create(this.showResult,this));
+        sp_back2.runAction(ac2);
         //分数
         var timeLabel=cc.LabelTTF.create("恭喜,你薅了"+this.score+"斤羊毛.","Arial",37);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
+        timeLabel.setTag(801);
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.82));
         timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel,1);
@@ -39,29 +45,7 @@ var overLayer = cc.LayerColor.extend({
         fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.22));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
-        var content="";
-        if(this.score<20)
-        {
-            content="我什么都没薅(hao)到，不能愉快的玩耍了！";
-        }
-        else if(this.score>=20&&this.score<100)
-        {
-            content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛袜子送给你！";
-        }
-        else if(this.score>=100&&this.score<150)
-        {
-            content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛手套送给你！";
-        }
-        else if(this.score>=150&&this.score<200)
-        {
-            content="我薅(hao)了"+this.score+"斤羊毛，织了一顶羊毛帽子送给你！";
-        }
-        else
-        {
-            content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛靴送给你！";
-        }
-        document.title = window.wxData.desc = content;
-        document.title = window.wxFriend.desc = content;
+
         this.setTouchEnabled(true);
     },
 
@@ -69,6 +53,47 @@ var overLayer = cc.LayerColor.extend({
     {
         var scene=beginLayer.create();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
+    },
+
+    showResult:function()
+    {
+        var _gift=this.getChildByTag(800);
+        var _label=this.getChildByTag(801);
+        _gift.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.25),cc.ScaleTo.create(0.25,1.2)),cc.ScaleTo.create(0.15,1.0)));
+        var content="";
+        if(this.score<20)
+        {
+            content="我什么都没薅(hao)到，不能愉快的玩耍了！";
+            _label.setString("获得：剪刀，亲继续薅吧！");
+            _gift.initWithFile(s_img05);
+            _gift.setScale(1.3);
+        }
+        else if(this.score>=20&&this.score<100)
+        {
+            content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛袜子送给你！";
+            _label.setString("获得：羊毛袜子，加油哟！");
+            _gift.initWithFile(s_img19);
+        }
+        else if(this.score>=100&&this.score<150)
+        {
+            content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛手套送给你！";
+            _label.setString("获得：羊毛手套，不错哟！");
+            _gift.initWithFile(s_img22);
+        }
+        else if(this.score>=150&&this.score<200)
+        {
+            content="我薅(hao)了"+this.score+"斤羊毛，织了一顶羊毛帽子送给你！";
+            _label.setString("获得：羊毛帽子，你太棒了！");
+            _gift.initWithFile(s_img20);
+        }
+        else
+        {
+            content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛靴送给你！";
+            _label.setString("获得：羊毛靴，无与伦比的技术！");
+            _gift.initWithFile(s_img21);
+        }
+        document.title = window.wxData.desc = content;
+        document.title = window.wxFriend.desc = content;
     },
 
     share2Friend:function()

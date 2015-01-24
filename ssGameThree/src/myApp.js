@@ -50,16 +50,19 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(menu, 1);
         //logo
         var sp_back2=cc.Sprite.create(s_img07);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.58));
+        sp_back2.setAnchorPoint(cc.p(0.5,0.0));
         sp_back2.setScale(0.8);
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.45));
         this.addChild(sp_back2, 2);
+        var ac=cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(1.2),cc.RotateBy.create(0.1,-20),cc.RotateBy.create(0.1,20),cc.RotateBy.create(0.1,20),cc.RotateBy.create(0.1,-20)),999);
+        sp_back2.runAction(ac);
 
         //音效开关
         var sound=cc.Sprite.create(s_img14);
         sound.setScale(0.7);
         sound.setTag(100);
         sound.setAnchorPoint(cc.p(1.0,0));
-        sound.setPosition(cc.p(this.winsize.width,this.winsize.height*0.6));
+        sound.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
         this.addChild(sound,1);
 
         var ac0=cc.RotateBy.create(0.5,10.0);
@@ -102,7 +105,7 @@ var beginLayer = cc.LayerColor.extend({
                 sn.initWithFile(s_img15);
             }
             sn.setAnchorPoint(cc.p(1.0,0));
-            sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.6));
+            sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
         }
     }
 });
