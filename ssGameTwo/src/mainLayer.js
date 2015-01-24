@@ -259,13 +259,13 @@ var mainLayer = cc.LayerColor.extend({
             if(this.gameTime==600)
             {
                 this.schdTime=0.4;
-                this.showTime=0.7;
+                this.showTime=0.6;
                 this.schedule(this.addItems,this.schdTime);
             }
             if(this.gameTime==1200)
             {
                 this.schdTime=0.3;
-                this.showTime=0.7;
+                this.showTime=0.5;
                 this.schedule(this.addItems,this.schdTime);
             }
         }
