@@ -1,8 +1,8 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    showTime:1.0,
-    schdTime:0.8,
+    showTime:0.7,
+    schdTime:0.6,
     gameTime:0,
     gameScore:0,
     scoreLabel:null,
@@ -218,7 +218,7 @@ var mainLayer = cc.LayerColor.extend({
                 var lb=cc.LabelTTF.create("","Arial",20);
                 lb.setPosition(cc.p(0,0));
                 this.addChild(lb,0);
-                lb.runAction(cc.Sequence.create(cc.DelayTime.create(this.schdTime-0.3),cc.CallFunc.create(this.setHole(i),this)));
+                lb.runAction(cc.Sequence.create(cc.DelayTime.create(this.schdTime-0.2),cc.CallFunc.create(this.setHole(i),this)));
                 break;
             }
         }
@@ -252,20 +252,20 @@ var mainLayer = cc.LayerColor.extend({
         {
             if(this.gameTime==300)
             {
-                this.schdTime=0.6;
-                this.showTime=1.0;
+                this.schdTime=0.5;
+                this.showTime=0.7;
                 this.schedule(this.addItems,this.schdTime);
             }
             if(this.gameTime==600)
             {
-                this.schdTime=0.5;
-                this.showTime=1.0;
+                this.schdTime=0.4;
+                this.showTime=0.7;
                 this.schedule(this.addItems,this.schdTime);
             }
             if(this.gameTime==1200)
             {
-                this.schdTime=0.4;
-                this.showTime=1.0;
+                this.schdTime=0.3;
+                this.showTime=0.7;
                 this.schedule(this.addItems,this.schdTime);
             }
         }
