@@ -61,35 +61,35 @@ var overLayer = cc.LayerColor.extend({
         var _label=this.getChildByTag(801);
         _gift.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.25),cc.ScaleTo.create(0.25,1.2)),cc.ScaleTo.create(0.15,1.0)));
         var content="";
-        if(this.score<20)
+        if(this.score<50)
         {
-            content="我什么都没薅(hao)到，不能愉快的玩耍了！";
-            _label.setString("获得：剪刀，亲继续薅吧！");
+            content="我薅(hao)的羊毛太少，被小伙伴完爆，不能愉快的玩耍了！";
+            _label.setString("获得【剪刀】，亲继续薅吧！");
             _gift.initWithFile(s_img05);
             _gift.setScale(1.3);
         }
-        else if(this.score>=20&&this.score<100)
+        else if(this.score>=50&&this.score<250)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛袜子送给你！";
-            _label.setString("获得：羊毛袜子，加油哟！");
+            _label.setString("获得【羊毛袜子】，加油哟！");
             _gift.initWithFile(s_img19);
         }
-        else if(this.score>=100&&this.score<150)
+        else if(this.score>=250&&this.score<450)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛手套送给你！";
-            _label.setString("获得：羊毛手套，不错哟！");
+            _label.setString("获得【羊毛手套】，不错哟！");
             _gift.initWithFile(s_img22);
         }
-        else if(this.score>=150&&this.score<200)
+        else if(this.score>=450&&this.score<650)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一顶羊毛帽子送给你！";
-            _label.setString("获得：羊毛帽子，你太棒了！");
+            _label.setString("获得【羊毛帽子】，你真棒！");
             _gift.initWithFile(s_img20);
         }
         else
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛靴送给你！";
-            _label.setString("获得：羊毛靴，无与伦比的技术！");
+            _label.setString("获得【羊毛靴】，薅毛之王！");
             _gift.initWithFile(s_img21);
         }
         document.title = window.wxData.desc = content;
