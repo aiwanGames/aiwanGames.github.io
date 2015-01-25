@@ -26,6 +26,7 @@
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
     audio:null,
+    testLabel:null,
 
     init:function ()
     {
@@ -33,6 +34,12 @@ var beginLayer = cc.LayerColor.extend({
         this.setColor(cc.c4(240,20,20,255));
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
+
+        this.testLabel=cc.LabelTTF.create("重力加速度:","Arial",35);
+        this.testLabel.setAnchorPoint(cc.p(0.0,0.5));
+        this.testLabel.setPosition(cc.p(50,650));
+        this.testLabel.setColor(cc.c3(255,240,70));
+        this.addChild(this.testLabel,1);
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
@@ -124,15 +131,15 @@ var beginLayer = cc.LayerColor.extend({
             var speed = Math.abs(x +y + z - lastX - lastY - lastZ) / diffTime * 10000;
             if (speed > SHAKE_THRESHOLD)
             {
-                var arrow=cc.Sprite.create(s_img09);
-                arrow.setTag(109);
-                arrow.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
-                this.addChild(arrow,6);
+                var shk=cc.Sprite.create(s_img01);
+                shk.setPosition(cc.p(320,480));
+                this.addChild(shk,6);
             }
             lastX = x;
             lastY = y;
             lastZ = z;
         }
+        this.testLabel.setString("重力加速度，X:"+x+"，Y:"+y+"，Z:"+z);
     }
 
 });
