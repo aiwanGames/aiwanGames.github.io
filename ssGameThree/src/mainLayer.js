@@ -358,6 +358,7 @@ var mainLayer = cc.LayerColor.extend({
                                 shld.runAction(ac);
                                 var ac1=cc.Sequence.create(cc.Place.create(cc.p(320,450)),cc.DelayTime.create(1.0),cc.CallFunc.create(this.removeItem1,this));
                                 sheep.stopAllActions();
+                                sheep.setOpacity(255);
                                 sheep.setScale(0.8);
                                 sheep.setZOrder(20);
                                 sheep.runAction(ac1);
@@ -368,6 +369,10 @@ var mainLayer = cc.LayerColor.extend({
                                 this.addChild(label,5);
                                 var ac2=cc.Sequence.create(cc.DelayTime.create(1.0),cc.CallFunc.create(this.removeItem,this));
                                 label.runAction(ac2);
+                                if(this.sound)
+                                {
+                                    this.audio.playEffect(s_effect);
+                                }
                             }
                         }
                     }

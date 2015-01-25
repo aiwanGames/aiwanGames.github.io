@@ -56,7 +56,6 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(sp_back2, 2);
         var ac=cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(1.2),cc.RotateBy.create(0.1,-20),cc.RotateBy.create(0.1,20),cc.RotateBy.create(0.1,20),cc.RotateBy.create(0.1,-20)),999);
         sp_back2.runAction(ac);
-
         //音效开关
         var sound=cc.Sprite.create(s_img14);
         sound.setScale(0.7);
@@ -73,8 +72,42 @@ var beginLayer = cc.LayerColor.extend({
         sound.runAction(cc.RepeatForever.create(ac4));
 
         this.setTouchEnabled(true);
+        //this.schedule(this.scheduleMao,2.0,9999,0.5);
         return true;
     },
+
+    scheduleMao:function()
+    {
+        //羊毛飞溅
+        var sp1 = cc.Sprite.create(s_img12);
+        var sp2 = cc.Sprite.create(s_img12);
+        var sp3 = cc.Sprite.create(s_img12);
+        var ac1=null,ac2=null,ac3=null;
+        sp1.setScale(0.5);
+        sp2.setScale(0.5);
+        sp3.setScale(0.5);
+
+        sp1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        this.addChild(sp1,0);
+        ac1=cc.Spawn.create(cc.MoveBy.create(0.4,cc.p(-60,60)),cc.RotateBy.create(0.4,180));
+        ac2 = cc.CallFunc.create(this.removeItem, this);
+        ac3=cc.Sequence.create(ac1,ac2);
+        sp1.runAction(ac3);
+
+        sp2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        this.addChild(sp2,0);
+        ac1=cc.Spawn.create(cc.MoveBy.create(0.4,cc.p(60,60)),cc.RotateBy.create(0.4,180));
+        ac2 = cc.CallFunc.create(this.removeItem, this);
+        ac3=cc.Sequence.create(ac1,ac2);
+        sp2.runAction(ac3);
+
+        sp3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+        this.addChild(sp3,0);
+        ac1=cc.Spawn.create(cc.MoveBy.create(0.4,cc.p(0,-60)),cc.RotateBy.create(0.4,180));
+        ac2 = cc.CallFunc.create(this.removeItem, this);
+        ac3=cc.Sequence.create(ac1,ac2);
+        sp3.runAction(ac3);
+     },
 
     startGame:function()
     {
