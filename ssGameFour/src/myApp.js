@@ -45,16 +45,16 @@ var beginLayer = cc.LayerColor.extend({
         this.audio=cc.AudioEngine.getInstance();
 
         this.testLabel=cc.LabelTTF.create("","Arial",35);
-        this.testLabel.setPosition(cc.p(50,650));
+        this.testLabel.setPosition(cc.p(320,650));
         this.testLabel.setColor(cc.c3(255,240,70));
         this.addChild(this.testLabel,1);
 
         this.lastUpdate=new Date().getTime();
-        this.SHAKE_THRESHOLD = 300;
+        this.SHAKE_THRESHOLD = 280;
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
-        this.schedule(this.updateGame,0.5,999,0.1);
+        this.schedule(this.updateGame,0.1,999,0.1);
         return true;
     },
 
@@ -103,7 +103,7 @@ var beginLayer = cc.LayerColor.extend({
             shk.setPosition(cc.p(320,480));
             shk.setTag(100);
             this.addChild(shk,1);
-            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,15),cc.RotateBy.create(0.15,-15),cc.RotateBy.create(0.15,-15),cc.RotateBy.create(0.15,15));
+            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20));
             shk.runAction(ac1);
             //音效
             this.audio.playEffect(s_effect);
