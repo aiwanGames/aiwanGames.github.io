@@ -39,7 +39,7 @@ var beginLayer = cc.LayerColor.extend({
     lastUpdate:0.0,
     SHAKE_THRESHOLD:280,
 
-    init:function ()
+    init:function()
     {
         this._super();
         this.setColor(cc.c4(240,20,20,255));
@@ -98,14 +98,14 @@ var beginLayer = cc.LayerColor.extend({
         {
             this.isShaking=true;
             //摇一摇
-            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20),cc.CallFunc.create(this.setShaking,this));
+            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20),cc.DelayTime.create(0.4),cc.CallFunc.create(this.setShaking,this));
             this.sp_shake.runAction(ac1);
             //音效
             this.audio.playEffect(s_effect);
         }
     },
 
-    setShaking:function()
+    setShaking:function(_sprite)
     {
         this.isShaking=false;
     },
