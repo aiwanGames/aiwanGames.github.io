@@ -51,7 +51,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(this.testLabel,1);
 
         this.lastUpdate=new Date().getTime();
-        this.SHAKE_THRESHOLD = 3000;
+        this.SHAKE_THRESHOLD = 300;
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
