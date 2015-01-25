@@ -27,6 +27,7 @@ var beginLayer = cc.LayerColor.extend({
     winsize:null,
     audio:null,
     testLabel:null,
+    sp_shake:null,
     x:0.0,
     y:0.0,
     z:0.0,
@@ -44,10 +45,14 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
 
-        this.testLabel=cc.LabelTTF.create("","Arial",35);
+        this.testLabel=cc.LabelTTF.create("【摇一摇】","Arial",35);
         this.testLabel.setPosition(cc.p(320,650));
         this.testLabel.setColor(cc.c3(255,240,70));
         this.addChild(this.testLabel,1);
+
+        this.sp_shake=cc.Sprite.create(s_img01);
+        this.sp_shake.setPosition(cc.p(320,480));
+        this.addChild(this.sp_shake,1);
 
         this.lastUpdate=new Date().getTime();
         this.SHAKE_THRESHOLD = 280;
@@ -89,22 +94,12 @@ var beginLayer = cc.LayerColor.extend({
 
     updateGame:function()
     {
-        //this.testLabel.setString("speed:"+this.speed+"\nX:"+this.x+"\nY:"+this.y+"\nZ:"+this.z);
         if (this.speed > this.SHAKE_THRESHOLD)
         {
-            this.testLabel.setString("【摇一摇】");
             //摇一摇
-            if(this.getChildByTag(100))
-            {
-                this.getChildByTag(100).stopAllActions();
-                this.removeChildByTag(100,true);
-            }
-            var shk=cc.Sprite.create(s_img01);
-            shk.setPosition(cc.p(320,480));
-            shk.setTag(100);
-            this.addChild(shk,1);
+            this.sp_shake.stopAllActions();
             var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20));
-            shk.runAction(ac1);
+            this.sp_shake.runAction(ac1);
             //音效
             this.audio.playEffect(s_effect);
         }
