@@ -126,7 +126,7 @@ var beginLayer = cc.LayerColor.extend({
 
     onAccelerometer:function(accelerationValue)
     {
-        var SHAKE_THRESHOLD = 2.5;
+        var SHAKE_THRESHOLD = 0.000000020;
         var lastUpdate = 0;
         var lastX=0,lastY=0,lastZ=0;
         var curTime = new Date().getTime();
