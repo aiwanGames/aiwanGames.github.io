@@ -130,6 +130,13 @@ var beginLayer = cc.LayerColor.extend({
     updateGame:function()
     {
         this.testLabel.setString("speed:"+this.speed+"\nX:"+this.x+"\nY:"+this.y+"\nZ:"+this.z);
+        if (this.speed > this.SHAKE_THRESHOLD)
+        {
+            this.testLabel.setString("shaked");
+            var shk=cc.Sprite.create(s_img01);
+            shk.setPosition(cc.p(320,480));
+            this.addChild(shk,1);
+        }
     },
 
     onAccelerometer:function(accelerationValue)
@@ -146,10 +153,10 @@ var beginLayer = cc.LayerColor.extend({
             this.speed = Math.abs(this.x+this.y+this.z-this.lastX-this.lastY-this.lastZ) / diffTime * 10000;
             if (this.speed > this.SHAKE_THRESHOLD)
             {
-                this.testLabel.setString("shaked");
-                var shk=cc.Sprite.create(s_img01);
-                shk.setPosition(cc.p(320,480));
-                this.addChild(shk,1);
+                //this.testLabel.setString("shaked");
+                //var shk=cc.Sprite.create(s_img01);
+                //shk.setPosition(cc.p(320,480));
+                //this.addChild(shk,1);
             }
             this.lastX = this.x;
             this.lastY = this.y;
