@@ -77,28 +77,6 @@ var beginLayer = cc.LayerColor.extend({
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     },
 
-    share2Friend:function()
-    {
-        var back02=cc.Sprite.create(s_img08);
-        back02.setTag(107);
-        back02.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-        this.addChild(back02,6);
-        var arrow=cc.Sprite.create(s_img09);
-        arrow.setTag(109);
-        arrow.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
-        this.addChild(arrow,6);
-        var label=cc.LabelTTF.create("点击这里分享","黑体",35);
-        label.setAnchorPoint(cc.p(0.5,0.5));
-        label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
-        label.setColor(cc.c3(255,255,255));
-        label.setTag(108);
-        this.addChild(label,6);
-        this.getChildByTag(120).setEnabled(false);
-        this.getChildByTag(121).setEnabled(false);
-        this.getChildByTag(122).setEnabled(false);
-        this.canTouch=false;
-    },
-
     onTouchesEnded:function(touches, event)
     {
 
@@ -108,23 +86,6 @@ var beginLayer = cc.LayerColor.extend({
     {
         var touch = touches[0];
         var location = touch.getLocation();
-        var sn=this.getChildByTag(100);
-        var soundRect=sn.getBoundingBox();
-        if(cc.rectContainsPoint(soundRect,location)&&this.canTouch)
-        {
-            if(this.sound==false)
-            {
-                this.sound=true;
-                sn.initWithFile(s_img10);
-                this.audio.playMusic(s_music,true);
-            }
-            else
-            {
-                this.sound=false;
-                sn.initWithFile(s_img11);
-                this.audio.stopMusic();
-            }
-        }
     },
 
     updateGame:function()
@@ -137,6 +98,9 @@ var beginLayer = cc.LayerColor.extend({
             shk.setPosition(cc.p(320,480));
             this.addChild(shk,1);
         }
+        //var shk=cc.Sprite.create(s_img01);
+        //shk.setPosition(cc.p(320,480));
+        //this.addChild(shk,1);
     },
 
     onAccelerometer:function(accelerationValue)
