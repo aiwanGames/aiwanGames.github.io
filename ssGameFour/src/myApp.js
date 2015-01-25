@@ -35,7 +35,7 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
 
-        this.testLabel=cc.LabelTTF.create("重力加速度:","Arial",35);
+        this.testLabel=cc.LabelTTF.create("X:0\nY:0\nZ:0","Arial",35,cc.Size(500,300),cc.TEXT_ALIGNMENT_CENTER);
         this.testLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.testLabel.setPosition(cc.p(50,650));
         this.testLabel.setColor(cc.c3(255,240,70));
@@ -118,7 +118,7 @@ var beginLayer = cc.LayerColor.extend({
     {
         var SHAKE_THRESHOLD = 3000;
         var lastUpdate = 0;
-        var x, y, z, lastX, lastY, lastZ;
+        var x=0,y=0,z=0,lastX=0,lastY=0,lastZ=0;
         var curTime = new Date().getTime();
 
         if (curTime-lastUpdate>100)
@@ -131,6 +131,7 @@ var beginLayer = cc.LayerColor.extend({
             var speed = Math.abs(x +y + z - lastX - lastY - lastZ) / diffTime * 10000;
             if (speed > SHAKE_THRESHOLD)
             {
+                this.testLabel.setString("shaked");
                 var shk=cc.Sprite.create(s_img01);
                 shk.setPosition(cc.p(320,480));
                 this.addChild(shk,6);
@@ -139,7 +140,7 @@ var beginLayer = cc.LayerColor.extend({
             lastY = y;
             lastZ = z;
         }
-        this.testLabel.setString("重力加速度，X:"+x+"，Y:"+y+"，Z:"+z);
+        this.testLabel.setString("X:"+x+"\nY:"+y+"\nZ:"+z);
     }
 
 });
