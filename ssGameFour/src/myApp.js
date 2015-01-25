@@ -28,6 +28,7 @@ var beginLayer = cc.LayerColor.extend({
     audio:null,
     testLabel:null,
     sp_shake:null,
+    isShaking:false,
     x:0.0,
     y:0.0,
     z:0.0,
@@ -36,7 +37,7 @@ var beginLayer = cc.LayerColor.extend({
     lastZ:0.0,
     speed:0.0,
     lastUpdate:0.0,
-    SHAKE_THRESHOLD:0,
+    SHAKE_THRESHOLD:280,
 
     init:function ()
     {
@@ -55,7 +56,6 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(this.sp_shake,1);
 
         this.lastUpdate=new Date().getTime();
-        this.SHAKE_THRESHOLD = 280;
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
@@ -94,15 +94,20 @@ var beginLayer = cc.LayerColor.extend({
 
     updateGame:function()
     {
-        if (this.speed > this.SHAKE_THRESHOLD)
+        if (this.speed>this.SHAKE_THRESHOLD&&this.isShaking==false)
         {
+            this.isShaking=true;
             //摇一摇
-            this.sp_shake.stopAllActions();
-            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20));
+            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20),cc.CallFunc.create(this.setShaking,this));
             this.sp_shake.runAction(ac1);
             //音效
             this.audio.playEffect(s_effect);
         }
+    },
+
+    setShaking:function()
+    {
+        this.isShaking=false;
     },
 
     onAccelerometer:function(accelerationValue)
