@@ -30,7 +30,12 @@ var beginLayer = cc.LayerColor.extend({
     x:0.0,
     y:0.0,
     z:0.0,
+    lastX:0.0,
+    lastY:0.0,
+    lastZ:0.0,
     speed:0.0,
+    lastUpdate:0.0,
+    SHAKE_THRESHOLD:0,
 
     init:function ()
     {
@@ -44,6 +49,9 @@ var beginLayer = cc.LayerColor.extend({
         this.testLabel.setPosition(cc.p(50,650));
         this.testLabel.setColor(cc.c3(255,240,70));
         this.addChild(this.testLabel,1);
+
+        this.lastUpdate=new Date().getTime();
+        this.SHAKE_THRESHOLD = 3000;
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
@@ -126,29 +134,26 @@ var beginLayer = cc.LayerColor.extend({
 
     onAccelerometer:function(accelerationValue)
     {
-        var SHAKE_THRESHOLD = 0.000000020;
-        var lastUpdate = 0;
-        var lastX=0,lastY=0,lastZ=0;
         var curTime = new Date().getTime();
 
-        if (curTime-lastUpdate>100)
+        if (curTime-this.lastUpdate>100)
         {
-            var diffTime = curTime - lastUpdate;
-            lastUpdate = curTime;
+            var diffTime = curTime - this.lastUpdate;
+            this.lastUpdate = curTime;
             this.x = accelerationValue.x;
             this.y = accelerationValue.y;
             this.z = accelerationValue.z;
-            this.speed = Math.abs(this.x+this.y+this.z-lastX-lastY-lastZ) / diffTime * 10000;
-            if (this.speed > SHAKE_THRESHOLD)
+            this.speed = Math.abs(this.x+this.y+this.z-this.lastX-this.lastY-this.lastZ) / diffTime * 10000;
+            if (this.speed > this.SHAKE_THRESHOLD)
             {
                 this.testLabel.setString("shaked");
                 var shk=cc.Sprite.create(s_img01);
                 shk.setPosition(cc.p(320,480));
-                this.addChild(shk,6);
+                this.addChild(shk,1);
             }
-            lastX = this.x;
-            lastY = this.y;
-            lastZ = this.z;
+            this.lastX = this.x;
+            this.lastY = this.y;
+            this.lastZ = this.z;
         }
     }
 
