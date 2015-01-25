@@ -44,8 +44,7 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
 
-        this.testLabel=cc.LabelTTF.create("X:0\nY:0\nZ:0","Arial",35,cc.Size(500,300),cc.TEXT_ALIGNMENT_LEFT);
-        this.testLabel.setAnchorPoint(cc.p(0.0,0.5));
+        this.testLabel=cc.LabelTTF.create("","Arial",35);
         this.testLabel.setPosition(cc.p(50,650));
         this.testLabel.setColor(cc.c3(255,240,70));
         this.addChild(this.testLabel,1);
@@ -90,17 +89,25 @@ var beginLayer = cc.LayerColor.extend({
 
     updateGame:function()
     {
-        this.testLabel.setString("speed:"+this.speed+"\nX:"+this.x+"\nY:"+this.y+"\nZ:"+this.z);
+        //this.testLabel.setString("speed:"+this.speed+"\nX:"+this.x+"\nY:"+this.y+"\nZ:"+this.z);
         if (this.speed > this.SHAKE_THRESHOLD)
         {
-            this.testLabel.setString("shaked");
+            this.testLabel.setString("【摇一摇】");
+            //摇一摇
+            if(this.getChildByTag(100))
+            {
+                this.getChildByTag(100).stopAllActions();
+                this.removeChildByTag(100,true);
+            }
             var shk=cc.Sprite.create(s_img01);
             shk.setPosition(cc.p(320,480));
+            shk.setTag(100);
             this.addChild(shk,1);
+            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,15),cc.RotateBy.create(0.15,-15),cc.RotateBy.create(0.15,-15),cc.RotateBy.create(0.15,15));
+            shk.runAction(ac1);
+            //音效
+            this.audio.playEffect(s_effect);
         }
-        //var shk=cc.Sprite.create(s_img01);
-        //shk.setPosition(cc.p(320,480));
-        //this.addChild(shk,1);
     },
 
     onAccelerometer:function(accelerationValue)
@@ -115,13 +122,6 @@ var beginLayer = cc.LayerColor.extend({
             this.y = accelerationValue.y;
             this.z = accelerationValue.z;
             this.speed = Math.abs(this.x+this.y+this.z-this.lastX-this.lastY-this.lastZ) / diffTime * 10000;
-            if (this.speed > this.SHAKE_THRESHOLD)
-            {
-                //this.testLabel.setString("shaked");
-                //var shk=cc.Sprite.create(s_img01);
-                //shk.setPosition(cc.p(320,480));
-                //this.addChild(shk,1);
-            }
             this.lastX = this.x;
             this.lastY = this.y;
             this.lastZ = this.z;
