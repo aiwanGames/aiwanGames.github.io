@@ -248,7 +248,7 @@ var mainLayer = cc.LayerColor.extend({
     update:function(dt)
     {
         this.gameTime+=1;
-        if(this.gameTime==1800)
+        if(this.gameTime==180)
         {
             this.gotoOverLayer();
         }
@@ -332,6 +332,7 @@ var mainLayer = cc.LayerColor.extend({
     {
         var touch = touches[0];
         var location = touch.getLocation();
+        /*屏蔽滑动效果
         if(this.timeCntl<26&&!this.inWarning)
         {
             for(var i=200;i<260;i++)
@@ -378,7 +379,7 @@ var mainLayer = cc.LayerColor.extend({
                     }
                 }
             }
-        }
+        }*/
     },
 
     onTouchesEnded:function(touches, event)
@@ -393,7 +394,7 @@ var mainLayer = cc.LayerColor.extend({
         var location = touch.getLocation();
         var sn = this.getChildByTag(300);
         var soundRect = sn.getBoundingBox();
-        if (cc.rectContainsPoint(soundRect, location))
+        if (cc.rectContainsPoint(soundRect, location)&&!this.inWarning)
         {
             if (this.sound == false)
             {
@@ -410,8 +411,49 @@ var mainLayer = cc.LayerColor.extend({
             sn.setAnchorPoint(cc.p(1.0,0));
             sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
         }
-        this.timeCntl=0;
+        //this.timeCntl=0;
+        //改为碰到羊就加羊毛
+        if(!this.inWarning) {
+            for (var i = 200; i < 260; i++) {
+                var sheep = this.getChildByTag(i);
+                if (sheep != null) {
+                    var _rect = sheep.getBoundingBox();
+                    if (cc.rectContainsPoint(_rect, location)) {
+                        if (i < 240) {
+                            this.removeSheep(i);
+                        }
+                        else {
+                            if (!this.inWarning) {
+                                this.inWarning = true;
+                                var shld = cc.Sprite.create(s_img10);
+                                shld.setPosition(cc.p(320, 480));
+                                this.addChild(shld, 5);
+                                var ac = cc.Sequence.create(cc.DelayTime.create(1.0), cc.CallFunc.create(this.removeItem, this));
+                                shld.runAction(ac);
+                                var ac1 = cc.Sequence.create(cc.Place.create(cc.p(320, 450)), cc.DelayTime.create(1.0), cc.CallFunc.create(this.removeItem1, this));
+                                sheep.stopAllActions();
+                                sheep.setOpacity(255);
+                                sheep.setScale(0.8);
+                                sheep.setZOrder(20);
+                                sheep.runAction(ac1);
+                                var label = cc.LabelTTF.create("呜呜，我早被剪光了", "黑体", 35);
+                                label.setAnchorPoint(cc.p(0.5, 0.5));
+                                label.setPosition(cc.p(this.winsize.width * 0.5, this.winsize.height * 0.73));
+                                label.setColor(cc.c3(255, 255, 255));
+                                this.addChild(label, 5);
+                                var ac2 = cc.Sequence.create(cc.DelayTime.create(1.0), cc.CallFunc.create(this.removeItem, this));
+                                label.runAction(ac2);
+                                if (this.sound) {
+                                    this.audio.playEffect(s_effect);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
+
     setSound:function(_sound)
     {
         this.sound=_sound;

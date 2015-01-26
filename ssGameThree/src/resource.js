@@ -21,6 +21,7 @@ var s_img20="img_hat.png";
 var s_img21="img_shoes.png";
 var s_img22="img_shoutao.png";
 var s_img23="img_gift.png";
+var s_img24="img_btn_enter.png";
 var s_music="res/HD/music.mp3";
 var s_effect="res/HD/effect.mp3";
 
@@ -49,6 +50,7 @@ var g_resources = [
     {src:s_img21},
     {src:s_img22},
     {src:s_img23},
+    {src:s_img24},
     {src:s_music},
     {src:s_effect}
 

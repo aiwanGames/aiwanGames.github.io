@@ -36,15 +36,24 @@ var overLayer = cc.LayerColor.extend({
         //再来一次按钮
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.37));
+        zailaiItem.setScale(0.8);
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.40));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
         //分享按钮
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.22));
+        fenxiangItem.setScale(0.8);
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.30));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
+        //进入理财社区
+        var enterItem = cc.MenuItemImage.create(s_img24,s_img24,this.enterBBS,this);
+        var entermenu = cc.Menu.create(enterItem);
+        enterItem.setScale(0.8);
+        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.20));
+        entermenu.setTag(105);
+        this.addChild(entermenu, 1);
 
         this.setTouchEnabled(true);
     },
@@ -72,7 +81,7 @@ var overLayer = cc.LayerColor.extend({
             _gift.initWithFile(s_img05);
             _gift.setScale(1.3);
         }
-        else if(this.score>=50&&this.score<250)
+        else if(this.score>=50&&this.score<150)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛袜子送给你！";
             _label.setString("获得【羊毛袜子】，加油哟！");
@@ -80,7 +89,7 @@ var overLayer = cc.LayerColor.extend({
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_sock.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_sock.png";
         }
-        else if(this.score>=250&&this.score<450)
+        else if(this.score>=150&&this.score<250)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛手套送给你！";
             _label.setString("获得【羊毛手套】，不错哟！");
@@ -88,7 +97,7 @@ var overLayer = cc.LayerColor.extend({
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_shoutao.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_shoutao.png";
         }
-        else if(this.score>=450&&this.score<650)
+        else if(this.score>=250&&this.score<400)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一顶羊毛帽子送给你！";
             _label.setString("获得【羊毛帽子】，你真棒！");
@@ -128,9 +137,16 @@ var overLayer = cc.LayerColor.extend({
             label.setTag(104);
             this.addChild(label,5);
             if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(false);
-            if(this.getChildByTag(100))this.getChildByTag(101).setEnabled(false);
+            if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(false);
+            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
             this.isShared=true;
         }
+    },
+
+   enterBBS:function()
+    {
+        var newURL="http://bbs.feidee.com";
+        window.location.href=newURL;
     },
 
     onTouchesBegan:function(touches, event)
@@ -139,6 +155,7 @@ var overLayer = cc.LayerColor.extend({
         {
             if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(true);
             if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(true);
+            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(true);
             this.removeChildByTag(102,true);
             this.removeChildByTag(103,true);
             this.removeChildByTag(104,true);
