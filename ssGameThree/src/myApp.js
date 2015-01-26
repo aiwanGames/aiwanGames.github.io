@@ -38,7 +38,7 @@ var beginLayer = cc.LayerColor.extend({
         sp_back1.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back1,0);
         //提示
-        var tips=cc.LabelTTF.create("手指划过，羊毛飞飞","Arial",35);
+        var tips=cc.LabelTTF.create("手指点过，羊毛飞飞","Arial",35);
         tips.setAnchorPoint(cc.p(0.5,0.5));
         tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.38));
         tips.setColor(cc.c3(235,90,55));
