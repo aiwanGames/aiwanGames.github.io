@@ -40,13 +40,14 @@ var beginLayer = cc.LayerColor.extend({
         //提示
         var tips=cc.LabelTTF.create("手指划过，羊毛飞飞","Arial",35);
         tips.setAnchorPoint(cc.p(0.5,0.5));
-        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.385));
+        tips.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.38));
         tips.setColor(cc.c3(235,90,55));
         this.addChild(tips,1);
         //开始按钮
         var kaishiItem = cc.MenuItemImage.create(s_img02,s_img02,this.startGame,this);
+        kaishiItem.setScale(0.8);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
         this.addChild(menu, 1);
         //logo
         var sp_back2=cc.Sprite.create(s_img07);

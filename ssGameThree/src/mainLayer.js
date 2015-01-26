@@ -248,7 +248,7 @@ var mainLayer = cc.LayerColor.extend({
     update:function(dt)
     {
         this.gameTime+=1;
-        if(this.gameTime==180)
+        if(this.gameTime==1800)
         {
             this.gotoOverLayer();
         }
