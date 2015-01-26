@@ -150,7 +150,7 @@ var mainLayer = cc.LayerColor.extend({
         sheep.setTag(_tag);
         sheep.setPosition(_pos);
         this.addChild(sheep, 1);
-        var ac=cc.Sequence.create(cc.DelayTime.create(1.5),cc.FadeOut.create(0.2),cc.CallFunc.create(this.removeItem,this));
+        var ac=cc.Sequence.create(cc.DelayTime.create(0.9+this.schdSpeed*0.6),cc.FadeOut.create(0.2),cc.CallFunc.create(this.removeItem,this));
         sheep.runAction(ac);
     },
 

@@ -81,7 +81,7 @@ var overLayer = cc.LayerColor.extend({
             _gift.initWithFile(s_img05);
             _gift.setScale(1.3);
         }
-        else if(this.score>=50&&this.score<150)
+        else if(this.score>=50&&this.score<200)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛袜子送给你！";
             _label.setString("获得【羊毛袜子】，加油哟！");
@@ -89,7 +89,7 @@ var overLayer = cc.LayerColor.extend({
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_sock.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_sock.png";
         }
-        else if(this.score>=150&&this.score<250)
+        else if(this.score>=200&&this.score<350)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一双羊毛手套送给你！";
             _label.setString("获得【羊毛手套】，不错哟！");
@@ -97,7 +97,7 @@ var overLayer = cc.LayerColor.extend({
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_shoutao.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_shoutao.png";
         }
-        else if(this.score>=250&&this.score<400)
+        else if(this.score>=350&&this.score<550)
         {
             content="我薅(hao)了"+this.score+"斤羊毛，织了一顶羊毛帽子送给你！";
             _label.setString("获得【羊毛帽子】，你真棒！");
