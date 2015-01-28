@@ -122,13 +122,13 @@ var beginLayer = cc.LayerColor.extend({
             this.removeChild(this.sp_shake,true);
             this.removeChild(this.testLabel,true);
 
-            this.isShaked=3;
+            this.isShaked=0;
             var result=cc.Sprite.create(s_img05);
             result.setPosition(cc.p(320,480));
             result.setScale(0.9);
             result.setOpacity(0);
-            this.addChild(result,1);
-            result.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.2)),cc.FadeIn.create(0.5)));
+            //this.addChild(result,1);
+            //result.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.2)),cc.FadeIn.create(0.5)));
 
             var id=this.getRandom(17);
             var tag="";
