@@ -116,7 +116,7 @@ var beginLayer = cc.LayerColor.extend({
         }
 
         //if(this.isShaked==0)
-        if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==3)
+        if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==1)
         {
             this.fontShow=false;
             this.removeChild(this.sp_shake,true);
