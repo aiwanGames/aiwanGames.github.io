@@ -116,13 +116,13 @@ var beginLayer = cc.LayerColor.extend({
             this.fontShow=false;
         }
 
-        if(this.isShaked==0)
-        //if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==3)
+        //if(this.isShaked==0)
+        if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==3)
         {
             this.removeChild(this.sp_shake,true);
             this.removeChild(this.testLabel,true);
 
-            this.isShaked=3;
+            this.isShaked=0;
             var result=cc.Sprite.create(s_img05);
             result.setPosition(cc.p(320,480));
             result.setScale(0.9);
@@ -133,23 +133,23 @@ var beginLayer = cc.LayerColor.extend({
             var id=this.getRandom(17);
             var tag="";
             var content="";
-            var label=cc.LabelTTF.create("tag","Arial",45);
+            var label=cc.LabelTTF.create("tag","隶书",50);
             label.setPosition(cc.p(320,750));
-            label.setColor(cc.c3(250,0,0));
+            label.setColor(cc.c3(221,173,149));
             label.setOpacity(0);
             this.addChild(label,1);
 
-            var label1=cc.LabelTTF.create("content","Arial",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
+            var label1=cc.LabelTTF.create("content","隶书",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
             label1.setAnchorPoint(cc.p(0.5,1.0));
             label1.setPosition(cc.p(320,630));
-            label1.setColor(cc.c3(250,0,0));
+            label1.setColor(cc.c3(221,173,149));
             label1.setOpacity(0);
             this.addChild(label1,1);
 
             var kaishiItem = cc.MenuItemImage.create(s_img06,s_img06,this.restart,this);
             var menu = cc.Menu.create(kaishiItem);
             menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
-            menu.setColor(cc.c3(250,0,0));
+            //menu.setColor(cc.c3(250,0,0));
             menu.setOpacity(0);
             this.addChild(menu, 1);
 
