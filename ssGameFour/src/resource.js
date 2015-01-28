@@ -5,6 +5,7 @@ var s_img04="img_stick2.png";
 var s_img05="img_result.png";
 var s_img06="img_btn_again.png";
 var s_effect="res/HD/eff_shake.mp3";
+var s_effect1="res/HD/eff_result.mp3";
 
 var g_resources = [
     //image
@@ -14,7 +15,8 @@ var g_resources = [
     {src:s_img04},
     {src:s_img05},
     {src:s_img06},
-    {src:s_effect}
+    {src:s_effect},
+    {src:s_effect1}
 
     //plist
 
