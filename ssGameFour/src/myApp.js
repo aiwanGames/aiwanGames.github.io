@@ -69,7 +69,7 @@ var beginLayer = cc.LayerColor.extend({
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
-        this.schedule(this.updateGame,0.05,999999,0.1);
+        this.schedule(this.updateGame,0.02,999999,0.1);
         return true;
     },
 
@@ -113,12 +113,12 @@ var beginLayer = cc.LayerColor.extend({
             this.sp_shake.runAction(ac1);
             //音效
             this.audio.playEffect(s_effect);
-            this.fontShow=false;
         }
 
         //if(this.isShaked==0)
         if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==3)
         {
+            this.fontShow=false;
             this.removeChild(this.sp_shake,true);
             this.removeChild(this.testLabel,true);
 
@@ -133,15 +133,15 @@ var beginLayer = cc.LayerColor.extend({
             var id=this.getRandom(17);
             var tag="";
             var content="";
-            var label=cc.LabelTTF.create("tag","隶书",50);
-            label.setPosition(cc.p(320,750));
+            var label=cc.LabelTTF.create("tag","Arial",50);
+            label.setPosition(cc.p(320,730));
             label.setColor(cc.c3(221,173,149));
             label.setOpacity(0);
             this.addChild(label,1);
 
-            var label1=cc.LabelTTF.create("content","隶书",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
+            var label1=cc.LabelTTF.create("content","Arial",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
             label1.setAnchorPoint(cc.p(0.5,1.0));
-            label1.setPosition(cc.p(320,630));
+            label1.setPosition(cc.p(320,620));
             label1.setColor(cc.c3(221,173,149));
             label1.setOpacity(0);
             this.addChild(label1,1);
