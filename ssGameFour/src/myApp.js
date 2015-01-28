@@ -116,7 +116,7 @@ var beginLayer = cc.LayerColor.extend({
         }
 
         //if(this.isShaked==0)
-        if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==1)
+        //if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==1)
         {
 
         }
@@ -156,7 +156,7 @@ var beginLayer = cc.LayerColor.extend({
 
     setShaking:function(_sprite)
     {
-        this.isShaking=false;
+        //this.isShaking=false;
 
         this.audio.playEffect(s_effect1);
         this.fontShow=false;
@@ -176,14 +176,14 @@ var beginLayer = cc.LayerColor.extend({
         var content="";
         var label=cc.LabelTTF.create("tag","Arial",50);
         label.setPosition(cc.p(320,730));
-        label.setColor(cc.c3(221,173,149));
+        label.setColor(cc.c3(221,173,160));
         label.setOpacity(0);
         this.addChild(label,1);
 
         var label1=cc.LabelTTF.create("content","Arial",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
         label1.setAnchorPoint(cc.p(0.5,1.0));
         label1.setPosition(cc.p(320,620));
-        label1.setColor(cc.c3(221,173,149));
+        label1.setColor(cc.c3(221,173,160));
         label1.setOpacity(0);
         this.addChild(label1,1);
 
