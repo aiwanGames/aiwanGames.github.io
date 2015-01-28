@@ -176,14 +176,14 @@ var beginLayer = cc.LayerColor.extend({
         var content="";
         var label=cc.LabelTTF.create("tag","Arial",50);
         label.setPosition(cc.p(320,730));
-        label.setColor(cc.c3(221,173,160));
+        label.setColor(cc.c3(221,173,130));
         label.setOpacity(0);
         this.addChild(label,1);
 
         var label1=cc.LabelTTF.create("content","Arial",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
         label1.setAnchorPoint(cc.p(0.5,1.0));
         label1.setPosition(cc.p(320,620));
-        label1.setColor(cc.c3(221,173,160));
+        label1.setColor(cc.c3(221,173,130));
         label1.setOpacity(0);
         this.addChild(label1,1);
 
