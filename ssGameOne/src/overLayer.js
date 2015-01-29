@@ -21,13 +21,13 @@ var overLayer = cc.LayerColor.extend({
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back1.runAction(ac1);
         //分数
-        var timeLabel=cc.LabelTTF.create("恭喜发财,你接住了"+this.score+"财气.","Arial",37);
+        var timeLabel=cc.LabelTTF.create("恭喜发财,你接住了"+this.score+"财气.","Arial",38);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
-        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.89));
+        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.91));
         timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel,1);
 
-        var pcnt=(this.score/2500*100).toFixed(1);
+        var pcnt=(this.score/3300*100).toFixed(1);
         if(pcnt<1)
         {
             pcnt=1;
@@ -46,15 +46,15 @@ var overLayer = cc.LayerColor.extend({
         {
             cnt="亲，你该努力一下啦！";
         }
-        else if(this.score>=500&&this.score<1000)
+        else if(this.score>=500&&this.score<1500)
         {
             cnt="好，这个鱼塘被你承包啦！";
         }
-        else if(this.score>=1000&&this.score<1500)
+        else if(this.score>=1500&&this.score<2500)
         {
             cnt="可以回到古代当地主！\n每天带着奴才上街调戏良家妇女~";
         }
-        else if(this.score>=1500&&this.score<2000)
+        else if(this.score>=2500&&this.score<3000)
         {
             cnt="总裁，您的私人飞机已备好！\n早餐咱上哪吃？";
         }
