@@ -111,6 +111,8 @@ var beginLayer = cc.LayerColor.extend({
         if(cc.rectContainsPoint(this.textField.getBoundingBox(),location))
         {
             this.textField.attachWithIME();
+            var cnt=this.textField.getContentText();
+            this.textField.setString("cnt");
         }
     },
 
