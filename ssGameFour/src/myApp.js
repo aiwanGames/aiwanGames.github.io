@@ -41,6 +41,7 @@ var beginLayer = cc.LayerColor.extend({
     SHAKE_THRESHOLD:280,
     fontCNTL:0,
     fontShow:true,
+    textField:null,
 
     init:function()
     {
@@ -48,20 +49,10 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
 
-        var  textField=cc.TextFieldTTF.create("click here for input", "Arial", 32);
-        textField.setPosition(cc.p(320,780));
-        //textField.setDelegate(this);
-        textField.attachWithIME();
-        this.addChild(textField,1);
-        var ia=textField.canAttachWithIME();
-        if(ia)
-        {
-            cc.log("no");
-        }
-        else
-        {
-            cc.log("yes");
-        }
+        this.textField=cc.TextFieldTTF.create("click here for input", "Arial", 32);
+        this.textField.setPosition(cc.p(320,780));
+        //textField.attachWithIME();
+        this.addChild(this.textField,1);
 
         var back=cc.Sprite.create(s_img01);
         back.setAnchorPoint(cc.p(0.5,0.0));
@@ -85,12 +76,6 @@ var beginLayer = cc.LayerColor.extend({
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
         this.schedule(this.updateGame,0.05,999999,0.1);
-        return true;
-    },
-
-    attachWithIME:function()
-    {
-        cc.log("IME");
         return true;
     },
 
@@ -121,6 +106,17 @@ var beginLayer = cc.LayerColor.extend({
     {
         var touch = touches[0];
         var location = touch.getLocation();
+
+        if(cc.rectContainsPoint(this.textField.getBoundingBox(),location))
+        {
+            this.textField.attachWithIME();
+        }
+    },
+
+    didAttachWithIME:function()
+    {
+        var cnt=this.textField.getContentText();
+        this.textField.setString(cnt);
     },
 
     updateGame:function()
