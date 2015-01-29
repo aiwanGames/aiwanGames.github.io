@@ -25,7 +25,7 @@ var overLayer = cc.LayerColor.extend({
         var timeLabel=cc.LabelTTF.create("你揍了穷鬼"+this.count+"下，获得"+this.score+"分.","Arial",39);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.9));
-        timeLabel.setColor(cc.c3(255,204,52));
+        timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel,1);
         //再来一次按钮
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
@@ -77,7 +77,7 @@ var overLayer = cc.LayerColor.extend({
         var timeLabel1=cc.LabelTTF.create("你击败了"+pcnt+"%的人.\n"+cnt,"Arial",34,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
         timeLabel1.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.79));
-        timeLabel1.setColor(cc.c3(255,204,52));
+        timeLabel1.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel1,1);
         this.setTouchEnabled(true);
     },
