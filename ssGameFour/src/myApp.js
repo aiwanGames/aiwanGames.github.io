@@ -50,6 +50,7 @@ var beginLayer = cc.LayerColor.extend({
         this.audio=cc.AudioEngine.getInstance();
 
         this.textField=cc.TextFieldTTF.create("click here for input", "Arial", 32);
+        this.textField.setColorSpaceHolder(cc.c3(0,0,0));
         this.textField.setPosition(cc.p(320,780));
         //textField.attachWithIME();
         this.addChild(this.textField,1);
@@ -117,6 +118,9 @@ var beginLayer = cc.LayerColor.extend({
     {
         var cnt=this.textField.getContentText();
         this.textField.setString("1111111");
+        this.textField.insertText("2",1);
+        this.textField.setColorSpaceHolder(cc.c3(0,0,0));
+        this.textField.setPosition(cc.p(320,780));
     },
 
     updateGame:function()
