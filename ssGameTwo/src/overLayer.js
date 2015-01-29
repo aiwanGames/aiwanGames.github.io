@@ -1,6 +1,7 @@
 var overLayer = cc.LayerColor.extend({
     winsize:null,
     score:0,
+    count:0,
     isShared:false,
 
     init:function ()
@@ -21,9 +22,9 @@ var overLayer = cc.LayerColor.extend({
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back2.runAction(ac1);
         //分数
-        var timeLabel=cc.LabelTTF.create("你的最终得分为"+this.score+"分.","Arial",37);
+        var timeLabel=cc.LabelTTF.create("你揍了穷鬼"+this.count+"下，获得"+this.score+"分.","Arial",39);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
-        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.8));
+        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.9));
         timeLabel.setColor(cc.c3(255,235,55));
         this.addChild(timeLabel,1);
         //再来一次按钮
@@ -38,8 +39,46 @@ var overLayer = cc.LayerColor.extend({
         fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.17));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
-        document.title = window.wxData.desc = "我在《打穷神》小游戏中获得"+this.score+"分，快来挑战我吧！";
-        document.title = window.wxFriend.desc = "我在《打穷神》小游戏中获得"+this.score+"分，快来挑战我吧！";
+        document.title = window.wxData.desc = "我揍了穷鬼"+this.count+"下，获得"+this.score+"分，快来挑战我吧！";
+        document.title = window.wxFriend.desc = "我揍了穷鬼"+this.count+"下，获得"+this.score+"分，快来挑战我吧！";
+
+        var pcnt=(this.count/100*100).toFixed(1);
+        if(pcnt<1)
+        {
+            pcnt=1;
+        }
+        else if(pcnt>=100)
+        {
+            pcnt=99.9;
+        }
+        else
+        {
+
+        }
+
+        var cnt="";
+        if(this.count<10)
+        {
+            cnt="亲，你该努力一下啦！";
+        }
+        else if(this.count>=10&&this.count<50)
+        {
+            cnt="打鬼的汉子，你威武雄壮！！";
+        }
+        else if(this.count>=50&&this.count<90)
+        {
+            cnt="有力气的汉子，财气总不会太差！";
+        }
+        else
+        {
+            cnt="驱魔除鬼这么在行，钟馗都拜你为师！";
+        }
+
+        var timeLabel1=cc.LabelTTF.create("你击败了"+pcnt+"%的人.\n"+cnt,"Arial",34,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
+        timeLabel1.setAnchorPoint(cc.p(0.5,0.5));
+        timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.79));
+        timeLabel1.setColor(cc.c3(255,235,55));
+        this.addChild(timeLabel1,1);
         this.setTouchEnabled(true);
     },
 
@@ -87,17 +126,18 @@ var overLayer = cc.LayerColor.extend({
         }
     },
 
-    setScore:function(_score)
+    setScore:function(_score,_cnt)
     {
         this.score=_score;
+        this.count=_cnt;
     }
 
 });
 
-overLayer.create=function(_score)
+overLayer.create=function(_score,_cnt)
 {
     var _overLayer=new overLayer();
-    _overLayer.setScore(_score);
+    _overLayer.setScore(_score,_cnt);
     _overLayer.init();
     var _scene=cc.Scene.create();
     _scene.addChild(_overLayer);

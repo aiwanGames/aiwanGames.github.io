@@ -5,6 +5,7 @@ var mainLayer = cc.LayerColor.extend({
     schdTime:0.6,
     gameTime:0,
     gameScore:0,
+    gameCount:0,
     scoreLabel:null,
     timeLabel:null,
     score:0,
@@ -75,7 +76,7 @@ var mainLayer = cc.LayerColor.extend({
 
     gotoOverLayer:function()
     {
-        var scene=overLayer.create(this.gameScore);
+        var scene=overLayer.create(this.gameScore,this.gameCount);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
         this.audio.stopMusic();
     },
@@ -357,6 +358,7 @@ var mainLayer = cc.LayerColor.extend({
                             this.getChildByTag(_tag).initWithFile(s_img08);
                             _sclabel.setString("+10");
                             this.gameScore+=10;
+                            this.gameCount+=1;
                         }
                         this.scoreLabel.setString("Score: "+this.gameScore);
                         this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.1),cc.ScaleTo.create(0.1,1.0)));
