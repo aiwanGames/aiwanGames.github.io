@@ -50,7 +50,18 @@ var beginLayer = cc.LayerColor.extend({
 
         var  textField=cc.TextFieldTTF.create("click here for input", "Arial", 32);
         textField.setPosition(cc.p(320,780));
+        //textField.setDelegate(this);
+        textField.attachWithIME();
         this.addChild(textField,1);
+        var ia=textField.canAttachWithIME();
+        if(ia)
+        {
+            cc.log("no");
+        }
+        else
+        {
+            cc.log("yes");
+        }
 
         var back=cc.Sprite.create(s_img01);
         back.setAnchorPoint(cc.p(0.5,0.0));
@@ -74,6 +85,12 @@ var beginLayer = cc.LayerColor.extend({
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
         this.schedule(this.updateGame,0.05,999999,0.1);
+        return true;
+    },
+
+    attachWithIME:function()
+    {
+        cc.log("IME");
         return true;
     },
 
