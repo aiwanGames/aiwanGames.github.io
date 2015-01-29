@@ -48,6 +48,10 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
 
+        var  textField=cc.TextFieldTTF.create("click here for input", "Arial", 32);
+        textField.setPosition(cc.p(320,780));
+        this.addChild(textField,1);
+
         var back=cc.Sprite.create(s_img01);
         back.setAnchorPoint(cc.p(0.5,0.0));
         back.setPosition(cc.p(320,0));
