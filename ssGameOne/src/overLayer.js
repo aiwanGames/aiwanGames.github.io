@@ -27,7 +27,7 @@ var overLayer = cc.LayerColor.extend({
         timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel,1);
 
-        var pcnt=(this.score/3300*100).toFixed(1);
+        var pcnt=(this.score/3800*100).toFixed(1);
         if(pcnt<1)
         {
             pcnt=1;
@@ -54,7 +54,7 @@ var overLayer = cc.LayerColor.extend({
         {
             cnt="可以回到古代当地主！\n每天带着奴才上街调戏良家妇女~";
         }
-        else if(this.score>=2500&&this.score<3000)
+        else if(this.score>=2500&&this.score<3500)
         {
             cnt="总裁，您的私人飞机已备好！\n早餐咱上哪吃？";
         }
