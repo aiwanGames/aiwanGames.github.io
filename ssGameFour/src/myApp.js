@@ -114,10 +114,9 @@ var beginLayer = cc.LayerColor.extend({
             this.textField.detachWithIME();
             var cnt=this.textField.getContentText();
             this.textField.setString("33333");
-            this.textField.insertText("2",1);
             this.textField.setColorSpaceHolder(cc.c3(0,0,0));
             this.textField.setPosition(cc.p(320,780));
-            this.textField.draw();
+            //this.textField.draw();
         }
     },
 
