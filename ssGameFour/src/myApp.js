@@ -116,7 +116,7 @@ var beginLayer = cc.LayerColor.extend({
     didAttachWithIME:function()
     {
         var cnt=this.textField.getContentText();
-        this.textField.setString(cnt);
+        this.textField.setString("1111111");
     },
 
     updateGame:function()
