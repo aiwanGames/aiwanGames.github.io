@@ -77,7 +77,7 @@ var overLayer = cc.LayerColor.extend({
         var timeLabel1=cc.LabelTTF.create("你击败了"+pcnt+"%的人.\n"+cnt,"Arial",34,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
         timeLabel1.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.79));
-        timeLabel1.setColor(cc.c3(235,90,55));
+        timeLabel1.setColor(cc.c3(255,204,52));
         this.addChild(timeLabel1,1);
         this.setTouchEnabled(true);
     },
