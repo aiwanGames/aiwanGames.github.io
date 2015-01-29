@@ -40,6 +40,9 @@ var g_resources = [
     {src:s_img15},
     {src:s_img16},
     {src:s_img17},
+    {src:s_img18},
+    {src:s_img19},
+    {src:s_img20},
     {src:s_music},
     {src:s_effect}
 
