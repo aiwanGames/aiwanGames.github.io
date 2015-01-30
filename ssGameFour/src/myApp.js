@@ -53,7 +53,7 @@ var beginLayer = cc.LayerColor.extend({
         this.textField.setColorSpaceHolder(cc.c3(0,0,0));
         this.textField.setPosition(cc.p(320,780));
         //textField.attachWithIME();
-        //this.addChild(this.textField,1);
+        this.addChild(this.textField,1);
 
         var back=cc.Sprite.create(s_img01);
         back.setAnchorPoint(cc.p(0.5,0.0));
@@ -108,9 +108,10 @@ var beginLayer = cc.LayerColor.extend({
         var touch = touches[0];
         var location = touch.getLocation();
 
-        //if(cc.rectContainsPoint(this.textField.getBoundingBox(),location))
+        if(cc.rectContainsPoint(this.textField.getBoundingBox(),location))
         {
-            //this.textField.attachWithIME();
+            this.textField.attachWithIME();
+            this.textField.setDelegate(this);
             //this.textField.detachWithIME();
             //var cnt=this.textField.getContentText();
             //this.textField.setString("33333");
