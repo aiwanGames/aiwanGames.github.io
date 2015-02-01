@@ -46,8 +46,9 @@ var beginLayer = cc.LayerColor.extend({
 
         //开始按钮
         var kaishiItem = cc.MenuItemImage.create(s_img02,s_img02,this.startGame,this);
+        kaishiItem.setScale(0.8);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.27));
         this.addChild(menu, 1);
         //logo
         var sp_back2=cc.Sprite.create(s_img06);

@@ -15,6 +15,7 @@ var s_img13="img_number.png";
 var s_img14="img_arrow.png";
 var s_img15="img_shield.png";
 var s_img16="img_chuizi2.png";
+var s_img17="img_btn_enter.png";
 var s_music="res/HD/music.mp3";
 var s_effect="res/HD/effect.mp3";
 var s_effect1="res/HD/effect1.mp3";
@@ -38,6 +39,7 @@ var g_resources = [
     {src:s_img14},
     {src:s_img15},
     {src:s_img16},
+    {src:s_img17},
     {src:s_music},
     {src:s_effect},
     {src:s_effect1}

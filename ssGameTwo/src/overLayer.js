@@ -29,16 +29,26 @@ var overLayer = cc.LayerColor.extend({
         this.addChild(timeLabel,1);
         //再来一次按钮
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
+        zailaiItem.setScale(0.8);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.34));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
         //分享按钮
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
+        fenxiangItem.setScale(0.8);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.17));
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.24));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
+
+        var enterItem = cc.MenuItemImage.create(s_img17,s_img17,this.enterBBS,this);
+        enterItem.setScale(0.8);
+        var entermenu = cc.Menu.create(enterItem);
+        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.14));
+        entermenu.setTag(105);
+        this.addChild(entermenu, 1);
+
         document.title = window.wxData.desc = "我揍了穷鬼"+this.count+"下，获得"+this.score+"分，还差一点点，快来帮帮我！";
         document.title = window.wxFriend.desc = "我揍了穷鬼"+this.count+"下，获得"+this.score+"分，还差一点点，快来帮帮我！";
 
@@ -80,6 +90,12 @@ var overLayer = cc.LayerColor.extend({
         timeLabel1.setColor(cc.c3(255,204,52));
         this.addChild(timeLabel1,1);
         this.setTouchEnabled(true);
+    },
+
+    enterBBS:function()
+    {
+        var newURL="http://bbs.feidee.com";
+        window.location.href=newURL;
     },
 
     gotoMainLayer:function()
