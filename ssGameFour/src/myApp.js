@@ -209,7 +209,7 @@ var beginLayer = cc.LayerColor.extend({
 
     resultPre:function()
     {
-        var left=this.getRandom(6)+100;
+        var left=this.getRandom(7)+100;
         for(var i=100;i<=106;i++)
         {
             if(i!=left)
@@ -275,19 +275,19 @@ var beginLayer = cc.LayerColor.extend({
         moremenu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseBackOut.create(cc.MoveBy.create(0.6,cc.p(0,180)))));
 
         var logo=cc.Sprite.create(s_img11);
-        logo.setScale(2.0);
+        logo.setScale(2.5);
         logo.setOpacity(0);
         logo.setPosition(cc.p(320,420));
         this.addChild(logo,1);
-        logo.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.MoveTo.create(0.5,cc.p(100,220)),cc.ScaleTo.create(0.5,1.0),cc.FadeIn.create(0.5))));
+        logo.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.MoveTo.create(0.5,cc.p(100,220)),cc.ScaleTo.create(0.5,1.2),cc.FadeIn.create(0.5))));
 
         this.getChildByTag(110).setPosition(cc.p(20,800));
         this.getChildByTag(111).setPosition(cc.p(620,600));
         this.getChildByTag(113).setPosition(cc.p(600,130));
         //this.getChildByTag(114).setPosition(cc.p(320,20));
 
-        document.title = window.wxData.desc = "我抽到了财运签--"+content+"，新年新气象，快来抽一签！";
-        document.title = window.wxFriend.desc = "我给你抽到了财运签--"+content+"，新年新气象，快来抽一签！";
+        document.title = window.wxData.desc = "我抽到了财运签-"+content+"，新年新气象，快来抽一签！";
+        document.title = window.wxFriend.desc = "我给你抽到了财运签-"+content+"，新年新气象，快来抽一签！";
     },
 
     onAccelerometer:function(accelerationValue)
