@@ -13,10 +13,10 @@ var overLayer = cc.LayerColor.extend({
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
         var sp_back1=cc.Sprite.create(s_img13);
-        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.59));
+        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.61));
         this.addChild(sp_back1,1);
         var sp_back2=cc.Sprite.create(s_img07);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.59));
+        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.61));
         this.addChild(sp_back2,1);
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back1.runAction(ac1);
@@ -65,25 +65,41 @@ var overLayer = cc.LayerColor.extend({
 
         var timeLabel1=cc.LabelTTF.create("你击败了"+pcnt+"%的人.\n"+cnt,"Arial",34,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
         timeLabel1.setAnchorPoint(cc.p(0.5,0.5));
-        timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.79));
+        timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.81));
         timeLabel1.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel1,1);
 
         //再来一次按钮
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
+        zailaiItem.setScale(0.8);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.39));
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.41));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
         //分享按钮
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
+        fenxiangItem.setScale(0.8);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.22));
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.3));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
+
+        var enterItem = cc.MenuItemImage.create(s_img21,s_img21,this.enterBBS,this);
+        enterItem.setScale(0.8);
+        var entermenu = cc.Menu.create(enterItem);
+        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.19));
+        entermenu.setTag(105);
+        this.addChild(entermenu, 1);
+
         document.title = window.wxData.desc = "我积攒了"+this.score+"财气，有钱就是任性，不服来战！";
         document.title = window.wxFriend.desc = "我积攒了"+this.score+"财气，有钱就是任性，不服来战！";
         this.setTouchEnabled(true);
+    },
+
+    enterBBS:function()
+    {
+        var newURL="http://bbs.feidee.com";
+        window.location.href=newURL;
     },
 
     gotoMainLayer:function()
@@ -112,7 +128,8 @@ var overLayer = cc.LayerColor.extend({
             label.setTag(104);
             this.addChild(label,5);
             if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(false);
-            if(this.getChildByTag(100))this.getChildByTag(101).setEnabled(false);
+            if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(false);
+            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
             this.isShared=true;
         }
     },
@@ -123,6 +140,7 @@ var overLayer = cc.LayerColor.extend({
         {
             if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(true);
             if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(true);
+            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
             this.removeChildByTag(102,true);
             this.removeChildByTag(103,true);
             this.removeChildByTag(104,true);
