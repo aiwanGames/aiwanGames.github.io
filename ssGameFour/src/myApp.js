@@ -279,7 +279,7 @@ var beginLayer = cc.LayerColor.extend({
         logo.setOpacity(0);
         logo.setPosition(cc.p(320,420));
         this.addChild(logo,1);
-        logo.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.MoveTo.create(0.5,cc.p(100,220)),cc.ScaleTo.create(0.5,1.2),cc.FadeIn.create(0.5))));
+        logo.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.MoveTo.create(0.5,cc.p(100,225)),cc.ScaleTo.create(0.5,1.2),cc.FadeIn.create(0.5))));
 
         this.getChildByTag(110).setPosition(cc.p(20,800));
         this.getChildByTag(111).setPosition(cc.p(620,600));
