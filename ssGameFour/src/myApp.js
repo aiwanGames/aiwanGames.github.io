@@ -26,10 +26,9 @@
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
     audio:null,
-    testLabel:null,
     sp_shake:null,
     isShaking:false,
-    isShaked:0,
+    canShake:false,
     x:0.0,
     y:0.0,
     z:0.0,
@@ -49,30 +48,30 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
 
-        this.textField=cc.TextFieldTTF.create("click here for input", "Arial", 32);
-        this.textField.setColorSpaceHolder(cc.c3(0,0,0));
-        this.textField.setPosition(cc.p(320,780));
-        //textField.attachWithIME();
-        //this.addChild(this.textField,1);
-
         var back=cc.Sprite.create(s_img01);
         back.setAnchorPoint(cc.p(0.5,0.0));
         back.setPosition(cc.p(320,0));
         this.addChild(back,0);
 
-        this.testLabel=cc.LabelTTF.create(">>  用力摇起来  <<","Arial",35);
-        this.testLabel.setAnchorPoint(cc.p(0.5,0.5));
-        this.testLabel.setPosition(cc.p(320,680));
-        this.testLabel.setColor(cc.c3(255,0,0));
-        this.addChild(this.testLabel,1);
-        this.testLabel.runAction(cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(1.5),cc.RotateBy.create(0.1,10),cc.RotateBy.create(0.1,-10),cc.RotateBy.create(0.1,-10),cc.RotateBy.create(0.1,10)),999999));
-
         this.sp_shake=cc.Sprite.create(s_img02);
-        this.sp_shake.setScale(0.65);
-        this.sp_shake.setPosition(cc.p(330,420));
+        this.sp_shake.setPosition(cc.p(320,170));
         this.addChild(this.sp_shake,1);
 
+        var tip1=cc.Sprite.create(s_img08);
+        tip1.setPosition(cc.p(320,65));
+        tip1.setTag(90);
+        this.addChild(tip1,1);
+
+        var tip2=cc.Sprite.create(s_img09);
+        tip2.setPosition(cc.p(320,750));
+        tip2.setTag(91);
+        this.addChild(tip2,1);
+        tip2.runAction(cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(1.5),cc.RotateBy.create(0.1,10),cc.RotateBy.create(0.1,-10),cc.RotateBy.create(0.1,-10),cc.RotateBy.create(0.1,10)),999999));
+
         this.lastUpdate=new Date().getTime();
+
+        this.loadStars();
+        this.loadStick();
 
         this.setTouchEnabled(true);
         this.setAccelerometerEnabled(true);
@@ -83,6 +82,88 @@ var beginLayer = cc.LayerColor.extend({
     getRandom:function(maxsize)
     {
         return Math.floor(Math.random() * maxsize) % maxsize;
+    },
+
+    loadStick:function()
+    {
+        for(var i=1;i<=7;i++)
+        {
+            var stick=cc.Sprite.create(s_img03);
+            stick.setScale(0.1);
+            stick.setOpacity(0);
+            stick.setAnchorPoint(cc.p(0.5,0.0));
+            switch(i)
+            {
+                case 1:stick.setPosition(cc.p(230,600));stick.setTag(100);break;
+                case 2:stick.setPosition(cc.p(260,600));stick.setTag(101);break;
+                case 3:stick.setPosition(cc.p(290,600));stick.setTag(102);break;
+                case 4:stick.setPosition(cc.p(320,600));stick.setTag(103);break;
+                case 5:stick.setPosition(cc.p(350,600));stick.setTag(104);break;
+                case 6:stick.setPosition(cc.p(380,600));stick.setTag(105);break;
+                case 7:stick.setPosition(cc.p(410,600));stick.setTag(106);break;
+                default:break;
+            }
+            this.addChild(stick,0);
+            stick.runAction(cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.5,0.9),cc.MoveBy.create(0.5,cc.p(0,-450)),cc.FadeIn.create(0.5))));
+
+            var spt=cc.LabelTTF.create("","Arial",10);
+            spt.setPosition(cc.p(0,0));
+            this.addChild(spt,1);
+            spt.runAction(cc.CallFunc.create(this.setCanShake,this));
+        }
+    },
+
+    setCanShake:function(sp)
+    {
+        this.removeChild(sp,true);
+        this.canShake=true;
+    },
+
+    loadStars:function()
+    {
+        for(var i=1;i<6;i++)
+        {
+            var star1=cc.Sprite.create(s_img10);
+            star1.setScale(0.1);
+            star1.setOpacity(0);
+            switch(i)
+            {
+                case 1:star1.setPosition(cc.p(160,300));star1.setTag(110);break;
+                case 2:star1.setPosition(cc.p(120,480));star1.setTag(111);break;
+                case 3:star1.setPosition(cc.p(50,140));star1.setTag(112);break;
+                case 4:star1.setPosition(cc.p(550,420));star1.setTag(113);break;
+                case 5:star1.setPosition(cc.p(540,200));star1.setTag(114);break;
+                default:break;
+            }
+            this.addChild(star1,1);
+            star1.runAction(cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(i%2*0.4+0.1),cc.Spawn.create(cc.ScaleTo.create(1.0,0.8),cc.RotateBy.create(1.0,180),cc.FadeIn.create(1.0)),cc.Spawn.create(cc.ScaleTo.create(1.0,0.1),cc.RotateBy.create(1.0,180),cc.FadeOut.create(1.0))),999999,0.1));
+        }
+    },
+
+    shakeCup:function()
+    {
+        //音效
+        this.audio.playEffect(s_effect1);
+        //摇一摇
+        var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,13),cc.DelayTime.create(0.4),cc.CallFunc.create(this.resultPre,this));
+        this.sp_shake.runAction(ac1);
+
+        for(var i=100;i<=106;i++)
+        {
+            var dir=this.getRandom(2);
+            var offset=this.getRandom(8);
+            var act=null;
+            if(dir==0)
+            {
+                act=cc.Sequence.create(cc.RotateBy.create(0.15,-5-offset),cc.RotateBy.create(0.15,5+offset),cc.RotateBy.create(0.15,5+offset),cc.RotateBy.create(0.15,-5-offset));
+            }
+            else
+            {
+                act=cc.Sequence.create(cc.RotateBy.create(0.15,5+offset),cc.RotateBy.create(0.15,-5-offset),cc.RotateBy.create(0.15,-5-offset),cc.RotateBy.create(0.15,5+offset));
+            }
+            var st=this.getChildByTag(i);
+            st.runAction(act);
+        }
     },
 
     removeSprite:function(_sprite)
@@ -107,209 +188,106 @@ var beginLayer = cc.LayerColor.extend({
     {
         var touch = touches[0];
         var location = touch.getLocation();
-
-        //if(cc.rectContainsPoint(this.textField.getBoundingBox(),location))
-        {
-            //this.textField.attachWithIME();
-            //this.textField.setDelegate(this);
-            //this.textField.detachWithIME();
-            //var cnt=this.textField.getContentText();
-            //this.textField.setString("33333");
-            //this.textField.setColorSpaceHolder(cc.c3(0,0,0));
-            //this.textField.setPosition(cc.p(320,780));
-            //this.textField.draw();
-        }
+        //test shake
+        //this.shakeCup();
     },
 
     updateGame:function()
     {
-        if(this.speed>this.SHAKE_THRESHOLD&&this.isShaking==false)
+        if(this.speed>this.SHAKE_THRESHOLD&&this.isShaking==false&&this.canShake==true)
         {
             this.isShaking=true;
-            this.isShaked+=1;
-            //摇一摇
-            var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,-20),cc.RotateBy.create(0.15,20),cc.DelayTime.create(0.4),cc.CallFunc.create(this.setShaking,this));
-            this.sp_shake.runAction(ac1);
-            //音效
-            this.audio.playEffect(s_effect);
-        }
-
-        //if(this.isShaked==0)
-        //if(this.speed<this.SHAKE_THRESHOLD&&this.isShaked==1)
-        {
-
-        }
-
-        if(this.fontShow)
-        {
-            if(this.fontCNTL==0)
-            {
-                this.testLabel.setString(">>  用力摇起来  <<");
-            }
-            else if(this.fontCNTL==2)
-            {
-                this.testLabel.setString("> > 用力摇起来 < <");
-            }
-            else if(this.fontCNTL==4)
-            {
-                this.testLabel.setString(">  >用力摇起来<  <");
-            }
-            else
-            {
-
-            }
-            if(this.fontCNTL>6)
-            {
-                this.fontCNTL=0;
-            }
-            else
-            {
-                this.fontCNTL+=1;
-            }
-        }
-        else
-        {
-            this.removeChild(this.testLabel,true);
+            this.shakeCup();
         }
     },
 
-    setShaking:function(_sprite)
+    enterBBS:function()
     {
-        //this.isShaking=false;
+        var newURL="http://bbs.feidee.com";
+        window.location.href=newURL;
+    },
 
-        this.audio.playEffect(s_effect1);
-        this.fontShow=false;
+    resultPre:function()
+    {
+        var left=this.getRandom(6)+100;
+        for(var i=100;i<=106;i++)
+        {
+            if(i!=left)
+            {
+                this.getChildByTag(i).runAction(cc.Sequence.create(cc.DelayTime.create((i-100)*0.1),cc.FadeOut.create(0.3),cc.CallFunc.create(this.removeSprite,this)));
+            }
+        }
+        var leftSt=this.getChildByTag(left);
+        leftSt.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.ScaleTo.create(0.6,0.1),cc.FadeOut.create(0.6),cc.MoveTo.create(0.6,cc.p(320,420))),cc.CallFunc.create(this.result,this)));
+    },
+
+    result:function(_sprite)
+    {
+        this.audio.playEffect(s_effect2);
+
+        this.removeChild(_sprite,true);
         this.removeChild(this.sp_shake,true);
-        this.removeChild(this.testLabel,true);
-
-        this.isShaked=0;
-        var result=cc.Sprite.create(s_img05);
-        result.setPosition(cc.p(320,480));
-        result.setScale(0.9);
-        result.setOpacity(0);
-        //this.addChild(result,1);
-        //result.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.2)),cc.FadeIn.create(0.5)));
+        this.removeChildByTag(90,true);
+        this.removeChildByTag(91,true);
 
         var id=this.getRandom(17);
-        var tag="";
+        var result=null;
         var content="";
-        var label=cc.LabelTTF.create("tag","Arial",50);
-        label.setPosition(cc.p(320,730));
-        label.setColor(cc.c3(221,173,130));
-        label.setOpacity(0);
-        this.addChild(label,1);
 
-        var label1=cc.LabelTTF.create("content","Arial",35,cc.Size(500,500),cc.TEXT_ALIGNMENT_CENTER);
-        label1.setAnchorPoint(cc.p(0.5,1.0));
-        label1.setPosition(cc.p(320,620));
-        label1.setColor(cc.c3(221,173,130));
-        label1.setOpacity(0);
-        this.addChild(label1,1);
-
-        var kaishiItem = cc.MenuItemImage.create(s_img06,s_img06,this.restart,this);
-        var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.25));
-        //menu.setColor(cc.c3(250,0,0));
-        menu.setOpacity(0);
-        this.addChild(menu, 1);
-
-        var shareContent="";
         switch(id)
         {
-            case 0:
-                tag="有钱";
-                content="  喝酸奶只舔盖子上的，\n  剩下的扔掉！\n  吃薯片只吸手指，\n  薯片扔掉！\n  别问为什么，\n  今年的你有钱，任性！\n  全年只用做一件事情：\n安静地散发有钱的气息";
-                shareContent="我抽到的新年签是《有钱》，来抽取属于你的那一签吧！";
-                break;
-            case 1:
-                tag="零花钱花不完";
-                content="  不上缴不外扣、不断有人给；\n  你的零花钱你自己做主；\n  口袋里的钞票厚度永远踏实安心！";
-                shareContent="我抽到的新年签是《零花钱花不完》，来抽取属于你的那一签吧！";
-                break;
-            case 2:
-                tag="加薪三次";
-                content="  “薪”的一年对有实力的你来说，\n  是体现更高价值的一年；\n  “薪”的一年“薪”年快乐，\n  加薪三次不是梦！";
-                shareContent="我抽到的新年签是《加薪三次》，来抽取属于你的那一签吧！";
-                break;
-            case 3:
-                tag="钱多活儿少";
-                content="  涨薪升职都有你；\n  加班熬夜没你事；\n  新一年钱多活儿少；\n  就这个feel倍儿爽！";
-                shareContent="我抽到的新年签是《钱多活儿少》，来抽取属于你的那一签吧！";
-                break;
-            case 4:
-                tag="发票中大奖";
-                content="刮发票没中过奖的人生是不完整的；\n新的一年，你逢刮必中；\n发票都能中奖，别的还会远吗？";
-                shareContent="我抽到的新年签是《发票中大奖》，来抽取属于你的那一签吧！";
-                break;
-            case 5:
-                tag="走路捡钱";
-                content="身体与心灵总有一个在路上；\n财运和钞票总是不期而遇；\n捡的不仅是钱；\n是一年的好运常在！";
-                shareContent="我抽到的新年签是《走路捡钱》，来抽取属于你的那一签吧！";
-                break;
-            case 6:
-                tag="创业必赚";
-                content="这一次不为别人努力；\n只为自己心中的坚持；\n许你一年的创业财运；\n是时候干一件说做就做的大事了！";
-                shareContent="我抽到的新年签是《创业必赚》，来抽取属于你的那一签吧！";
-                break;
-            case 7:
-                tag="钱包撑爆";
-                content="你的钱包时尚时尚最时尚；\n一张两张，钞票数也数不完；\n那跳跃的心情似魔鬼的步伐！";
-                shareContent="我抽到的新年签是《钱包撑爆》，来抽取属于你的那一签吧！";
-                break;
-            case 8:
-                tag="刷卡不用还";
-                content="有钱才会放肆；\n没钱只能克制；\n刷卡总有人帮你还；\n今年就是这么羊气！";
-                shareContent="我抽到的新年签是《刷卡不用还》，来抽取属于你的那一签吧！";
-                break;
-            case 9:
-                tag="逢赌必赢";
-                content="赌智商、赌人品，赌啥啥赢！\n和（hu）遍麻坛无敌手，大赢四方！";
-                shareContent="我抽到的新年签是《逢赌必赢》，来抽取属于你的那一签吧！";
-                break;
-            case 10:
-                tag="财气爆棚";
-                content="瞪谁谁发财；\n摸谁谁捡钱；\n小伙伴们都来抢着请你吃饭；\n根本停不下来！";
-                shareContent="我抽到的新年签是《财气爆棚》，来抽取属于你的那一签吧！";
-                break;
-            case 11:
-                tag="遇到贵人";
-                content="人脉就是钱脉；\n人缘就是财缘；\n人脉决定命脉；\n这一年，留意身边的人，\n转角处有贵人相助。";
-                shareContent="我抽到的新年签是《遇到贵人》，来抽取属于你的那一签吧！";
-                break;
-            case 12:
-                tag="奖金翻十倍";
-                content="业绩飙升，奖金翻十倍；\n新一年迎娶白富美；\n嫁个高富帅走上人生巅峰！";
-                shareContent="我抽到的新年签是《奖金翻十倍》，来抽取属于你的那一签吧！";
-                break;
-            case 13:
-                tag="中彩票";
-                content="传说中的人品爆发就是你；\n买了就中！体彩福彩样样都有戏；\n2015奔跑吧！小伙伴！";
-                shareContent="我抽到的新年签是《中彩票》，来抽取属于你的那一签吧！";
-                break;
-            case 14:
-                tag="买一送三";
-                content="想买啥啥打折；\n要买啥啥降价；\n同样的东西，\n就是比别人买得便宜！";
-                shareContent="我抽到的新年签是《买一送三》，来抽取属于你的那一签吧！";
-                break;
-            case 15:
-                tag="财务自由";
-                content="今天马尔代夫，明天欧洲十国游；\n想上班上班，想休息休息；\n闭着眼睛投资都大赚；\n不及时行乐都对不起自己。";
-                shareContent="我抽到的新年签是《财务自由》，来抽取属于你的那一签吧！";
-                break;
-            case 16:
-                tag="存款多个零";
-                content="你积累的努力和好运，\n将在这一年得到丰厚的回报；\n存款多个零，\n是给你爱的人最好的安全感！";
-                shareContent="我抽到的新年签是《存款多个零》，来抽取属于你的那一签吧！";
-                break;
+            case 1:result=cc.Sprite.create(s_img12);content="有钱";break;
+            case 2:result=cc.Sprite.create(s_img13);content="零钱花不完";break;
+            case 3:result=cc.Sprite.create(s_img14);content="加薪三次";break;
+            case 4:result=cc.Sprite.create(s_img15);content="钱多活少";break;
+            case 5:result=cc.Sprite.create(s_img16);content="发票中大奖";break;
+            case 6:result=cc.Sprite.create(s_img17);content="走路捡钱";break;
+            case 7:result=cc.Sprite.create(s_img18);content="创业必赚";break;
+            case 8:result=cc.Sprite.create(s_img19);content="钱包撑爆";break;
+            case 9:result=cc.Sprite.create(s_img20);content="刷卡不用还";break;
+            case 10:result=cc.Sprite.create(s_img21);content="逢赌必赢";break;
+            case 11:result=cc.Sprite.create(s_img22);content="财气爆棚";break;
+            case 12:result=cc.Sprite.create(s_img23);content="遇到贵人";break;
+            case 13:result=cc.Sprite.create(s_img24);content="奖金翻十倍";break;
+            case 14:result=cc.Sprite.create(s_img25);content="中彩票";break;
+            case 15:result=cc.Sprite.create(s_img26);content="买一送三";break;
+            case 16:result=cc.Sprite.create(s_img27);content="财务自由";break;
+            case 17:result=cc.Sprite.create(s_img28);content="存款多个零";break;
             default :break;
         }
-        document.title = window.wxData.desc = shareContent;
-        document.title = window.wxFriend.desc = shareContent;
-        label.setString(tag);
-        label1.setString(content);
-        label.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.FadeIn.create(0.5)));
-        label1.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.FadeIn.create(0.5)));
-        menu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.FadeIn.create(0.5)));
+
+        result.setPosition(cc.p(320,480));
+        result.setScale(0.5);
+        result.setOpacity(0);
+        this.addChild(result,1);
+        result.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.0)),cc.FadeIn.create(0.5)));
+
+        var zailaiItem = cc.MenuItemImage.create(s_img04,s_img05,this.restart,this);
+        var zailaimenu = cc.Menu.create(zailaiItem);
+        zailaimenu.setPosition(cc.p(165,-100));
+        this.addChild(zailaimenu,1);
+        zailaimenu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseBackOut.create(cc.MoveBy.create(0.6,cc.p(0,180)))));
+
+        var moreItem = cc.MenuItemImage.create(s_img06,s_img07,this.enterBBS,this);
+        var moremenu = cc.Menu.create(moreItem);
+        moremenu.setPosition(cc.p(440,-100));
+        this.addChild(moremenu,1);
+        moremenu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseBackOut.create(cc.MoveBy.create(0.6,cc.p(0,180)))));
+
+        var logo=cc.Sprite.create(s_img11);
+        logo.setScale(2.0);
+        logo.setOpacity(0);
+        logo.setPosition(cc.p(320,420));
+        this.addChild(logo,1);
+        logo.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.MoveTo.create(0.5,cc.p(100,220)),cc.ScaleTo.create(0.5,1.0),cc.FadeIn.create(0.5))));
+
+        this.getChildByTag(110).setPosition(cc.p(20,800));
+        this.getChildByTag(111).setPosition(cc.p(620,600));
+        this.getChildByTag(113).setPosition(cc.p(600,130));
+        //this.getChildByTag(114).setPosition(cc.p(320,20));
+
+        document.title = window.wxData.desc = "我抽到了财运签--"+content+"，新年新气象，快来抽一签！";
+        document.title = window.wxFriend.desc = "我给你抽到了财运签--"+content+"，新年新气象，快来抽一签！";
     },
 
     onAccelerometer:function(accelerationValue)
