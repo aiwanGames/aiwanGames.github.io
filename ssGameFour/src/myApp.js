@@ -230,7 +230,7 @@ var beginLayer = cc.LayerColor.extend({
         this.removeChildByTag(90,true);
         this.removeChildByTag(91,true);
 
-        var id=this.getRandom(17);
+        var id=this.getRandom(17)+1;
         var result=null;
         var content="";
 
