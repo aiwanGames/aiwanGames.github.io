@@ -78,8 +78,8 @@ var beginLayer = cc.LayerColor.extend({
         {
             this.setColor(cc.c4(0,0,0,255));
         }
-        window.wxData.link=window.wxData.link+"index.html?id=2";
-        window.wxFriend.link=window.wxFriend.link+"index.html?id=2";
+        //window.wxData.link=window.wxData.link+"index.html?id=2";
+        //window.wxFriend.link=window.wxFriend.link+"index.html?id=2";
         return true;
     },
 
