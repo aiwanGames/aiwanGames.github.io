@@ -41,6 +41,8 @@ var beginLayer = cc.LayerColor.extend({
     fontCNTL:0,
     fontShow:true,
     textField:null,
+    isShared:false,
+    isTest:false,
 
     init:function()
     {
@@ -89,27 +91,55 @@ var beginLayer = cc.LayerColor.extend({
         for(var i=1;i<=7;i++)
         {
             var stick=cc.Sprite.create(s_img03);
+            var act=null;
             stick.setScale(0.1);
             stick.setOpacity(0);
             stick.setAnchorPoint(cc.p(0.5,0.0));
             switch(i)
             {
-                case 1:stick.setPosition(cc.p(230,600));stick.setTag(100);break;
-                case 2:stick.setPosition(cc.p(260,600));stick.setTag(101);break;
-                case 3:stick.setPosition(cc.p(290,600));stick.setTag(102);break;
-                case 4:stick.setPosition(cc.p(320,600));stick.setTag(103);break;
-                case 5:stick.setPosition(cc.p(350,600));stick.setTag(104);break;
-                case 6:stick.setPosition(cc.p(380,600));stick.setTag(105);break;
-                case 7:stick.setPosition(cc.p(410,600));stick.setTag(106);break;
+                case 1:
+                    stick.setPosition(cc.p(250,600));
+                    stick.setTag(100);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-10));
+                    break;
+                case 2:
+                    stick.setPosition(cc.p(270,600));
+                    stick.setTag(101);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-6));
+                    break;
+                case 3:
+                    stick.setPosition(cc.p(290,600));
+                    stick.setTag(102);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-3));
+                    break;
+                case 4:
+                    stick.setPosition(cc.p(320,600));
+                    stick.setTag(103);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)));
+                    break;
+                case 5:
+                    stick.setPosition(cc.p(350,600));
+                    stick.setTag(104);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,3));
+                    break;
+                case 6:
+                    stick.setPosition(cc.p(370,600));
+                    stick.setTag(105);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,6));
+                    break;
+                case 7:
+                    stick.setPosition(cc.p(390,600));
+                    stick.setTag(106);
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,10));
+                    break;
                 default:break;
             }
             this.addChild(stick,0);
-            stick.runAction(cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.5,0.9),cc.MoveBy.create(0.5,cc.p(0,-450)),cc.FadeIn.create(0.5))));
-
+            stick.runAction(act);
             var spt=cc.LabelTTF.create("","Arial",10);
             spt.setPosition(cc.p(0,0));
             this.addChild(spt,1);
-            spt.runAction(cc.CallFunc.create(this.setCanShake,this));
+            spt.runAction(cc.Sequence.create(cc.DelayTime.create(2.5),cc.CallFunc.create(this.setCanShake,this)));
         }
     },
 
@@ -145,13 +175,13 @@ var beginLayer = cc.LayerColor.extend({
         //音效
         this.audio.playEffect(s_effect1);
         //摇一摇
-        var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,13),cc.DelayTime.create(0.4),cc.CallFunc.create(this.resultPre,this));
+        var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,13),cc.DelayTime.create(0.5),cc.CallFunc.create(this.resultPre,this));
         this.sp_shake.runAction(ac1);
 
         for(var i=100;i<=106;i++)
         {
             var dir=this.getRandom(2);
-            var offset=this.getRandom(8);
+            var offset=this.getRandom(4);
             var act=null;
             if(dir==0)
             {
@@ -189,7 +219,22 @@ var beginLayer = cc.LayerColor.extend({
         var touch = touches[0];
         var location = touch.getLocation();
         //test shake
-        //this.shakeCup();
+        if(this.isTest==false)
+        {
+            //this.shakeCup();
+            this.isTest=true;
+        }
+
+        if(this.isShared==true)
+        {
+            if(this.getChildByTag(150))this.getChildByTag(150).setEnabled(true);
+            if(this.getChildByTag(151))this.getChildByTag(151).setEnabled(true);
+            if(this.getChildByTag(152))this.getChildByTag(152).setEnabled(true);
+            this.removeChildByTag(153,true);
+            this.removeChildByTag(154,true);
+            this.removeChildByTag(155,true);
+            this.isShared=false;
+        }
     },
 
     updateGame:function()
@@ -263,16 +308,28 @@ var beginLayer = cc.LayerColor.extend({
         result.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.0)),cc.FadeIn.create(0.5)));
 
         var zailaiItem = cc.MenuItemImage.create(s_img04,s_img05,this.restart,this);
+        zailaiItem.setScale(0.75);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaimenu.setPosition(cc.p(165,-100));
+        zailaimenu.setPosition(cc.p(135,-100));
         this.addChild(zailaimenu,1);
+        zailaimenu.setTag(150);
         zailaimenu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseBackOut.create(cc.MoveBy.create(0.6,cc.p(0,180)))));
 
         var moreItem = cc.MenuItemImage.create(s_img06,s_img07,this.enterBBS,this);
+        moreItem.setScale(0.75);
         var moremenu = cc.Menu.create(moreItem);
-        moremenu.setPosition(cc.p(440,-100));
+        moremenu.setPosition(cc.p(505,-100));
         this.addChild(moremenu,1);
+        moremenu.setTag(151);
         moremenu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseBackOut.create(cc.MoveBy.create(0.6,cc.p(0,180)))));
+
+        var shareItem = cc.MenuItemImage.create(s_img29,s_img30,this.share2Friend,this);
+        shareItem.setScale(0.75);
+        var sharemenu = cc.Menu.create(shareItem);
+        sharemenu.setPosition(cc.p(320,-100));
+        this.addChild(sharemenu,1);
+        sharemenu.setTag(152);
+        sharemenu.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseBackOut.create(cc.MoveBy.create(0.6,cc.p(0,180)))));
 
         var logo=cc.Sprite.create(s_img11);
         logo.setScale(2.5);
@@ -288,6 +345,32 @@ var beginLayer = cc.LayerColor.extend({
 
         document.title = window.wxData.desc = "我抽到了财运签-"+content+"，新年新气象，快来抽一签！";
         document.title = window.wxFriend.desc = "我给你抽到了财运签-"+content+"，新年新气象，快来抽一签！";
+    },
+
+    share2Friend:function()
+    {
+        if(this.isShared==false)
+        {
+            //屏蔽层
+            var shield1=cc.Sprite.create(s_img32);
+            shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+            shield1.setTag(153);
+            this.addChild(shield1,5);
+            var shield2=cc.Sprite.create(s_img31);
+            shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
+            shield2.setTag(154);
+            this.addChild(shield2,5);
+            var label=cc.LabelTTF.create("点击这里分享","黑体",35);
+            label.setAnchorPoint(cc.p(0.5,0.5));
+            label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
+            label.setColor(cc.c3(255,255,255));
+            label.setTag(155);
+            this.addChild(label,5);
+            if(this.getChildByTag(150))this.getChildByTag(150).setEnabled(false);
+            if(this.getChildByTag(151))this.getChildByTag(151).setEnabled(false);
+            if(this.getChildByTag(152))this.getChildByTag(152).setEnabled(false);
+            this.isShared=true;
+        }
     },
 
     onAccelerometer:function(accelerationValue)

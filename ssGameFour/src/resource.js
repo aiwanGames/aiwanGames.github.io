@@ -26,6 +26,10 @@ var s_img25="img_14.jpg";
 var s_img26="img_15.jpg";
 var s_img27="img_16.jpg";
 var s_img28="img_17.jpg";
+var s_img29="img_btn_share.png";
+var s_img30="img_btn_share_press.png";
+var s_img31="img_arrow.png";
+var s_img32="img_shield.png";
 var s_effect1="res/HD/eff_shake.mp3";
 var s_effect2="res/HD/eff_result.mp3";
 
@@ -59,6 +63,10 @@ var g_resources = [
     {src:s_img26},
     {src:s_img27},
     {src:s_img28},
+    {src:s_img29},
+    {src:s_img30},
+    {src:s_img31},
+    {src:s_img32},
     {src:s_effect1},
     {src:s_effect2}
 
