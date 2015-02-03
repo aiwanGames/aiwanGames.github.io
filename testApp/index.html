@@ -20,42 +20,57 @@
     </style>
 </head>
 <body style="padding:0; margin: 0; background: #000;" oncontextmenu=self.event.returnValue=false>
-<div style="display:none">
-    <img src="http://aiwangames.com/testApp/res/HD/shareImage.png"/>
-</div>
 <canvas id="gameCanvas" width="640" height="840"></canvas>
 <script src="cocos2d.js"></script>
 <script type="text/javascript" src="WeixinApi.js"></script>
 <script>
-    window.wxData = {
-        "appId": "wxdbadef0c9642fcfd",
-        "imgUrl":'http://aiwangames.com/ssGameFour/res/HD/shareImage.png',
-        "link":'http://aiwangames.com/ssGameFour/',
-        "desc":"新年将至，快来抽取属于你的新年财运签！",
-        "title":"抽签"
-    };
-    window.wxFriend = {
-        "appId": "wxdbadef0c9642fcfd",
-        "imgUrl":'http://aiwangames.com/ssGameFour/res/HD/shareImage.png',
-        "link":'http://aiwangames.com/ssGameFour/',
-        "desc":"新年将至，快来抽取属于你的新年财运签！",
-        "title":"抽签"
-    };
+    // 需要分享的内容，请放到ready里
     WeixinApi.ready(function(Api) {
+        // 微信分享的数据
+        var wxData = {
+            "imgUrl": "http://aiwangames.com/testApp/res/HD/shareImage.png",
+            "link" : "http://aiwangames.com/testApp/",
+            "desc" : "12345",
+            "title" : "12345"
+        };
+        // 分享的回调
         var wxCallbacks = {
+            // 收藏操作是否触发回调，默认是开启的
+            favorite : false,
+            // 分享操作开始之前
             ready : function() {
+                // 你可以在这里对分享的数据进行重组
+
             },
+            // 分享被用户自动取消
             cancel : function(resp) {
+                // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+
             },
+            // 分享失败了
             fail : function(resp) {
+                // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+
             },
+            // 分享成功
             confirm : function(resp) {
+                // 分享成功了，我们是不是可以做一些分享统计呢？
+                //转发成功
             },
-            all : function(resp) {
+            // 整个分享过程结束
+            all : function(resp,shareTo) {
+                // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+
             }
         };
-        Api.shareToFriend(wxFriend, wxCallbacks);
+        // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+        Api.shareToFriend(wxData, wxCallbacks);
+        // 点击分享到朋友圈，会执行下面这个代码
         Api.shareToTimeline(wxData, wxCallbacks);
+        // 点击分享到腾讯微博，会执行下面这个代码
+        Api.shareToWeibo(wxData, wxCallbacks);
+        // iOS上，可以直接调用这个API进行分享，一句话搞定
+        Api.generalShare(wxData,wxCallbacks);
     });
 </script>
 </body>
