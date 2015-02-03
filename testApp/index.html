@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>Test App</title>
-    <link rel="icon" type="image/GIF" href="res/icon32.ico"/>
     <meta name="viewport" content="user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="no"/>
     <meta name="full-screen" content="yes"/>
@@ -27,46 +26,5 @@
 <canvas id="gameCanvas" width="640" height="840"></canvas>
 <script src="cocos2d.js"></script>
 <script type="text/javascript" src="WeixinApi.js"></script>
-<script>
-    var imgUrl = "http://aiwangames.com/testApp/res/HD/shareImage.png";
-    var lineLink = "http://aiwangames.com/testApp/";
-    var descContent = '描述语';
-    var shareTitle = '标题';
-    var appid = 'wxdbadef0c9642fcfd';
-    function shareFriend() {
-        WeixinJSBridge.invoke('sendAppMessage',{
-            "appid": appid,
-            "img_url": imgUrl,
-            "img_width": "200",
-            "img_height": "200",
-            "link": lineLink,
-            "desc": descContent,
-            "title": shareTitle
-        }, function(res) {
-        })
-    }
-    function shareTimeline() {
-        WeixinJSBridge.invoke('shareTimeline',{
-            "img_url": imgUrl,
-            "img_width": "200",
-            "img_height": "200",
-            "link": lineLink,
-            "desc": descContent,
-            "title": shareTitle
-        }, function(res) {
-        });
-    }
-    // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-    // 发送给好友
-        WeixinJSBridge.on('menu:share:appmessage', function(argv){
-            shareFriend();
-        });
-    // 分享到朋友圈
-        WeixinJSBridge.on('menu:share:timeline', function(argv){
-            shareTimeline();
-        });
-    }, false);
-</script>
 </body>
 </html>

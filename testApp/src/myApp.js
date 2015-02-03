@@ -76,7 +76,7 @@ var beginLayer = cc.LayerColor.extend({
         //在URL中加入ID可根据URL判断显示内容哟，如index.html?age=10size=5！！！
         if(document.URL.indexOf("id=2")>=0)
         {
-            this.setColor(cc.c4(0,0,0,255));
+            //this.setColor(cc.c4(0,0,0,255));
         }
         //window.wxData.link=window.wxData.link+"index.html?id=2";
         //window.wxFriend.link=window.wxFriend.link+"index.html?id=2";
