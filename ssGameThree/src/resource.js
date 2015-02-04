@@ -16,10 +16,9 @@ var s_img15="img_sound_off.png";
 var s_img16="img_star.png";
 var s_img17="img_timer.png";
 var s_img18="img_number.png";
-var s_img19="img_sock.png";
-var s_img20="img_hat.png";
-var s_img21="img_shoes.png";
-var s_img22="img_shoutao.png";
+var s_img19="img_neinei.png";
+var s_img20="img_maozi.png";
+var s_img21="img_yifu.png";
 var s_img23="img_gift.png";
 var s_img24="img_btn_enter.png";
 var s_music="res/HD/music.mp3";
@@ -48,7 +47,6 @@ var g_resources = [
     {src:s_img19},
     {src:s_img20},
     {src:s_img21},
-    {src:s_img22},
     {src:s_img23},
     {src:s_img24},
     {src:s_music},

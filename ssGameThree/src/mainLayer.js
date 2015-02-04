@@ -1,8 +1,7 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    itemSpeed:1.5,
-    schdSpeed:1.0,
+    schdSpeed:0.65,
     gameTime:0,
     gameScore:0,
     gameOver:false,
@@ -150,7 +149,7 @@ var mainLayer = cc.LayerColor.extend({
         sheep.setTag(_tag);
         sheep.setPosition(_pos);
         this.addChild(sheep, 1);
-        var ac=cc.Sequence.create(cc.DelayTime.create(0.9+this.schdSpeed*0.6),cc.FadeOut.create(0.2),cc.CallFunc.create(this.removeItem,this));
+        var ac=cc.Sequence.create(cc.DelayTime.create(0.7+this.schdSpeed*0.5),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeItem,this));
         sheep.runAction(ac);
     },
 
@@ -225,7 +224,7 @@ var mainLayer = cc.LayerColor.extend({
         lb.setPosition(cc.p(0,0));
         lb.setTag(psId);
         this.addChild(lb,0);
-        lb.runAction(cc.Sequence.create(cc.DelayTime.create(1.9),cc.CallFunc.create(this.setHole,this)));
+        lb.runAction(cc.Sequence.create(cc.DelayTime.create(1.35),cc.CallFunc.create(this.setHole,this)));
     },
 
     removeItem:function(sprite)
@@ -256,12 +255,12 @@ var mainLayer = cc.LayerColor.extend({
         {
             if(this.gameTime==300)
             {
-                this.schdSpeed=0.8;
+                this.schdSpeed=0.6;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else if(this.gameTime==600)
             {
-                this.schdSpeed=0.6;
+                this.schdSpeed=0.5;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else
@@ -319,7 +318,7 @@ var mainLayer = cc.LayerColor.extend({
             this.gameScore+=(_r+3);
             this.scoreLabel.setString(this.gameScore);
             this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,0.5),cc.ScaleTo.create(0.1,0.4)));
-            var _sclabel=cc.LabelAtlas.create(_r+3,s_img18,64,86,'0');
+            var _sclabel=cc.LabelAtlas.create(_r+1,s_img18,64,86,'0');
             _sclabel.setScale(0.3);
             _sclabel.setAnchorPoint(cc.p(0.5,0.5));
             _sclabel.setPosition(_pos);
@@ -428,9 +427,9 @@ var mainLayer = cc.LayerColor.extend({
                                 var shld = cc.Sprite.create(s_img10);
                                 shld.setPosition(cc.p(320, 480));
                                 this.addChild(shld, 5);
-                                var ac = cc.Sequence.create(cc.DelayTime.create(1.0), cc.CallFunc.create(this.removeItem, this));
+                                var ac = cc.Sequence.create(cc.DelayTime.create(1.5), cc.CallFunc.create(this.removeItem, this));
                                 shld.runAction(ac);
-                                var ac1 = cc.Sequence.create(cc.Place.create(cc.p(320, 450)), cc.DelayTime.create(1.0), cc.CallFunc.create(this.removeItem1, this));
+                                var ac1 = cc.Sequence.create(cc.Place.create(cc.p(320, 450)), cc.DelayTime.create(1.5), cc.CallFunc.create(this.removeItem1, this));
                                 sheep.stopAllActions();
                                 sheep.setOpacity(255);
                                 sheep.setScale(0.8);
@@ -441,7 +440,7 @@ var mainLayer = cc.LayerColor.extend({
                                 label.setPosition(cc.p(this.winsize.width * 0.5, this.winsize.height * 0.73));
                                 label.setColor(cc.c3(255, 255, 255));
                                 this.addChild(label, 5);
-                                var ac2 = cc.Sequence.create(cc.DelayTime.create(1.0), cc.CallFunc.create(this.removeItem, this));
+                                var ac2 = cc.Sequence.create(cc.DelayTime.create(1.5), cc.CallFunc.create(this.removeItem, this));
                                 label.runAction(ac2);
                                 if (this.sound) {
                                     this.audio.playEffect(s_effect);
