@@ -1,7 +1,7 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    schdSpeed:0.65,
+    schdSpeed:0.6,
     gameTime:0,
     gameScore:0,
     gameOver:false,
@@ -255,12 +255,12 @@ var mainLayer = cc.LayerColor.extend({
         {
             if(this.gameTime==300)
             {
-                this.schdSpeed=0.6;
+                this.schdSpeed=0.5;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else if(this.gameTime==600)
             {
-                this.schdSpeed=0.5;
+                this.schdSpeed=0.45;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else
@@ -314,7 +314,7 @@ var mainLayer = cc.LayerColor.extend({
             ac3=cc.Sequence.create(ac1,ac2);
             sp3.runAction(ac3);
 
-            var _r=this.getRandom(3);
+            var _r=this.getRandom(2);
             this.gameScore+=(_r+3);
             this.scoreLabel.setString(this.gameScore);
             this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,0.5),cc.ScaleTo.create(0.1,0.4)));
