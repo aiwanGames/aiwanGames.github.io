@@ -77,7 +77,7 @@ var overLayer = cc.LayerColor.extend({
         if(this.score<50)
         {
             content="我薅的羊毛太少，被小伙伴完爆，快来帮帮我！";
-            _label.setString("获得【剪刀】\n亲，薅的太少，要做礼物的话臣妾做不到啊！");
+            _label.setString("获得【剪刀】\n太少了，做成礼物臣妾做不到啊！");
             _gift.initWithFile(s_img05);
             _gift.setScale(1.4);
         }
