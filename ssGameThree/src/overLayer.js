@@ -86,24 +86,27 @@ var overLayer = cc.LayerColor.extend({
             content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一羊毛内内送给你！";
             _label.setString("获得【羊毛内内】\n屁屁，也是需要保暖的！");
             _gift.initWithFile(s_img19);
-            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_neinei.png";
-            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_neinei.png";
+            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
+            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
+            document.getElementById("shareImage").src="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
         }
         else if(this.score>=200&&this.score<300)
         {
             content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一顶羊毛帽子送给你！";
             _label.setString("获得【羊毛帽子】\n林海雪原等你征服！");
             _gift.initWithFile(s_img20);
-            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_maozi.png";
-            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_maozi.png";
+            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
+            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
+            document.getElementById("shareImage").src="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
         }
         else
         {
             content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一件羊毛大衣送给你！";
             _label.setString("获得【羊毛大衣】\n妈妈再也不用担心你被冻坏了！");
             _gift.initWithFile(s_img21);
-            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_yifu.png";
-            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/img_yifu.png";
+            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
+            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
+            document.getElementById("shareImage").src="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
         }
         document.title = window.wxData.desc = content;
         document.title = window.wxFriend.desc = content;
