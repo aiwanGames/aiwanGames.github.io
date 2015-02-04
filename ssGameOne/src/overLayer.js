@@ -23,7 +23,7 @@ var overLayer = cc.LayerColor.extend({
         //分数
         var timeLabel=cc.LabelTTF.create("恭喜发财,你接住了"+this.score+"财气.","Arial",38);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
-        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.91));
+        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.92));
         timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel,1);
 
@@ -140,7 +140,7 @@ var overLayer = cc.LayerColor.extend({
         {
             if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(true);
             if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(true);
-            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
+            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(true);
             this.removeChildByTag(102,true);
             this.removeChildByTag(103,true);
             this.removeChildByTag(104,true);
