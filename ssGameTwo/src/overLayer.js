@@ -136,7 +136,7 @@ var overLayer = cc.LayerColor.extend({
         {
             if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(true);
             if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(true);
-            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
+            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(true);
             this.removeChildByTag(102,true);
             this.removeChildByTag(103,true);
             this.removeChildByTag(104,true);
