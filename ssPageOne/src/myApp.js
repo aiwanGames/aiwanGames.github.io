@@ -45,8 +45,8 @@ var beginLayer = cc.LayerColor.extend({
         //播放第一张page
         this.page1Action();
         //设置分享内容
-        document.title = window.wxData.desc = "";
-        document.title = window.wxFriend.desc = "";
+        document.title = window.wxData.desc = "随手记，理财第一步";
+        document.title = window.wxFriend.desc = "随手记，理财第一步";
         //提示用户翻页
         var imageUp=cc.Sprite.create(s_point);
         imageUp.setPosition(cc.p(320,60));
@@ -127,7 +127,7 @@ var beginLayer = cc.LayerColor.extend({
         //执行动作
         var ac0=cc.Sequence.create(cc.DelayTime.create(0.2),cc.FadeIn.create(0.5),cc.DelayTime.create(0.5),cc.MoveBy.create(0.5,cc.p(130,0)));
         image01.runAction(ac0);
-        var ac1=cc.Sequence.create(cc.DelayTime.create(0.7),cc.FadeIn.create(0.5),cc.MoveBy.create(0.5,cc.p(70,0)));
+        var ac1=cc.Sequence.create(cc.DelayTime.create(0.7),cc.FadeIn.create(0.5),cc.MoveBy.create(0.5,cc.p(70,0)),cc.Repeat.create(cc.Sequence.create(cc.MoveBy.create(0.8,cc.p(0,-10)),cc.MoveBy.create(0.6,cc.p(0,10))),9999));
         image02.runAction(ac1);
         var ac2=cc.Sequence.create(cc.DelayTime.create(1.0),cc.Spawn.create(cc.FadeIn.create(0.6),cc.ScaleTo.create(0.6,1.0),cc.RotateBy.create(0.6,360)));
         image03.runAction(ac2);
