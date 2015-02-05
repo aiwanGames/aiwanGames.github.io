@@ -175,17 +175,17 @@ var beginLayer = cc.LayerColor.extend({
         //每个页面10个图片
         //初始化
         var winsize = cc.Director.getInstance().getWinSize();
-        var image01=cc.Sprite.create(page04_1);
+        var image01=cc.Sprite.create(p0401);
         image01.setPosition(cc.p(winsize.width*0.5,-winsize.height*0.2));
         image01.setTag(400);
         this.addChild(image01,1);
 
-        var image02=cc.Sprite.create(page04_2);
+        var image02=cc.Sprite.create(p0401);
         image02.setPosition(cc.p(-image02.getContentSize().width*0.5,winsize.height*0.6));
         image02.setTag(401);
         this.addChild(image02,1);
 
-        var image03=cc.Sprite.create(page04_3);
+        var image03=cc.Sprite.create(p0401);
         image03.setPosition(cc.p(winsize.width+image03.getContentSize().width*0.5,winsize.height*0.6));
         image03.setTag(402);
         this.addChild(image03,1);
