@@ -596,11 +596,11 @@ var beginLayer = cc.LayerColor.extend({
         sharemenu.runAction(cc.Sequence.create(cc.DelayTime.create(2.0),cc.EaseBackOut.create(cc.MoveBy.create(0.5,cc.p(0,255)))));
 
         //执行动作
-        var ac0=cc.Sequence.create(cc.DelayTime.create(0.5),cc.FadeOut.create(0.2));
+        var ac0=cc.Sequence.create(cc.DelayTime.create(1.5),cc.FadeOut.create(0.2));
         image01.runAction(ac0);
-        var ac1=cc.Sequence.create(cc.DelayTime.create(0.8),cc.FadeIn.create(0.2));
+        var ac1=cc.Sequence.create(cc.DelayTime.create(1.8),cc.FadeIn.create(0.2));
         image02.runAction(ac1);
-        var ac2=cc.Sequence.create(cc.DelayTime.create(1.5),cc.FadeIn.create(0.2));
+        var ac2=cc.Sequence.create(cc.DelayTime.create(2.5),cc.FadeIn.create(0.2));
         image03.runAction(ac2);
     },
 
