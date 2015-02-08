@@ -269,7 +269,7 @@ var beginLayer = cc.LayerColor.extend({
         image01.runAction(ac0);
         var ac1=cc.Sequence.create(cc.DelayTime.create(0.5),cc.Spawn.create(cc.FadeIn.create(0.5),cc.EaseElasticOut.create(cc.ScaleTo.create(0.5,1.0))));
         image02.runAction(ac1);
-        var ac2=cc.Sequence.create(cc.DelayTime.create(0.8),cc.FadeIn.create(0.5),cc.Liquid.create(1.5, cc.size(8, 8), 4, 4));
+        var ac2=cc.Sequence.create(cc.DelayTime.create(0.8),cc.FadeIn.create(0.5));
         image03.runAction(ac2);
         var ac3=cc.Sequence.create(cc.DelayTime.create(1.0),cc.FadeIn.create(0.5),cc.Repeat.create(cc.Sequence.create(cc.RotateBy.create(0.5,5),cc.RotateBy.create(0.5,-5),cc.RotateBy.create(0.5,-5),cc.RotateBy.create(0.5,5)),99999));
         image04.runAction(ac3);
@@ -367,17 +367,6 @@ var beginLayer = cc.LayerColor.extend({
         {
             _sp.initWithFile(p0702);
         }
-
-        if(tag==802)
-        {
-            this.removeChild(_sp,true);
-            var image03=cc.Sprite.create(p0804);
-            image03.setPosition(cc.p(this.winSize.width*0.5,this.winSize.height*0.2));
-            image03.setTag(802);
-            image03.setScale(0.5);
-            this.addChild(image03,1);
-            image03.runAction(cc.Spawn.create(cc.FadeIn.create(0.5),cc.EaseElasticOut.create(cc.ScaleTo.create(0.5,1.0))));
-        }
     },
 
     page8Action:function()
@@ -415,7 +404,7 @@ var beginLayer = cc.LayerColor.extend({
         //执行动作
         var ac0=cc.Sequence.create(cc.FadeIn.create(1.0));
         image02.runAction(ac0);
-        var ac1=cc.Sequence.create(cc.DelayTime.create(0.5),cc.FadeOutUpTiles.create(1.5, cc.size(10, 10)),cc.CallFunc.create(this.pageCallBack,this));
+        var ac1=cc.Sequence.create(cc.DelayTime.create(0.5),cc.FadeOut.create(1.5),cc.FadeIn.create(0.5));
         image03.runAction(ac1);
         var ac2=cc.Sequence.create(cc.DelayTime.create(0.9),cc.MoveTo.create(0.8,cc.p(winsize.width*0.4,winsize.height*0.72)),cc.MoveTo.create(0.4,cc.p(winsize.width*0.6,winsize.height*0.72)),cc.MoveTo.create(0.2,cc.p(winsize.width*0.5,winsize.height*0.72)));
         image04.runAction(ac2);
