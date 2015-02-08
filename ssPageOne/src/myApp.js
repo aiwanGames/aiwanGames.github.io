@@ -183,7 +183,6 @@ var beginLayer = cc.LayerColor.extend({
 
         var image02=cc.Sprite.create(p0402);
         image02.setPosition(cc.p(-winsize.width*0.2,winsize.height*0.45));
-        image02.setFlippedX(true);
         image02.setTag(401);
         this.addChild(image02,1);
 
@@ -221,7 +220,7 @@ var beginLayer = cc.LayerColor.extend({
         //执行动作
         var ac0=cc.Sequence.create(cc.EaseElasticOut.create(cc.MoveTo.create(0.6,cc.p(winsize.width*0.5,winsize.height*0.6))));
         image01.runAction(ac0);
-        var ac1=cc.Sequence.create(cc.EaseElasticOut.create(cc.MoveTo.create(1.0,cc.p(winsize.width*0.5,winsize.height*0.45))),cc.FlipX3D.create(0.5));
+        var ac1=cc.Sequence.create(cc.EaseElasticOut.create(cc.MoveTo.create(1.0,cc.p(winsize.width*0.5,winsize.height*0.45))));
         image02.runAction(ac1);
         var ac2=cc.Sequence.create(cc.DelayTime.create(0.5),cc.EaseElasticOut.create(cc.MoveTo.create(1.0,cc.p(winsize.width*0.7,winsize.height*0.4))));
         image03.runAction(ac2);
