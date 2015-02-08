@@ -46,6 +46,20 @@ var p0907="p0907.png";
 var p0908="p0908.png";
 var p0909="p0909.png";
 var p0910="p0910.png";
+var p1001="p1001.png";
+var p1002="p1002.png";
+var p1003="p1003.png";
+var p1004="p1004.png";
+var p1005="p1005.png";
+var p1006="p1006.png";
+var p1007="p1007.png";
+var p1101="p1101.png";
+var p1102="p1102.png";
+var p1103="p1103.png";
+var p1104="p1104.png";
+var p1105="p1105.png";
+var s_img1="img_shield.png";
+var s_img2="img_arrow.png";
 
 var g_resources = [
     //image
@@ -96,7 +110,21 @@ var g_resources = [
     {src:p0907},
     {src:p0908},
     {src:p0909},
-    {src:p0910}
+    {src:p0910},
+    {src:p1001},
+    {src:p1002},
+    {src:p1003},
+    {src:p1004},
+    {src:p1005},
+    {src:p1006},
+    {src:p1007},
+    {src:p1101},
+    {src:p1102},
+    {src:p1103},
+    {src:p1104},
+    {src:p1105},
+    {src:s_img1},
+    {src:s_img2}
 
     //plist
 
