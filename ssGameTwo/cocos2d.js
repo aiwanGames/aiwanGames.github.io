@@ -41,7 +41,7 @@
             'src/resource.js',
             'src/mainLayer.js',
             'src/overLayer.js',
-            'src/myApp.js'//add your own files in order here
+            'src/myApp.js'
         ]
     };
 
@@ -74,9 +74,7 @@
         else {
             alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');
         }
-        /*********Delete this section if you have packed all files into one*******/
-
-        s.src = 'ssGameTwo.js'; //IMPORTANT: Un-comment this line if you have packed all files into one
+        s.src = 'ssGameTwo.js';
         d.body.appendChild(s);
         document.ccConfig = c;
         s.id = 'cocos2d-html5';

@@ -22,26 +22,26 @@ var mainLayer = cc.LayerColor.extend({
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
-        //背景
+
         var sp_back=cc.Sprite.create(s_img00);
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        //时间
+
         this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",32);
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
         this.timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.timeLabel,1);
-        //分数
+
         this.scoreLabel=cc.LabelTTF.create("Score: "+this.gameScore,"Arial",32);
         this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.scoreLabel.setPosition(cc.p(this.winsize.width*0.63,this.winsize.height*0.95));
         this.scoreLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.scoreLabel,1);
-        //初始化数组
+
         this.holeArray=[0,0,0,0,0,0,0,0];
-        //音效开关
+
         var sound=null;
         if(this.sound==false)
         {
@@ -67,9 +67,7 @@ var mainLayer = cc.LayerColor.extend({
 
     onEnterTransitionDidFinish:function()
     {
-        //开启触摸
         this.setTouchEnabled(true);
-        //开启schedule
         this.schedule(this.addItems,this.schdTime,999,0.1);
         this.scheduleUpdate();
     },
@@ -234,7 +232,6 @@ var mainLayer = cc.LayerColor.extend({
 
     update:function(dt)
     {
-        //游戏主要刷新函数
         for(var i=200;i<=240;i++)
         {
             var _item = this.getChildByTag(i);
@@ -380,7 +377,6 @@ var mainLayer = cc.LayerColor.extend({
     }
 });
 
-//构造函数create
 mainLayer.create=function(_sound)
 {
     var _mainLayer=new mainLayer();

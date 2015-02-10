@@ -8,37 +8,36 @@ var overLayer = cc.LayerColor.extend({
     {
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
-        //背景
+
         var sp_back=cc.Sprite.create(s_img01);
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        var sp_back1=cc.Sprite.create(s_img06);
-        sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.56));
-        this.addChild(sp_back1,1);
-        var sp_back2=cc.Sprite.create(s_img12);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.56));
-        this.addChild(sp_back2,0);
-        var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
-        sp_back2.runAction(ac1);
-        //分数
-        var timeLabel=cc.LabelTTF.create("你揍了穷鬼"+this.count+"下，获得"+this.score+"分.","Arial",39);
+
+        var sp_back2=cc.Sprite.create(s_img06);
+        sp_back2.setPosition(cc.p(this.winsize.width*0.495,this.winsize.height*0.562));
+        this.addChild(sp_back2, 1);
+        var sp_back3=cc.Sprite.create(s_img08);
+        sp_back3.setPosition(cc.p(this.winsize.width*0.753,this.winsize.height*0.515));
+        this.addChild(sp_back3,2);
+
+        var timeLabel=cc.LabelTTF.create("你揍了穷鬼"+this.count+"下，获得"+this.score+"分","Arial",30);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
-        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.9));
-        timeLabel.setColor(cc.c3(235,90,55));
-        this.addChild(timeLabel,1);
-        //再来一次按钮
+        timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.72));
+        timeLabel.setColor(cc.c3(131,14,30));
+        this.addChild(timeLabel,6);
+
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
         zailaiItem.setScale(0.8);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.34));
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.24));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
-        //分享按钮
+
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
         fenxiangItem.setScale(0.8);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.24));
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.34));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
 
@@ -73,22 +72,33 @@ var overLayer = cc.LayerColor.extend({
         }
         else if(this.count>=10&&this.count<50)
         {
-            cnt="打鬼的汉子，你威武雄壮！！";
+            cnt="打鬼的汉子你威武雄壮！\n赶走穷鬼迎财运！";
         }
         else if(this.count>=50&&this.count<90)
         {
-            cnt="有力气的汉子，财气总不会太差！";
+            cnt="有力气的汉子财气总不会太差！\n赶走穷鬼迎财运！";
         }
         else
         {
-            cnt="驱魔除鬼这么在行，钟馗都拜你为师！";
+            cnt="驱魔除鬼这么在行，钟馗都拜你为师！\n赶走穷鬼迎财运！";
         }
 
-        var timeLabel1=cc.LabelTTF.create("你击败了"+pcnt+"%的人.\n"+cnt,"Arial",34,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
+        var timeLabel1=cc.LabelTTF.create("击败了"+pcnt+"%的人","Arial",27);
         timeLabel1.setAnchorPoint(cc.p(0.5,0.5));
-        timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.79));
-        timeLabel1.setColor(cc.c3(255,204,52));
-        this.addChild(timeLabel1,1);
+        timeLabel1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.66));
+        timeLabel1.setColor(cc.c3(131,14,30));
+        this.addChild(timeLabel1,6);
+
+        var timeLabel2=cc.LabelTTF.create(cnt,"Arial",25,cc.Size(500,100),cc.TEXT_ALIGNMENT_CENTER);
+        timeLabel2.setAnchorPoint(cc.p(0.5,0.5));
+        timeLabel2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.585));
+        timeLabel2.setColor(cc.c3(45,71,0));
+        this.addChild(timeLabel2,6);
+
+        var sp_result=cc.Sprite.create(s_img19);
+        sp_result.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.65));
+        this.addChild(sp_result,5);
+
         this.setTouchEnabled(true);
     },
 
@@ -108,7 +118,6 @@ var overLayer = cc.LayerColor.extend({
     {
         if(this.isShared==false)
         {
-            //屏蔽层
             var shield1=cc.Sprite.create(s_img15);
             shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
             shield1.setTag(102);
