@@ -90,9 +90,21 @@ var beginLayer = cc.LayerColor.extend({
 
         //用按钮实现跳转，URL必须有http前缀，比如只填写www.baidu.com是跳转不了的
         //var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
-        var newURL="http://www.baidu.com";
         //window.location.href=newURL;
-        window.open(newURL);
+        //var newURL="http://www.baidu.com";
+        //window.open(newURL);
+        var ua = navigator.userAgent;
+
+        var lb=cc.LabelTTF.create(ua,"Arial",20);
+        lb.setPosition(320,500);
+        this.addChild(lb,5);
+
+        if(/MicroMessenger/i.test(ua))
+        {
+            var lb=cc.LabelTTF.create("this is wechat","Arial",20);
+            lb.setPosition(320,400);
+            this.addChild(lb,5);
+        }
     },
 
     gotoURLApp:function()
