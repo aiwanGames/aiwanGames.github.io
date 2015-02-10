@@ -19,6 +19,8 @@ var s_img18="img_icon06.png";
 var s_img19="img_icon07.png";
 var s_img20="img_icon08.png";
 var s_img21="img_btn_enter.png";
+var s_img22="img_logo.png";
+var s_img23="img_icon00.png";
 var s_music="res/HD/music.mp3";
 var s_effect="res/HD/effect.mp3";
 
@@ -45,6 +47,8 @@ var g_resources = [
     {src:s_img19},
     {src:s_img20},
     {src:s_img21},
+    {src:s_img22},
+    {src:s_img23},
     {src:s_music},
     {src:s_effect}
 

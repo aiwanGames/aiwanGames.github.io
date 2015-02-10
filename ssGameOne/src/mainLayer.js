@@ -1,8 +1,8 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    itemSpeed:1.1,//图标下落时间
-    schdSpeed:0.2,//生成图标间隔
+    itemSpeed:1.1,
+    schdSpeed:0.2,
     gameTime:0,
     gameScore:0,
     gameOver:false,
@@ -22,16 +22,16 @@ var mainLayer = cc.LayerColor.extend({
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
-        //背景
+
         var sp_back=cc.Sprite.create(s_img01);
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        //添加聚宝盆
+
         this.sp_catch=cc.Sprite.create(s_img05);
         this.sp_catch.setPosition(cc.p(this.winsize.width*0.5,this.sp_catch.getContentSize().height*0.5));
         this.addChild(this.sp_catch,10);
-        //时间
+
         this.timeLabel=cc.LabelTTF.create("Time: "+this.gameTime,"Arial",32);
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
@@ -44,7 +44,6 @@ var mainLayer = cc.LayerColor.extend({
         this.scoreLabel.setColor(cc.c3(235,90,55));
         this.addChild(this.scoreLabel,1);
 
-        //音效开关
         var sound=null;
         if(this.sound==false)
         {
@@ -69,9 +68,7 @@ var mainLayer = cc.LayerColor.extend({
 
     onEnterTransitionDidFinish:function()
     {
-        //开启触摸
         this.setTouchEnabled(true);
-        //开启schedule
         this.schedule(this.addDropItems,this.schdSpeed);
         this.scheduleUpdate();
     },
@@ -155,7 +152,7 @@ var mainLayer = cc.LayerColor.extend({
         item.setTag(_tag);
         item.setPosition(pos);
         this.addChild(item, 2);
-        //图标向下掉落
+
         var ac0 = cc.MoveBy.create(this.itemSpeed, cc.p(0, -this.winsize.height));
         var ac1 = cc.CallFunc.create(this.removeItem, this);
         var ac2 = cc.Sequence.create(ac0, ac1);
@@ -224,7 +221,6 @@ var mainLayer = cc.LayerColor.extend({
 
     update:function(dt)
     {
-        //游戏主要刷新函数
         for(var i=200;i<=280;i++)
         {
             var _item=this.getChildByTag(i);
@@ -240,7 +236,7 @@ var mainLayer = cc.LayerColor.extend({
             var cy=this.sp_catch.getPositionY();
             var cw=this.sp_catch.getContentSize().width;
             var ch=this.sp_catch.getContentSize().height;
-            //发生碰撞则移除
+
             if(iy-cy>ch*0.45&&iy-cy<ih*0.3+ch*0.45&&Math.abs(ix-cx)<cw*0.43&&!this.isStop)
             {
                 var _iTag=_item.getTag();
@@ -380,7 +376,6 @@ var mainLayer = cc.LayerColor.extend({
     }
 });
 
-//构造函数create
 mainLayer.create=function(_sound)
 {
     var _mainLayer=new mainLayer();
