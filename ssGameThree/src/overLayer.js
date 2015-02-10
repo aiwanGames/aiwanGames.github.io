@@ -7,53 +7,52 @@ var overLayer = cc.LayerColor.extend({
     {
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
-        //背景
+
         var sp_back=cc.Sprite.create(s_img01);
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        //光环
+
         var sp_back1=cc.Sprite.create(s_img13);
         sp_back1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
         this.addChild(sp_back1,1);
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back1.runAction(ac1);
-        //礼物
-        var sp_back2=cc.Sprite.create(s_img23);
-        sp_back2.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
-        sp_back2.setTag(800);
-        sp_back2.setRotation(-20);
-        this.addChild(sp_back2,1);
-        var ac2=cc.Sequence.create(cc.DelayTime.create(0.25),cc.RotateBy.create(0.2,40),cc.RotateBy.create(0.2,-40),cc.RotateBy.create(0.2,40),cc.RotateBy.create(0.1,-20),cc.Spawn.create(cc.FadeOut.create(0.15),cc.ScaleTo.create(0.15,1.2)),cc.CallFunc.create(this.showResult,this));
-        sp_back2.runAction(ac2);
-        //分数
-        var timeLabel=cc.LabelTTF.create("恭喜,你薅了"+(this.score/50).toFixed(1)+"斤羊毛.","Arial",37);
+
+        this.showResult();
+
+        var timeLabel=cc.LabelTTF.create("恭喜,你薅了"+(this.score/50).toFixed(1)+"斤羊毛","Arial",35);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel.setTag(801);
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.9));
         timeLabel.setColor(cc.c3(235,90,55));
         this.addChild(timeLabel,1);
-        //再来一次按钮
+
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
         var zailaimenu = cc.Menu.create(zailaiItem);
-        zailaiItem.setScale(0.8);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.40));
+        //zailaiItem.setScale(0.8);
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
-        //分享按钮
+
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
-        fenxiangItem.setScale(0.8);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.30));
+        //fenxiangItem.setScale(0.8);
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.37));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
-        //进入理财社区
+
         var enterItem = cc.MenuItemImage.create(s_img24,s_img24,this.enterBBS,this);
         var entermenu = cc.Menu.create(enterItem);
-        enterItem.setScale(0.8);
-        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.20));
+        //enterItem.setScale(0.8);
+        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.15));
         entermenu.setTag(105);
         this.addChild(entermenu, 1);
+
+        var sp_logo=cc.Sprite.create(s_img22);
+        sp_logo.setScale(0.7);
+        sp_logo.setPosition(cc.p(this.winsize.width*0.5,35));
+        this.addChild(sp_logo, 2);
 
         this.setTouchEnabled(true);
     },
@@ -66,25 +65,26 @@ var overLayer = cc.LayerColor.extend({
 
     showResult:function()
     {
-        var _gift=this.getChildByTag(800);
-        var _label=cc.LabelTTF.create("","Arial",37,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
+        var _gift=cc.Sprite.create(s_img05);
+        _gift.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.6));
+        this.addChild(_gift,5);
+        var _label=cc.LabelTTF.create("","Arial",32,cc.Size(500,200),cc.TEXT_ALIGNMENT_CENTER);
         _label.setAnchorPoint(cc.p(0.5,0.5));
         _label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.81));
         _label.setColor(cc.c3(235,90,55));
         this.addChild(_label,1);
-        _gift.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.25),cc.ScaleTo.create(0.25,1.2)),cc.ScaleTo.create(0.15,1.0)));
         var content="";
         if(this.score<50)
         {
             content="我薅的羊毛太少，被小伙伴完爆，快来帮帮我！";
-            _label.setString("获得【剪刀】\n太少了，做成礼物臣妾做不到啊！");
+            _label.setString("获得 [ 剪刀 ]\n太少了，做成礼物臣妾做不到啊");
             _gift.initWithFile(s_img05);
             _gift.setScale(1.4);
         }
         else if(this.score>=50&&this.score<200)
         {
-            content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一羊毛内内送给你！";
-            _label.setString("获得【羊毛内内】\n屁屁，也是需要保暖的！");
+            content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一羊毛内内送给你";
+            _label.setString("获得 [ 羊毛内内 ]\n屁屁，也是需要保暖的！");
             _gift.initWithFile(s_img19);
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
@@ -92,8 +92,8 @@ var overLayer = cc.LayerColor.extend({
         }
         else if(this.score>=200&&this.score<300)
         {
-            content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一顶羊毛帽子送给你！";
-            _label.setString("获得【羊毛帽子】\n林海雪原等你征服！");
+            content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一顶羊毛帽子送给你";
+            _label.setString("获得 [ 羊毛帽子 ]\n林海雪原等你征服！");
             _gift.initWithFile(s_img20);
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
@@ -101,8 +101,8 @@ var overLayer = cc.LayerColor.extend({
         }
         else
         {
-            content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一件羊毛大衣送给你！";
-            _label.setString("获得【羊毛大衣】\n妈妈再也不用担心你被冻坏了！");
+            content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一件羊毛大衣送给你";
+            _label.setString("获得 [ 羊毛大衣 ]\n妈妈再也不用担心你被冻坏了！");
             _gift.initWithFile(s_img21);
             window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
             window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
@@ -116,7 +116,6 @@ var overLayer = cc.LayerColor.extend({
     {
         if(this.isShared==false)
         {
-            //屏蔽层
             var shield1=cc.Sprite.create(s_img10);
             shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
             shield1.setTag(102);

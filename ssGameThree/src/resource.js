@@ -19,7 +19,7 @@ var s_img18="img_number.png";
 var s_img19="img_neinei.png";
 var s_img20="img_maozi.png";
 var s_img21="img_yifu.png";
-var s_img23="img_gift.png";
+var s_img22="img_logo.png";
 var s_img24="img_btn_enter.png";
 var s_music="res/HD/music.mp3";
 var s_effect="res/HD/effect.mp3";
@@ -47,7 +47,7 @@ var g_resources = [
     {src:s_img19},
     {src:s_img20},
     {src:s_img21},
-    {src:s_img23},
+    {src:s_img22},
     {src:s_img24},
     {src:s_music},
     {src:s_effect}

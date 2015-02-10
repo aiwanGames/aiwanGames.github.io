@@ -23,12 +23,12 @@ var mainLayer = cc.LayerColor.extend({
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
-        //背景
+
         var sp_back=cc.Sprite.create(s_img01);
         sp_back.setAnchorPoint(cc.p(0.5,0));
         sp_back.setPosition(cc.p(this.winsize.width*0.5,0));
         this.addChild(sp_back,0);
-        //时间、分数图标
+
         var timer=cc.Sprite.create(s_img17);
         timer.setScale(0.5);
         timer.setPosition(cc.p(this.winsize.width*0.1,this.winsize.height*0.95));
@@ -37,13 +37,13 @@ var mainLayer = cc.LayerColor.extend({
         score.setScale(0.5);
         score.setPosition(cc.p(this.winsize.width*0.7,this.winsize.height*0.95));
         this.addChild(score,0);
-        //云彩循环移动
+
         var cloud=cc.Sprite.create(s_img09);
         cloud.setPosition(cc.p(-cloud.getContentSize().width*0.5,this.winsize.height*0.8));
         this.addChild(cloud,1);
         var acc=cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(6,cc.p(this.winsize.width+cloud.getContentSize().width*0.5,this.winsize.height*0.8)),cc.DelayTime.create(1.0),cc.MoveTo.create(6,cc.p(-cloud.getContentSize().width*0.5,this.winsize.height*0.8))),999);
         cloud.runAction(acc);
-        //时间
+
         this.timeLabel=cc.LabelAtlas.create(this.gameScore,s_img18,64,86,'0');
         this.timeLabel.setScale(0.4);
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
@@ -55,7 +55,7 @@ var mainLayer = cc.LayerColor.extend({
         this.scoreLabel.setPosition(cc.p(this.winsize.width*0.78,this.winsize.height*0.95));
         this.addChild(this.scoreLabel,1);
         this.holeArray=[0,0,0,0,0,0];
-        //音效开关
+
         var sound=null;
         if(this.sound==false)
         {
@@ -78,9 +78,7 @@ var mainLayer = cc.LayerColor.extend({
 
     onEnterTransitionDidFinish:function()
     {
-        //开启触摸
         this.setTouchEnabled(true);
-        //开启schedule
         this.schedule(this.addDropItems,this.schdSpeed);
         this.scheduleUpdate();
     },
@@ -411,7 +409,6 @@ var mainLayer = cc.LayerColor.extend({
             sn.setPosition(cc.p(this.winsize.width,this.winsize.height*0.75));
         }
         //this.timeCntl=0;
-        //改为碰到羊就加羊毛
         if(!this.inWarning) {
             for (var i = 200; i < 260; i++) {
                 var sheep = this.getChildByTag(i);
@@ -459,7 +456,6 @@ var mainLayer = cc.LayerColor.extend({
     }
 });
 
-//构造函数create
 mainLayer.create=function(_sound)
 {
     var _mainLayer=new mainLayer();
