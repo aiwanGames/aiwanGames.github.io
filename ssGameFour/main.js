@@ -35,7 +35,6 @@ var cocos2dApp = cc.Application.extend({
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
     applicationDidFinishLaunching:function () {
-        //不允许PC端打开游戏
         var platform = cc.Application.getInstance().getTargetPlatform();
         if(platform == cc.TARGET_PLATFORM.PC_BROWSER)
         {

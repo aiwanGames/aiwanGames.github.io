@@ -100,17 +100,17 @@ var beginLayer = cc.LayerColor.extend({
                 case 1:
                     stick.setPosition(cc.p(250,600));
                     stick.setTag(100);
-                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-10));
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.4,-12));
                     break;
                 case 2:
                     stick.setPosition(cc.p(270,600));
                     stick.setTag(101);
-                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-6));
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.2,-6));
                     break;
                 case 3:
                     stick.setPosition(cc.p(290,600));
                     stick.setTag(102);
-                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-3));
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,-2));
                     break;
                 case 4:
                     stick.setPosition(cc.p(320,600));
@@ -120,17 +120,17 @@ var beginLayer = cc.LayerColor.extend({
                 case 5:
                     stick.setPosition(cc.p(350,600));
                     stick.setTag(104);
-                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,3));
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.3,3));
                     break;
                 case 6:
                     stick.setPosition(cc.p(370,600));
                     stick.setTag(105);
-                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,6));
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.2,5));
                     break;
                 case 7:
                     stick.setPosition(cc.p(390,600));
                     stick.setTag(106);
-                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.1,10));
+                    act=cc.Sequence.create(cc.DelayTime.create(i*0.1),cc.Spawn.create(cc.ScaleTo.create(0.3,0.9),cc.MoveBy.create(0.3,cc.p(0,-450)),cc.FadeIn.create(0.3)),cc.RotateBy.create(0.2,12));
                     break;
                 default:break;
             }
@@ -172,9 +172,7 @@ var beginLayer = cc.LayerColor.extend({
 
     shakeCup:function()
     {
-        //音效
         this.audio.playEffect(s_effect1);
-        //摇一摇
         var ac1=cc.Sequence.create(cc.RotateBy.create(0.15,13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,-13),cc.RotateBy.create(0.15,13),cc.DelayTime.create(0.5),cc.CallFunc.create(this.resultPre,this));
         this.sp_shake.runAction(ac1);
 
@@ -222,7 +220,13 @@ var beginLayer = cc.LayerColor.extend({
         if(this.isTest==false)
         {
             //this.shakeCup();
-            this.isTest=true;
+            this.isTest = true;
+        }
+
+        if(cc.rectContainsPoint(this.sp_shake.getBoundingBox(),location)&&this.isShared==false&&this.canShake==true&&this.isShaking==false)
+        {
+            this.shakeCup();
+            this.isShaking=true;
         }
 
         if(this.isShared==true)
@@ -275,29 +279,89 @@ var beginLayer = cc.LayerColor.extend({
         this.removeChildByTag(90,true);
         this.removeChildByTag(91,true);
 
-        var id=this.getRandom(17)+1;
+        var result0=cc.Sprite.create(s_img26);
+        result0.setScale(2.5);
+        result0.setOpacity(0);
+        result0.setPosition(cc.p(320,480));
+        this.addChild(result0,1);
+        result0.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.0)),cc.FadeIn.create(0.5)));
+
+        var id=this.getRandom(14)+1;
         var result=null;
         var content="";
-
+       var img="";
         switch(id)
         {
-            case 1:result=cc.Sprite.create(s_img12);content="有钱";break;
-            case 2:result=cc.Sprite.create(s_img13);content="零钱花不完";break;
-            case 3:result=cc.Sprite.create(s_img14);content="加薪三次";break;
-            case 4:result=cc.Sprite.create(s_img15);content="钱多活少";break;
-            case 5:result=cc.Sprite.create(s_img16);content="发票中大奖";break;
-            case 6:result=cc.Sprite.create(s_img17);content="走路捡钱";break;
-            case 7:result=cc.Sprite.create(s_img18);content="创业必赚";break;
-            case 8:result=cc.Sprite.create(s_img19);content="钱包撑爆";break;
-            case 9:result=cc.Sprite.create(s_img20);content="刷卡不用还";break;
-            case 10:result=cc.Sprite.create(s_img21);content="逢赌必赢";break;
-            case 11:result=cc.Sprite.create(s_img22);content="财气爆棚";break;
-            case 12:result=cc.Sprite.create(s_img23);content="遇到贵人";break;
-            case 13:result=cc.Sprite.create(s_img24);content="奖金翻十倍";break;
-            case 14:result=cc.Sprite.create(s_img25);content="中彩票";break;
-            case 15:result=cc.Sprite.create(s_img26);content="买一送三";break;
-            case 16:result=cc.Sprite.create(s_img27);content="财务自由";break;
-            case 17:result=cc.Sprite.create(s_img28);content="存款多个零";break;
+            case 1:
+                result=cc.Sprite.create(s_img12);
+                content="必赚";
+                img="http://aiwangames.com/ssGameFour/res/HD/bizhuan1.png";
+                break;
+            case 2:
+                result=cc.Sprite.create(s_img13);
+                content="旺财";
+                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                break;
+            case 3:
+                result=cc.Sprite.create(s_img14);
+                content="多金";
+                img="http://aiwangames.com/ssGameFour/res/HD/duojin1.png";
+                break;
+            case 4:
+                result=cc.Sprite.create(s_img15);
+                content="发财";
+                img="http://aiwangames.com/ssGameFour/res/HD/facai1.png";
+                break;
+            case 5:
+                result=cc.Sprite.create(s_img16);
+                content="贵人";
+                img="http://aiwangames.com/ssGameFour/res/HD/guiren1.png";
+                break;
+            case 6:
+                result=cc.Sprite.create(s_img17);
+                content="横财";
+                img="http://aiwangames.com/ssGameFour/res/HD/hengcai1.png";
+                break;
+            case 7:
+                result=cc.Sprite.create(s_img18);
+                content="加薪";
+                img="http://aiwangames.com/ssGameFour/res/HD/jiaxin1.png";
+                break;
+            case 8:
+                result=cc.Sprite.create(s_img19);
+                content="捡漏";
+                img="http://aiwangames.com/ssGameFour/res/HD/jianlou1.png";
+                break;
+            case 9:
+                result=cc.Sprite.create(s_img20);
+                content="捡钱";
+                img="http://aiwangames.com/ssGameFour/res/HD/jianqian1.png";
+                break;
+            case 10:
+                result=cc.Sprite.create(s_img21);
+                content="钱多";
+                img="http://aiwangames.com/ssGameFour/res/HD/qianduo1.png";
+                break;
+            case 11:
+                result=cc.Sprite.create(s_img22);
+                content="任性";
+                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                break;
+            case 12:
+                result=cc.Sprite.create(s_img23);
+                content="土豪";
+                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                break;
+            case 13:
+                result=cc.Sprite.create(s_img24);
+                content="赢钱";
+                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                break;
+            case 14:
+                result=cc.Sprite.create(s_img25);
+                content="中奖";
+                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                break;
             default :break;
         }
 
@@ -343,33 +407,47 @@ var beginLayer = cc.LayerColor.extend({
         this.getChildByTag(113).setPosition(cc.p(600,130));
         //this.getChildByTag(114).setPosition(cc.p(320,20));
 
+        window.wxData.imgUrl=img;
+        window.wxFriend.imgUrl=img;
+        document.getElementById("shareImage").src=img;
         document.title = window.wxData.desc = "我抽到了财运签-"+content+"，新年新气象，快来抽一签！";
         document.title = window.wxFriend.desc = "我给你抽到了财运签-"+content+"，新年新气象，快来抽一签！";
     },
 
     share2Friend:function()
     {
-        if(this.isShared==false)
+        var ua = navigator.userAgent;
+        if(/MyMoneySms/i.test(ua))
         {
-            //屏蔽层
-            var shield1=cc.Sprite.create(s_img32);
-            shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-            shield1.setTag(153);
-            this.addChild(shield1,5);
-            var shield2=cc.Sprite.create(s_img31);
-            shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
-            shield2.setTag(154);
-            this.addChild(shield2,5);
-            var label=cc.LabelTTF.create("点击这里分享","黑体",35);
-            label.setAnchorPoint(cc.p(0.5,0.5));
-            label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
-            label.setColor(cc.c3(255,255,255));
-            label.setTag(155);
-            this.addChild(label,5);
-            if(this.getChildByTag(150))this.getChildByTag(150).setEnabled(false);
-            if(this.getChildByTag(151))this.getChildByTag(151).setEnabled(false);
-            if(this.getChildByTag(152))this.getChildByTag(152).setEnabled(false);
-            this.isShared=true;
+            FS.NB("requestShare", JSON.stringify({"title":"新年财运签", "content":"天灵灵地灵灵，财神来显灵！", "url":"http://bbs.feidee.net/m/"}), '', '');
+        }
+        else if(/feideeAndroid|MyMoney/i.test(ua))
+        {
+            FS.NB("requestShare", JSON.stringify({"title":"新年财运签", "content":"天灵灵地灵灵，财神来显灵！", "url":"http://bbs.feidee.net/m/"}), '', '');
+        }
+        else
+        {
+            if(this.isShared==false)
+            {
+                var shield1=cc.Sprite.create(s_img32);
+                shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+                shield1.setTag(153);
+                this.addChild(shield1,5);
+                var shield2=cc.Sprite.create(s_img31);
+                shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
+                shield2.setTag(154);
+                this.addChild(shield2,5);
+                var label=cc.LabelTTF.create("点击这里分享","黑体",35);
+                label.setAnchorPoint(cc.p(0.5,0.5));
+                label.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.78));
+                label.setColor(cc.c3(255,255,255));
+                label.setTag(155);
+                this.addChild(label,5);
+                if(this.getChildByTag(150))this.getChildByTag(150).setEnabled(false);
+                if(this.getChildByTag(151))this.getChildByTag(151).setEnabled(false);
+                if(this.getChildByTag(152))this.getChildByTag(152).setEnabled(false);
+                this.isShared=true;
+            }
         }
     },
 
