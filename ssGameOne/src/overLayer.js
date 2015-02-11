@@ -26,6 +26,11 @@ var overLayer = cc.LayerColor.extend({
         sp_logo.setPosition(cc.p(this.winsize.width*0.5,64));
         this.addChild(sp_logo,0);
 
+        var tip=cc.LabelTTF.create("此活动为随手记官方举办, 与Apple Inc. 无关","Arial",15);
+        tip.setPosition(cc.p(320,20));
+        tip.setColor(cc.c3(255,255,255));
+        this.addChild(tip,8);
+
         var timeLabel=cc.LabelTTF.create("恭喜发财！你接住了"+this.score+"斤金子","Arial",36);
         timeLabel.setAnchorPoint(cc.p(0.5,0.5));
         timeLabel.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.92));
