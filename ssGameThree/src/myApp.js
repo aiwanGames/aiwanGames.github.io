@@ -60,7 +60,7 @@ var beginLayer = cc.LayerColor.extend({
 
         var sp_logo=cc.Sprite.create(s_img22);
         sp_logo.setScale(0.7);
-        sp_logo.setPosition(cc.p(this.winsize.width*0.5,35));
+        sp_logo.setPosition(cc.p(this.winsize.width*0.5,55));
         this.addChild(sp_logo, 2);
 
         var sound=cc.Sprite.create(s_img14);

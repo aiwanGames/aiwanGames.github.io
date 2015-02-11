@@ -19,6 +19,11 @@ var overLayer = cc.LayerColor.extend({
         var ac1=cc.RepeatForever.create(cc.RotateBy.create(4.0,360));
         sp_back1.runAction(ac1);
 
+        var tip=cc.LabelTTF.create("此活动为随手记官方举办, 与Apple Inc. 无关","Arial",15);
+        tip.setPosition(cc.p(320,15));
+        tip.setColor(cc.c3(255,255,255));
+        this.addChild(tip,8);
+
         this.showResult();
 
         var timeLabel=cc.LabelTTF.create("恭喜,你薅了"+(this.score/50).toFixed(1)+"斤羊毛","Arial",35);
@@ -31,27 +36,27 @@ var overLayer = cc.LayerColor.extend({
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
         var zailaimenu = cc.Menu.create(zailaiItem);
         //zailaiItem.setScale(0.8);
-        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.26));
+        zailaimenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.27));
         zailaimenu.setTag(100);
         this.addChild(zailaimenu, 1);
 
         var fenxiangItem = cc.MenuItemImage.create(s_img04,s_img04,this.share2Friend,this);
         var fenxiangmenu = cc.Menu.create(fenxiangItem);
         //fenxiangItem.setScale(0.8);
-        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.37));
+        fenxiangmenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.38));
         fenxiangmenu.setTag(101);
         this.addChild(fenxiangmenu, 1);
 
         var enterItem = cc.MenuItemImage.create(s_img24,s_img24,this.enterBBS,this);
         var entermenu = cc.Menu.create(enterItem);
         //enterItem.setScale(0.8);
-        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.15));
+        entermenu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.16));
         entermenu.setTag(105);
         this.addChild(entermenu, 1);
 
         var sp_logo=cc.Sprite.create(s_img22);
         sp_logo.setScale(0.7);
-        sp_logo.setPosition(cc.p(this.winsize.width*0.5,35));
+        sp_logo.setPosition(cc.p(this.winsize.width*0.5,55));
         this.addChild(sp_logo, 2);
 
         this.setTouchEnabled(true);
@@ -74,6 +79,7 @@ var overLayer = cc.LayerColor.extend({
         _label.setColor(cc.c3(235,90,55));
         this.addChild(_label,1);
         var content="";
+        var img="http://aiwangames.com/ssGameThree/res/HD/";
         if(this.score<50)
         {
             content="我薅的羊毛太少，被小伙伴完爆，快来帮帮我！";
@@ -86,27 +92,27 @@ var overLayer = cc.LayerColor.extend({
             content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一羊毛内内送给你";
             _label.setString("获得 [ 羊毛内内 ]\n屁屁，也是需要保暖的！");
             _gift.initWithFile(s_img19);
-            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
-            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
-            document.getElementById("shareImage").src="http://aiwangames.com/ssGameThree/res/HD/shareImage1.png";
+            window.wxData.imgUrl=img+"shareImage1.png";
+            window.wxFriend.imgUrl=img+"shareImage1.png";
+            document.getElementById("shareImage").src=img+"shareImage1.png";
         }
         else if(this.score>=200&&this.score<300)
         {
             content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一顶羊毛帽子送给你";
             _label.setString("获得 [ 羊毛帽子 ]\n林海雪原等你征服！");
             _gift.initWithFile(s_img20);
-            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
-            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
-            document.getElementById("shareImage").src="http://aiwangames.com/ssGameThree/res/HD/shareImage2.png";
+            window.wxData.imgUrl=img+"shareImage2.png";
+            window.wxFriend.imgUrl=img+"shareImage2.png";
+            document.getElementById("shareImage").src=img+"shareImage2.png";
         }
         else
         {
             content="我薅了"+(this.score/50).toFixed(1)+"斤羊毛，织了一件羊毛大衣送给你";
             _label.setString("获得 [ 羊毛大衣 ]\n妈妈再也不用担心你被冻坏了！");
             _gift.initWithFile(s_img21);
-            window.wxData.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
-            window.wxFriend.imgUrl="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
-            document.getElementById("shareImage").src="http://aiwangames.com/ssGameThree/res/HD/shareImage3.png";
+            window.wxData.imgUrl=img+"shareImage3.png";
+            window.wxFriend.imgUrl=img+"shareImage3.png";
+            document.getElementById("shareImage").src=img+"shareImage3.png";
         }
         document.title = window.wxData.desc = content;
         document.title = window.wxFriend.desc = content;
