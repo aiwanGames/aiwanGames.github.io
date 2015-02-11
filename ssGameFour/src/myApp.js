@@ -286,81 +286,87 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(result0,1);
         result0.runAction(cc.Spawn.create(cc.EaseBackOut.create(cc.ScaleTo.create(0.5,1.0)),cc.FadeIn.create(0.5)));
 
+        var tip=cc.LabelTTF.create("此活动为随手记官方举办, 与Apple Inc. 无关","Arial",15);
+        tip.setPosition(cc.p(320,20));
+        tip.setColor(cc.c3(255,255,255));
+        this.addChild(tip,8);
+
         var id=this.getRandom(14)+1;
         var result=null;
         var content="";
-       var img="";
+       var img="http://aiwangames.com/ssGameFour/res/HD/";
+        var img_url="";
         switch(id)
         {
             case 1:
                 result=cc.Sprite.create(s_img12);
                 content="必赚";
-                img="http://aiwangames.com/ssGameFour/res/HD/bizhuan1.png";
+                img_url=img+"bizhuan1.png";
                 break;
             case 2:
                 result=cc.Sprite.create(s_img13);
                 content="旺财";
-                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                img_url=img+"wangcai1.png";
                 break;
             case 3:
                 result=cc.Sprite.create(s_img14);
                 content="多金";
-                img="http://aiwangames.com/ssGameFour/res/HD/duojin1.png";
+                img_url=img+"duojin1.png";
                 break;
             case 4:
                 result=cc.Sprite.create(s_img15);
                 content="发财";
-                img="http://aiwangames.com/ssGameFour/res/HD/facai1.png";
+                img_url=img+"facai1.png";
                 break;
             case 5:
                 result=cc.Sprite.create(s_img16);
                 content="贵人";
-                img="http://aiwangames.com/ssGameFour/res/HD/guiren1.png";
+                img_url=img+"guiren1.png";
                 break;
             case 6:
                 result=cc.Sprite.create(s_img17);
                 content="横财";
-                img="http://aiwangames.com/ssGameFour/res/HD/hengcai1.png";
+                img_url=img+"hengcai1.png";
                 break;
             case 7:
                 result=cc.Sprite.create(s_img18);
                 content="加薪";
-                img="http://aiwangames.com/ssGameFour/res/HD/jiaxin1.png";
+                img_url=img+"jiaxin1.png";
                 break;
             case 8:
                 result=cc.Sprite.create(s_img19);
                 content="捡漏";
-                img="http://aiwangames.com/ssGameFour/res/HD/jianlou1.png";
+                img_url=img+"jianlou1.png";
                 break;
             case 9:
                 result=cc.Sprite.create(s_img20);
                 content="捡钱";
-                img="http://aiwangames.com/ssGameFour/res/HD/jianqian1.png";
+                img_url=img+"jianqian1.png";
                 break;
             case 10:
                 result=cc.Sprite.create(s_img21);
                 content="钱多";
-                img="http://aiwangames.com/ssGameFour/res/HD/qianduo1.png";
+                img_url=img+"qianduo1.png";
                 break;
             case 11:
                 result=cc.Sprite.create(s_img22);
                 content="任性";
-                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                img_url=img+"renxing1.png";
                 break;
             case 12:
                 result=cc.Sprite.create(s_img23);
                 content="土豪";
-                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                img_url=img+"tuhao1.png";
                 break;
             case 13:
                 result=cc.Sprite.create(s_img24);
                 content="赢钱";
-                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                img_url=img+"yingqian1.png";
                 break;
             case 14:
                 result=cc.Sprite.create(s_img25);
                 content="中奖";
-                img="http://aiwangames.com/ssGameFour/res/HD/renxing1.png";
+                img_url=img+"zhongjiang1.png";
                 break;
             default :break;
         }
@@ -407,26 +413,15 @@ var beginLayer = cc.LayerColor.extend({
         this.getChildByTag(113).setPosition(cc.p(600,130));
         //this.getChildByTag(114).setPosition(cc.p(320,20));
 
-        window.wxData.imgUrl=img;
-        window.wxFriend.imgUrl=img;
-        document.getElementById("shareImage").src=img;
-        document.title = window.wxData.desc = "我抽到了财运签-"+content+"，新年新气象，快来抽一签！";
-        document.title = window.wxFriend.desc = "我给你抽到了财运签-"+content+"，新年新气象，快来抽一签！";
+        window.wxData.imgUrl=img_url;
+        window.wxFriend.imgUrl=img_url;
+        document.getElementById("shareImage").src=img_url;
+        document.title = window.wxData.desc = "我抽到了新年财运签-"+content+"！快来试试手气！";
+        document.title = window.wxFriend.desc = "我给你抽到了新年财运签-"+content+"！快来试试手气！";
     },
 
     share2Friend:function()
     {
-        var ua = navigator.userAgent;
-        if(/MyMoneySms/i.test(ua))
-        {
-            FS.NB("requestShare", JSON.stringify({"title":"新年财运签", "content":"天灵灵地灵灵，财神来显灵！", "url":"http://bbs.feidee.net/m/"}), '', '');
-        }
-        else if(/feideeAndroid|MyMoney/i.test(ua))
-        {
-            FS.NB("requestShare", JSON.stringify({"title":"新年财运签", "content":"天灵灵地灵灵，财神来显灵！", "url":"http://bbs.feidee.net/m/"}), '', '');
-        }
-        else
-        {
             if(this.isShared==false)
             {
                 var shield1=cc.Sprite.create(s_img32);
@@ -448,7 +443,6 @@ var beginLayer = cc.LayerColor.extend({
                 if(this.getChildByTag(152))this.getChildByTag(152).setEnabled(false);
                 this.isShared=true;
             }
-        }
     },
 
     onAccelerometer:function(accelerationValue)
