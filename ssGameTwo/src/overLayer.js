@@ -27,6 +27,11 @@ var overLayer = cc.LayerColor.extend({
         timeLabel.setColor(cc.c3(131,14,30));
         this.addChild(timeLabel,6);
 
+        var tip=cc.LabelTTF.create("此活动为随手记官方举办, 与Apple Inc. 无关","Arial",13);
+        tip.setPosition(cc.p(320,10));
+        tip.setColor(cc.c3(255,255,255));
+        this.addChild(tip,8);
+
         var zailaiItem = cc.MenuItemImage.create(s_img03,s_img03,this.gotoMainLayer,this);
         zailaiItem.setScale(0.8);
         var zailaimenu = cc.Menu.create(zailaiItem);
