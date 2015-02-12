@@ -32,6 +32,7 @@ var beginLayer = cc.LayerColor.extend({
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
+        document.body.style.backgroundColor="#FFEEAC";
 
         var sp_back1=cc.Sprite.create(s_img01);
         sp_back1.setAnchorPoint(cc.p(0.5,0));
