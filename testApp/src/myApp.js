@@ -73,6 +73,8 @@ var beginLayer = cc.LayerColor.extend({
         label3.setColor(cc.c3(0,0,0));
         this.addChild(label3,1);
 
+        document.getElementById("back").style="padding:0; margin: 0; background: #000;";
+
         //在URL中加入ID可根据URL判断显示内容哟，如index.html?age=10size=5！！！
         if(document.URL.indexOf("id=2")>=0)
         {
