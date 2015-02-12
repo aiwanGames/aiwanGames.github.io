@@ -56,7 +56,7 @@ var overLayer = cc.LayerColor.extend({
         document.title = window.wxData.desc = "我揍了穷鬼"+this.count+"下，获得"+this.score+"分，还差一点点，快来帮帮我！";
         document.title = window.wxFriend.desc = "我揍了穷鬼"+this.count+"下，获得"+this.score+"分，还差一点点，快来帮帮我！";
 
-        var pcnt=(this.count/100*100).toFixed(1);
+        var pcnt=(this.count/65*100).toFixed(1);
         if(pcnt<1)
         {
             pcnt=1;
@@ -75,11 +75,11 @@ var overLayer = cc.LayerColor.extend({
         {
             cnt="亲，你该努力一下啦！";
         }
-        else if(this.count>=10&&this.count<50)
+        else if(this.count>=10&&this.count<30)
         {
             cnt="打鬼的汉子你威武雄壮！\n赶走穷鬼迎财运！";
         }
-        else if(this.count>=50&&this.count<90)
+        else if(this.count>=30&&this.count<60)
         {
             cnt="有力气的汉子财气总不会太差！\n赶走穷鬼迎财运！";
         }
