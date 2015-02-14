@@ -47,7 +47,7 @@ var beginLayer = cc.LayerColor.extend({
         document.body.style.backgroundColor="#FFCA39";
 
         //设置分享内容
-        document.title =  "随手记·喜乐会（随手记，理财第一步）";
+        document.title =  "随手记·喜乐汇（随手记，理财第一步）";
         //提示用户翻页
         var imageUp=cc.Sprite.create(point);
         imageUp.setPosition(cc.p(320,40));
@@ -249,7 +249,7 @@ var beginLayer = cc.LayerColor.extend({
                     sp.setPosition(cc.p(220,580));
                     sp.setTag(205);
                     this.addChild(sp,1);
-                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.1),cc.MoveBy.create(0.5,cc.p(-100,150)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
+                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.1),cc.MoveBy.create(0.5,cc.p(-100,130)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
                     break;
                 case 2:
                     sp=cc.Sprite.create(p0205);
@@ -258,7 +258,7 @@ var beginLayer = cc.LayerColor.extend({
                     sp.setRotation(15);
                     sp.setTag(206);
                     this.addChild(sp,1);
-                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.2),cc.MoveBy.create(0.5,cc.p(-60,170)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
+                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.2),cc.MoveBy.create(0.5,cc.p(-60,197)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
                     break;
                 case 3:
                     sp=cc.Sprite.create(p0203);
@@ -266,21 +266,21 @@ var beginLayer = cc.LayerColor.extend({
                     sp.setRotation(-30);
                     sp.setTag(207);
                     this.addChild(sp,1);
-                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.3),cc.MoveBy.create(0.5,cc.p(0,190)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
+                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.3),cc.MoveBy.create(0.5,cc.p(0,230)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
                     break;
                 case 4:
                     sp=cc.Sprite.create(p0204);
                     sp.setPosition(cc.p(370,580));
                     sp.setTag(208);
                     this.addChild(sp,1);
-                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.4),cc.MoveBy.create(0.5,cc.p(60,170)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
+                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.4),cc.MoveBy.create(0.5,cc.p(60,197)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
                     break;
                 case 5:
                     sp=cc.Sprite.create(p0206);
                     sp.setPosition(cc.p(420,580));
                     sp.setTag(209);
                     this.addChild(sp,1);
-                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.MoveBy.create(0.5,cc.p(100,150)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
+                    sp.runAction(cc.Sequence.create(cc.DelayTime.create(0.5),cc.MoveBy.create(0.5,cc.p(100,130)),cc.FadeOut.create(0.1),cc.CallFunc.create(this.removeSprite,this)));
                     break;
                 default:break;
             }
@@ -1109,6 +1109,7 @@ var beginLayer = cc.LayerColor.extend({
     {
         if(this.isShared==false)
         {
+            document.body.style.backgroundColor="#4D3D11";
             var shield1=cc.Sprite.create(s_img2);
             shield1.setPosition(cc.p(this.winSize.width*0.5,this.winSize.height*0.5));
             shield1.setTag(1300);
@@ -1205,6 +1206,7 @@ var beginLayer = cc.LayerColor.extend({
             this.removeChildByTag(1301,true);
             this.removeChildByTag(1302,true);
             this.isShared=false;
+            document.body.style.backgroundColor="#FFCA39";
         }
     }
 });
