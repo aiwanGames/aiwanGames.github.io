@@ -88,7 +88,7 @@ var beginLayer = cc.LayerColor.extend({
         soundMenu.setTag(88);
         soundMenu.setPosition(cc.p(this.winSize.width,45));
         this.addChild(soundMenu,15);
-        soundImage.runAction(cc.RepeatForever.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0)));
+        soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
         //开启触摸
         this.setTouchEnabled(true);
         //播放第一张page
