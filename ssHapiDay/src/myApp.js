@@ -460,7 +460,7 @@ var beginLayer = cc.LayerColor.extend({
         image02.runAction(cc.Repeat.create(cc.Sequence.create(cc.MoveBy.create(0.5,cc.p(0,-25)),cc.MoveBy.create(0.5,cc.p(0,25))),9999999));
 
         var image03=cc.Sprite.create(j2);
-        image03.setPosition(cc.p(winsize.width*0.5,winsize.height*0.65));
+        image03.setPosition(cc.p(winsize.width*0.5,winsize.height*0.66));
         image03.setTag(403);
         this.addChild(image03,1);
         image03.runAction(cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(0.1),cc.MoveBy.create(0.4,cc.p(0,-22)),cc.MoveBy.create(0.4,cc.p(0,22))),9999999));
@@ -865,7 +865,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image01,1);
 
         var image02=cc.Sprite.create(h3);
-        image02.setPosition(cc.p(winsize.width*0.52,winsize.height*0.612));
+        image02.setPosition(cc.p(winsize.width*0.52,winsize.height*0.608));
         image02.setScale(0.1);
         image02.setOpacity(0);
         image02.setTag(1002);
@@ -939,7 +939,7 @@ var beginLayer = cc.LayerColor.extend({
         image02.setOpacity(0);
         image02.setTag(1102);
         this.addChild(image02,1);
-        image02.runAction(cc.Sequence.create(cc.DelayTime.create(0.3),cc.Spawn.create(cc.FadeIn.create(0.1),cc.ScaleTo.create(0.1,1.0)),cc.Repeat.create(cc.Sequence.create(cc.ScaleTo.create(0.8,1.2),cc.ScaleTo.create(0.8,1.0)),9999999)));
+        image02.runAction(cc.Sequence.create(cc.DelayTime.create(0.3),cc.Spawn.create(cc.FadeIn.create(0.1),cc.ScaleTo.create(0.1,1.0)),cc.Repeat.create(cc.Sequence.create(cc.ScaleTo.create(0.8,1.4),cc.ScaleTo.create(0.8,1.0)),9999999)));
 
         var image03=cc.Sprite.create(i2);
         image03.setAnchorPoint(cc.p(1,0));
@@ -976,6 +976,22 @@ var beginLayer = cc.LayerColor.extend({
         image04.setTag(1206);
         this.addChild(image04,1);
         image04.runAction(cc.Repeat.create(cc.Sequence.create(cc.Spawn.create(cc.MoveBy.create(2.0,cc.p(-20,-350)),cc.RotateBy.create(2.0,360)),cc.Place.create(cc.p(winsize.width*0.5,winsize.height*0.88))),9999999));
+
+        var image09=cc.Sprite.create(c5);
+        image09.setPosition(cc.p(winsize.width*0.25,winsize.height*0.88));
+        image09.setTag(1209);
+        image09.setScale(0.1);
+        image09.setOpacity(0);
+        this.addChild(image09,1);
+        image09.runAction(cc.Sequence.create(cc.DelayTime.create(0.3),cc.Repeat.create(cc.Sequence.create(cc.Spawn.create(cc.ScaleTo.create(0.6,1.0),cc.RotateBy.create(0.6,180),cc.FadeIn.create(0.6)),cc.Spawn.create(cc.ScaleTo.create(0.6,0.1),cc.RotateBy.create(0.6,180),cc.FadeOut.create(0.6)),cc.DelayTime.create(0.8)),9999999)));
+
+        var image10=cc.Sprite.create(c5);
+        image10.setPosition(cc.p(winsize.width*0.39,winsize.height*0.525));
+        image10.setTag(1204);
+        image10.setScale(0.1);
+        image10.setOpacity(0);
+        this.addChild(image10,1);
+        image10.runAction(cc.Sequence.create(cc.DelayTime.create(0.7),cc.Repeat.create(cc.Sequence.create(cc.Spawn.create(cc.ScaleTo.create(0.6,1.0),cc.RotateBy.create(0.6,180),cc.FadeIn.create(0.6)),cc.Spawn.create(cc.ScaleTo.create(0.6,0.1),cc.RotateBy.create(0.6,180),cc.FadeOut.create(0.6)),cc.DelayTime.create(0.8)),9999999)));
 
         var image05=cc.Sprite.create(k6);
         image05.setAnchorPoint(cc.p(0.5,1.0));
