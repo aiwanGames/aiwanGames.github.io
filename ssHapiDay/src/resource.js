@@ -4,6 +4,9 @@ var back3="back3.png";
 var back4="back4.png";
 var s_img1="img_arrow.png";
 var s_img2="img_shield.png";
+var s_img3="img_sound_on.png";
+var s_img4="img_sound_off.png";
+var s_music="res/HD/music.mp3";
 var zi1="zi1.png";
 var zi2="zi2.png";
 var zi3="zi3.png";
@@ -94,6 +97,11 @@ var g_resources = [
     {src:back2},
     {src:back3},
     {src:back4},
+    {src:s_img1},
+    {src:s_img2},
+    {src:s_img3},
+    {src:s_img4},
+    {src:s_music},
     {src:zi1},
     {src:zi2},
     {src:zi3},

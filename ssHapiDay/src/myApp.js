@@ -37,12 +37,15 @@ var beginLayer = cc.LayerColor.extend({
     isShared:false,
     scoreLabel:null,
     gameScore:0,
-    money:10000000,
+    money:1000,
+    sound:false,
+    //audio:null,
 
     init:function ()
     {
         this._super();
         this.winSize = cc.Director.getInstance().getWinSize();
+        this.audio=cc.AudioEngine.getInstance();
         this.setColor(cc.c4(255,202,57,255));
         document.body.style.backgroundColor="#FFCA39";
 
@@ -78,11 +81,54 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image04,1);
         image04.runAction(cc.Repeat.create(cc.Sequence.create(cc.RotateBy.create(30.0,360)),99999999));
 
+        var soundImage=cc.MenuItemImage.create(s_img3,s_img3,this.setMusicOn,this);
+        soundImage.setAnchorPoint(cc.p(1.0,0.3));
+        soundImage.setTag(87);
+        var soundMenu=cc.Menu.create(soundImage);
+        soundMenu.setTag(88);
+        soundMenu.setPosition(cc.p(this.winSize.width,45));
+        this.addChild(soundMenu,15);
+        soundImage.runAction(cc.RepeatForever.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0)));
         //开启触摸
         this.setTouchEnabled(true);
         //播放第一张page
         this.page1Action();
         return true;
+    },
+
+    setMusicOn:function()
+    {
+        cc.log("music");
+        if(this.getChildByTag(87))this.removeChildByTag(87,true);
+        if(this.getChildByTag(88))this.removeChildByTag(88,true);
+        if (this.sound == false)
+        {
+            this.sound = true;
+            var soundImage=cc.MenuItemImage.create(s_img4,s_img4,this.setMusicOn,this);
+            soundImage.setAnchorPoint(cc.p(1.0,0.3));
+            soundImage.setTag(87);
+            var soundMenu=cc.Menu.create(soundImage);
+            soundMenu.setTag(88);
+            soundMenu.setPosition(cc.p(this.winSize.width,45));
+            this.addChild(soundMenu,15);
+            soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
+            this.audio.playMusic(s_music, true);
+        }
+        else
+        {
+            this.sound = false;
+            var soundImage=cc.MenuItemImage.create(s_img3,s_img3,this.setMusicOn,this);
+            soundImage.setAnchorPoint(cc.p(1.0,0.3));
+            soundImage.setTag(87);
+            var soundMenu=cc.Menu.create(soundImage);
+            soundMenu.setTag(88);
+            soundMenu.setPosition(cc.p(this.winSize.width,45));
+            this.addChild(soundMenu,15);
+            soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
+            this.audio.stopMusic();
+        }
+        //sn.setAnchorPoint(cc.p(1.0,0.3));
+        //sn.setPosition(cc.p(this.winSize.width,45));
     },
 
     pageCallBack:function(_sp)
@@ -152,7 +198,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image07,1);
 
         this.getChildByTag(92).initWithFile(back3);
-        this.money=10000000;
+        this.money=1000;
 
         //执行动作
         image03.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.2),cc.EaseBackOut.create(cc.ScaleTo.create(0.2,1.0))),cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(1.0),cc.RotateBy.create(0.1,-5.0),cc.RotateBy.create(0.1,5.0),cc.RotateBy.create(0.1,5.0),cc.RotateBy.create(0.1,-5.0)),9999999)));
@@ -177,7 +223,7 @@ var beginLayer = cc.LayerColor.extend({
         image01.setTag(201);
         this.addChild(image01,2);
 
-        var image02=cc.LabelTTF.create("10000000","",60);
+        var image02=cc.LabelTTF.create("1000","",60);
         image02.setAnchorPoint(cc.p(0.5,0.5));
         image02.setPosition(cc.p(winsize.width*0.5,winsize.height*0.65));
         image02.setColor(cc.c3(255,234,0));
@@ -214,7 +260,7 @@ var beginLayer = cc.LayerColor.extend({
     {
         if(_sp.getTag()==202)
         {
-            this.schedule(this.page2SCHD1,0.05,20,0.1);
+            this.schedule(this.page2SCHD1,0.05,30,0.1);
         }
         else
         {
@@ -226,7 +272,7 @@ var beginLayer = cc.LayerColor.extend({
 
     page2SCHD1:function()
     {
-        this.money+=6121211;
+        this.money+=3333331;
         if(this.money>=100000000)
         {
             this.money=100000000;
@@ -292,7 +338,7 @@ var beginLayer = cc.LayerColor.extend({
         //每个页面10个图片
         //初始化
         var winsize = cc.Director.getInstance().getWinSize();
-        this.money=10000000;
+        this.money=1000;
 
         this.getChildByTag(92).initWithFile(b8);
         this.getChildByTag(90).setZOrder(0);
@@ -365,7 +411,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image07,1);
         image07.runAction(cc.Sequence.create(cc.DelayTime.create(0.8),cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0))));
 
-        var image08=cc.Sprite.create(b6);
+        var image08=cc.Sprite.create(b7);
         image08.setPosition(cc.p(winsize.width*0.43,winsize.height*0.61));
         image08.setScale(3.0);
         image08.setOpacity(0);
@@ -934,21 +980,21 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image01,1);
 
         var image02=cc.Sprite.create(i4);
-        image02.setPosition(cc.p(winsize.width*0.3,winsize.height*0.75));
+        image02.setPosition(cc.p(winsize.width*0.34,winsize.height*0.71));
         image02.setScale(0.1);
         image02.setOpacity(0);
         image02.setTag(1102);
         this.addChild(image02,1);
-        image02.runAction(cc.Sequence.create(cc.DelayTime.create(0.3),cc.Spawn.create(cc.FadeIn.create(0.1),cc.ScaleTo.create(0.1,1.0)),cc.Repeat.create(cc.Sequence.create(cc.ScaleTo.create(0.8,1.4),cc.ScaleTo.create(0.8,1.0)),9999999)));
+        image02.runAction(cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(0.5),cc.Spawn.create(cc.FadeIn.create(0.8),cc.ScaleTo.create(0.8,1.3),cc.MoveBy.create(0.8,cc.p(-40,40))),cc.Spawn.create(cc.FadeOut.create(0.05),cc.ScaleTo.create(0.05,0.1)),cc.Place.create(cc.p(winsize.width*0.34,winsize.height*0.71))),999999));
 
         var image03=cc.Sprite.create(i2);
         image03.setAnchorPoint(cc.p(1,0));
-        image03.setPosition(cc.p(winsize.width*0.85,winsize.height*0.62));
+        image03.setPosition(cc.p(winsize.width*0.83,winsize.height*0.62));
         image03.setScale(0.1);
         image03.setOpacity(0);
         image03.setTag(1103);
         this.addChild(image03,1);
-        image03.runAction(cc.Sequence.create(cc.DelayTime.create(0.4),cc.Spawn.create(cc.FadeIn.create(0.1),cc.ScaleTo.create(0.1,1.0)),cc.Repeat.create(cc.Sequence.create(cc.ScaleTo.create(0.5,1.1),cc.ScaleTo.create(0.5,1.0)),9999999)));
+        image03.runAction(cc.Sequence.create(cc.DelayTime.create(0.4),cc.Spawn.create(cc.FadeIn.create(0.6),cc.ScaleTo.create(0.6,1.0)),cc.Repeat.create(cc.Sequence.create(cc.ScaleTo.create(0.6,0.7),cc.ScaleTo.create(0.6,1.0)),9999999)));
     },
 
     page12Action:function()
@@ -1142,6 +1188,7 @@ var beginLayer = cc.LayerColor.extend({
             this.addChild(label,5);
             if(this.getChildByTag(1200))this.getChildByTag(1200).setEnabled(false);
             if(this.getChildByTag(1201))this.getChildByTag(1201).setEnabled(false);
+            this.getChildByTag(88).setEnabled(false);
             this.isShared=true;
         }
     },
@@ -1218,6 +1265,7 @@ var beginLayer = cc.LayerColor.extend({
         {
             if(this.getChildByTag(1200))this.getChildByTag(1200).setEnabled(true);
             if(this.getChildByTag(1201))this.getChildByTag(1201).setEnabled(true);
+            this.getChildByTag(88).setEnabled(true);
             this.removeChildByTag(1300,true);
             this.removeChildByTag(1301,true);
             this.removeChildByTag(1302,true);
