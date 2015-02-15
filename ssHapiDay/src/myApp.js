@@ -86,7 +86,7 @@ var beginLayer = cc.LayerColor.extend({
         soundImage.setTag(87);
         var soundMenu=cc.Menu.create(soundImage);
         soundMenu.setTag(88);
-        soundMenu.setPosition(cc.p(this.winSize.width,45));
+        soundMenu.setPosition(cc.p(this.winSize.width,50));
         this.addChild(soundMenu,15);
         soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
         //开启触摸
@@ -109,7 +109,7 @@ var beginLayer = cc.LayerColor.extend({
             soundImage.setTag(87);
             var soundMenu=cc.Menu.create(soundImage);
             soundMenu.setTag(88);
-            soundMenu.setPosition(cc.p(this.winSize.width,45));
+            soundMenu.setPosition(cc.p(this.winSize.width,50));
             this.addChild(soundMenu,15);
             soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
             this.audio.playMusic(s_music, true);
@@ -122,7 +122,7 @@ var beginLayer = cc.LayerColor.extend({
             soundImage.setTag(87);
             var soundMenu=cc.Menu.create(soundImage);
             soundMenu.setTag(88);
-            soundMenu.setPosition(cc.p(this.winSize.width,45));
+            soundMenu.setPosition(cc.p(this.winSize.width,50));
             this.addChild(soundMenu,15);
             soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
             this.audio.stopMusic();

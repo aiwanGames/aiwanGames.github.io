@@ -61,6 +61,13 @@ var cocos2dApp = cc.Application.extend({
         // set FPS. the default value is 1.0/60 if you don't call this
         director.setAnimationInterval(1.0 / this.config['frameRate']);
 
+        //
+        window.wxData.appId="wxdbadef0c9642fcfd";
+        window.wxData.imgUrl="http://aiwangames.com/ssHapiDay/res/HD/shareImage.png";
+        window.wxData.link="http://aiwangames.com/ssHapiDay/";
+        window.wxFriend.appId="wxdbadef0c9642fcfd";
+        window.wxFriend.imgUrl="http://aiwangames.com/ssHapiDay/res/HD/shareImage.png";
+        window.wxFriend.link="http://aiwangames.com/ssHapiDay/";
         //load resources
         cc.LoaderSceneForssPages.preload(g_resources, function () {
             director.replaceScene(new this.startScene());
