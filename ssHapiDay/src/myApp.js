@@ -444,7 +444,7 @@ var beginLayer = cc.LayerColor.extend({
         image01.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0))));
 
         var image02=cc.Sprite.create(b3);
-        image02.setPosition(cc.p(this.winSize.width*0.43,this.winSize.height*0.72));
+        image02.setPosition(cc.p(this.winSize.width*0.494,this.winSize.height*0.72));
         image02.setScale(2.0);
         image02.setOpacity(0);
         image02.setTag(304);
