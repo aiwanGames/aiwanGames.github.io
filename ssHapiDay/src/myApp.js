@@ -269,7 +269,7 @@ var beginLayer = cc.LayerColor.extend({
     {
         if(_sp.getTag()==202)
         {
-            this.schedule(this.page2SCHD1,0.05,30,0.1);
+            this.schedule(this.page2SCHD1,0.1,12,0.1);
         }
         else
         {
@@ -281,7 +281,7 @@ var beginLayer = cc.LayerColor.extend({
 
     page2SCHD1:function()
     {
-        this.money+=3333331;
+        this.money+=8355551;
         if(this.money>=100000000)
         {
             this.money=100000000;
