@@ -1195,7 +1195,7 @@ var beginLayer = cc.LayerColor.extend({
 
     enterBBS:function()
     {
-        var newURL="http://a.app.qq.com/o/simple.jsp?pkgname=com.mymoney&g_f=992857#rd";
+        var newURL="http://bbs.feidee.com/m/newYear.php";
         window.location.href=newURL;
     },
 
