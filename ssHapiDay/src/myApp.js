@@ -37,8 +37,8 @@ var beginLayer = cc.LayerColor.extend({
     isShared:false,
     scoreLabel:null,
     gameScore:0,
-    money:1000,
-    sound:false,
+    money:10000,
+    sound:true,
     //audio:null,
 
     init:function ()
@@ -82,18 +82,26 @@ var beginLayer = cc.LayerColor.extend({
         image04.runAction(cc.Repeat.create(cc.Sequence.create(cc.RotateBy.create(30.0,360)),99999999));
 
         var soundImage=cc.MenuItemImage.create(s_img3,s_img3,this.setMusicOn,this);
-        soundImage.setAnchorPoint(cc.p(1.0,0.3));
+        soundImage.setAnchorPoint(cc.p(1.0,0.0));
         soundImage.setTag(87);
+        soundImage.setScale(0.5);
         var soundMenu=cc.Menu.create(soundImage);
         soundMenu.setTag(88);
-        soundMenu.setPosition(cc.p(this.winSize.width,50));
+        soundMenu.setPosition(cc.p(this.winSize.width-5,25));
         this.addChild(soundMenu,15);
-        soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
+        //soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
         //开启触摸
         this.setTouchEnabled(true);
         //播放第一张page
         this.page1Action();
+
+        this.musicOn();
         return true;
+    },
+
+    musicOn:function()
+    {
+        this.audio.playMusic(s_music, true);
     },
 
     setMusicOn:function()
@@ -104,27 +112,28 @@ var beginLayer = cc.LayerColor.extend({
         if (this.sound == false)
         {
             this.sound = true;
-            var soundImage=cc.MenuItemImage.create(s_img4,s_img4,this.setMusicOn,this);
-            soundImage.setAnchorPoint(cc.p(1.0,0.3));
+            var soundImage=cc.MenuItemImage.create(s_img3,s_img3,this.setMusicOn,this);
+            soundImage.setAnchorPoint(cc.p(1.0,0.0));
+            soundImage.setScale(0.5);
             soundImage.setTag(87);
             var soundMenu=cc.Menu.create(soundImage);
             soundMenu.setTag(88);
-            soundMenu.setPosition(cc.p(this.winSize.width,50));
+            soundMenu.setPosition(cc.p(this.winSize.width-5,25));
             this.addChild(soundMenu,15);
-            soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
+            //soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
             this.audio.playMusic(s_music, true);
         }
         else
         {
             this.sound = false;
-            var soundImage=cc.MenuItemImage.create(s_img3,s_img3,this.setMusicOn,this);
-            soundImage.setAnchorPoint(cc.p(1.0,0.3));
+            var soundImage=cc.MenuItemImage.create(s_img4,s_img4,this.setMusicOn,this);
+            soundImage.setAnchorPoint(cc.p(1.0,0.0));
+            soundImage.setScale(0.5);
             soundImage.setTag(87);
             var soundMenu=cc.Menu.create(soundImage);
             soundMenu.setTag(88);
-            soundMenu.setPosition(cc.p(this.winSize.width,50));
+            soundMenu.setPosition(cc.p(this.winSize.width-5,25));
             this.addChild(soundMenu,15);
-            soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
             this.audio.stopMusic();
         }
         //sn.setAnchorPoint(cc.p(1.0,0.3));
@@ -198,7 +207,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image07,1);
 
         this.getChildByTag(92).initWithFile(back3);
-        this.money=1000;
+        this.money=10000;
 
         //执行动作
         image03.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.2),cc.EaseBackOut.create(cc.ScaleTo.create(0.2,1.0))),cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(1.0),cc.RotateBy.create(0.1,-5.0),cc.RotateBy.create(0.1,5.0),cc.RotateBy.create(0.1,5.0),cc.RotateBy.create(0.1,-5.0)),9999999)));
@@ -223,7 +232,7 @@ var beginLayer = cc.LayerColor.extend({
         image01.setTag(201);
         this.addChild(image01,2);
 
-        var image02=cc.LabelTTF.create("1000","",60);
+        var image02=cc.LabelTTF.create("10000","",60);
         image02.setAnchorPoint(cc.p(0.5,0.5));
         image02.setPosition(cc.p(winsize.width*0.5,winsize.height*0.65));
         image02.setColor(cc.c3(255,234,0));
@@ -338,7 +347,7 @@ var beginLayer = cc.LayerColor.extend({
         //每个页面10个图片
         //初始化
         var winsize = cc.Director.getInstance().getWinSize();
-        this.money=1000;
+        this.money=10000;
 
         this.getChildByTag(92).initWithFile(b8);
         this.getChildByTag(90).setZOrder(0);
@@ -435,12 +444,12 @@ var beginLayer = cc.LayerColor.extend({
         image01.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0))));
 
         var image02=cc.Sprite.create(b3);
-        image02.setPosition(cc.p(this.winSize.width*0.5,this.winSize.height*0.65));
+        image02.setPosition(cc.p(this.winSize.width*0.43,this.winSize.height*0.72));
         image02.setScale(2.0);
         image02.setOpacity(0);
         image02.setTag(304);
         this.addChild(image02,1);
-        image02.runAction(cc.Sequence.create(cc.DelayTime.create(0.2),cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,0.85))));
+        image02.runAction(cc.Sequence.create(cc.DelayTime.create(0.2),cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0))));
 
         var image03=cc.Sprite.create(b4);
         image03.setPosition(cc.p(-this.winSize.width*0.2,this.winSize.height*0.47));
@@ -484,7 +493,8 @@ var beginLayer = cc.LayerColor.extend({
         this.getChildByTag(91).setZOrder(10);
         this.getChildByTag(93).setZOrder(10);
 
-        var progress=cc.ProgressTimer.create(cc.Sprite.create(zi10));
+        var image00=cc.Sprite.create(zi10);
+        var progress=cc.ProgressTimer.create(image00);
         progress.setPosition(cc.p(winsize.width*0.5,winsize.height*0.25));
         progress.setType(cc.PROGRESS_TIMER_TYPE_BAR);
         progress.setMidpoint(cc.p(0,0.5));
@@ -492,7 +502,7 @@ var beginLayer = cc.LayerColor.extend({
         progress.setTag(400);
         this.addChild(progress,9);
         var proto = cc.ProgressTo.create(0.6, 100);
-        progress.runAction(proto);
+        progress.runAction(cc.Sequence.create(proto,cc.DelayTime.create(0.5),cc.Repeat.create(cc.Sequence.create(cc.RotateBy.create(0.1,-5),cc.RotateBy.create(0.1,5),cc.RotateBy.create(0.1,5),cc.RotateBy.create(0.1,-5),cc.ScaleTo.create(0.1,1.2),cc.ScaleTo.create(0.2,1.0),cc.DelayTime.create(1.0)),9999999)));
 
         var image01=cc.Sprite.create(e3);
         image01.setPosition(cc.p(winsize.width*0.5,winsize.height*0.52));
@@ -500,22 +510,41 @@ var beginLayer = cc.LayerColor.extend({
         this.addChild(image01,5);
 
         var image02=cc.Sprite.create(j3);
-        image02.setPosition(cc.p(winsize.width*0.2,winsize.height*0.65));
+        image02.setPosition(cc.p(winsize.width*0.22,winsize.height*0.3));
         image02.setTag(402);
         this.addChild(image02,1);
-        image02.runAction(cc.Repeat.create(cc.Sequence.create(cc.MoveBy.create(0.5,cc.p(0,-25)),cc.MoveBy.create(0.5,cc.p(0,25))),9999999));
+        image02.runAction(cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(2.5,cc.p(winsize.width*0.25,winsize.height)),cc.Place.create(cc.p(winsize.width*0.25,winsize.height*0.3))),9999999));
+
+        var image05=cc.Sprite.create(j4);
+        image05.setPosition(cc.p(winsize.width*0.22,winsize.height*0.3));
+        image05.setTag(405);
+        this.addChild(image05,1);
+        image05.runAction(cc.Sequence.create(cc.DelayTime.create(1.3),cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(2.5,cc.p(winsize.width*0.22,winsize.height)),cc.Place.create(cc.p(winsize.width*0.22,winsize.height*0.3))),9999999)));
 
         var image03=cc.Sprite.create(j2);
-        image03.setPosition(cc.p(winsize.width*0.5,winsize.height*0.66));
+        image03.setPosition(cc.p(winsize.width*0.5,winsize.height));
         image03.setTag(403);
         this.addChild(image03,1);
-        image03.runAction(cc.Repeat.create(cc.Sequence.create(cc.DelayTime.create(0.1),cc.MoveBy.create(0.4,cc.p(0,-22)),cc.MoveBy.create(0.4,cc.p(0,22))),9999999));
+        image03.runAction(cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(2.5,cc.p(winsize.width*0.5,winsize.height*0.25)),cc.Place.create(cc.p(winsize.width*0.5,winsize.height))),9999999));
+
+        var image06=cc.Sprite.create(j4);
+        image06.setPosition(cc.p(winsize.width*0.5,winsize.height));
+        image06.setTag(406);
+        this.addChild(image06,1);
+        image06.runAction(cc.Sequence.create(cc.DelayTime.create(1.0),cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(2.5,cc.p(winsize.width*0.5,winsize.height*0.25)),cc.Place.create(cc.p(winsize.width*0.5,winsize.height))),9999999)));
 
         var image04=cc.Sprite.create(j1);
-        image04.setPosition(cc.p(winsize.width*0.8,winsize.height*0.65));
+        image04.setPosition(cc.p(winsize.width*0.78,winsize.height*0.1));
         image04.setTag(404);
         this.addChild(image04,1);
-        image04.runAction(cc.Repeat.create(cc.Sequence.create(cc.MoveBy.create(0.45,cc.p(0,-23)),cc.MoveBy.create(0.45,cc.p(0,23))),9999999));
+        image04.runAction(cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(3.5,cc.p(winsize.width*0.78,winsize.height*1.2)),cc.Place.create(cc.p(winsize.width*0.78,winsize.height*0.1))),9999999));
+
+        var image07=cc.Sprite.create(j4);
+        image07.setPosition(cc.p(winsize.width*0.78,winsize.height*0.1));
+        image07.setTag(407);
+        this.addChild(image07,1);
+        image07.runAction(cc.Sequence.create(cc.DelayTime.create(1.5),cc.Repeat.create(cc.Sequence.create(cc.MoveTo.create(3.5,cc.p(winsize.width*0.78,winsize.height*1.2)),cc.Place.create(cc.p(winsize.width*0.78,winsize.height*0.1))),9999999)));
+
     },
 
     page5Action:function()
@@ -787,16 +816,17 @@ var beginLayer = cc.LayerColor.extend({
         image02.runAction(cc.Sequence.create(cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0)),cc.DelayTime.create(0.8),cc.Repeat.create(cc.RotateBy.create(25,360),999999)));
 
         var image03=cc.Sprite.create(f2);
-        image03.setPosition(cc.p(350,330));
+        image03.setPosition(cc.p(360,160));
         image03.setScale(2.0);
+        image03.setRotation(50);
         image03.setOpacity(0);
         image03.setTag(802);
         image02.addChild(image03,1);
         image03.runAction(cc.Sequence.create(cc.DelayTime.create(0.4),cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0))));
 
         var image04=cc.Sprite.create(f2);
-        image04.setPosition(cc.p(320,90));
-        image04.setRotation(60);
+        image04.setPosition(cc.p(130,80));
+        image04.setRotation(150);
         image04.setScale(2.0);
         image04.setOpacity(0);
         image04.setTag(803);
@@ -804,8 +834,8 @@ var beginLayer = cc.LayerColor.extend({
         image04.runAction(cc.Sequence.create(cc.DelayTime.create(0.6),cc.Spawn.create(cc.FadeIn.create(0.2),cc.ScaleTo.create(0.2,1.0))));
 
         var image05=cc.Sprite.create(f2);
-        image05.setPosition(cc.p(50,170));
-        image05.setRotation(-185);
+        image05.setPosition(cc.p(75,270));
+        image05.setRotation(-135);
         image05.setScale(2.0);
         image05.setOpacity(0);
         image05.setTag(804);

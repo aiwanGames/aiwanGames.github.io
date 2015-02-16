@@ -81,6 +81,7 @@ var i4="i4.png";
 var j1="j1.png";
 var j2="j2.png";
 var j3="j3.png";
+var j4="j4.png";
 var k1="k1.png";
 var k2="k2.png";
 var k3="k3.png";
@@ -175,6 +176,7 @@ var g_resources = [
     {src:j1},
     {src:j2},
     {src:j3},
+    {src:j4},
     {src:k1},
     {src:k2},
     {src:k3},
