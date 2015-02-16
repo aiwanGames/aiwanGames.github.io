@@ -45,7 +45,7 @@ var beginLayer = cc.LayerColor.extend({
     {
         this._super();
         this.winSize = cc.Director.getInstance().getWinSize();
-        this.audio=cc.AudioEngine.getInstance();
+        //this.audio=cc.AudioEngine.getInstance();
         this.setColor(cc.c4(255,202,57,255));
         document.body.style.backgroundColor="#FFCA39";
 
@@ -101,7 +101,7 @@ var beginLayer = cc.LayerColor.extend({
 
     musicOn:function()
     {
-        this.audio.playMusic(s_music, true);
+        cc.AudioEngine.getInstance().playMusic(s_music, true);
     },
 
     setMusicOn:function()
@@ -121,7 +121,8 @@ var beginLayer = cc.LayerColor.extend({
             soundMenu.setPosition(cc.p(this.winSize.width-5,25));
             this.addChild(soundMenu,15);
             //soundImage.runAction(cc.RepeatForever.create(cc.Sequence.create(cc.RotateBy.create(0.5,6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,-6.0),cc.RotateBy.create(0.5,6.0))));
-            this.audio.playMusic(s_music, true);
+            //this.audio.playMusic(s_music, true);
+            cc.AudioEngine.getInstance().playMusic(s_music, true);
         }
         else
         {
@@ -134,7 +135,8 @@ var beginLayer = cc.LayerColor.extend({
             soundMenu.setTag(88);
             soundMenu.setPosition(cc.p(this.winSize.width-5,25));
             this.addChild(soundMenu,15);
-            this.audio.stopMusic();
+            //this.audio.stopMusic();
+            cc.AudioEngine.getInstance().stopMusic();
         }
         //sn.setAnchorPoint(cc.p(1.0,0.3));
         //sn.setPosition(cc.p(this.winSize.width,45));
