@@ -25,7 +25,7 @@
  ****************************************************************************/
 var beginLayer = cc.LayerColor.extend({
     winsize:null,
-    isPlaying:false,
+    isPlaying:true,
     audio:null,
 
     init:function ()
@@ -82,6 +82,8 @@ var beginLayer = cc.LayerColor.extend({
         }
         //window.wxData.link=window.wxData.link+"index.html?id=2";
         //window.wxFriend.link=window.wxFriend.link+"index.html?id=2";
+
+        this.play();
         return true;
     },
 
@@ -119,6 +121,11 @@ var beginLayer = cc.LayerColor.extend({
         var newURL="http://a.app.qq.com/o/simple.jsp?pkgname=com.mymoney&g_f=992857#rd";
         window.location.href=newURL;
         //window.open(newURL);
+    },
+
+    play:function()
+    {
+        this.audio.playMusic(s_music,true);
     },
 
     playMusic:function()
