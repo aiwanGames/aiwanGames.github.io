@@ -50,7 +50,7 @@ var beginLayer = cc.LayerColor.extend({
         document.body.style.backgroundColor="#FFCA39";
 
         //设置分享内容
-        document.title =  "随手记·喜乐汇（随手记，理财第一步）";
+        document.title =  "新春喜乐汇，随手记一亿大奖轻松拿";
         //提示用户翻页
         var imageUp=cc.Sprite.create(point);
         imageUp.setPosition(cc.p(320,40));
