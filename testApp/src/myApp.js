@@ -118,9 +118,17 @@ var beginLayer = cc.LayerColor.extend({
 
         //用按钮实现跳转，URL必须有http前缀，比如只填写www.baidu.com是跳转不了的
         //var newURL="itms-apps://itunes.apple.com/us/app/id364183992";
-        var newURL="http://a.app.qq.com/o/simple.jsp?pkgname=com.mymoney&g_f=992857#rd";
-        window.location.href=newURL;
+        //var newURL="http://a.app.qq.com/o/simple.jsp?pkgname=com.mymoney&g_f=992857#rd";
+        //window.location.href=newURL;
         //window.open(newURL);
+        var img=cc.RenderTexture.create(this.winsize.width,this.winsize.height,cc.TEXTURE_2D_PIXEL_FORMAT_RGBA8888);
+        var sc=cc.Director.getInstance().getRunningScene();
+        img.begin();
+        sc.visit();
+        img.end();
+       // var path=cc.FileUtils.getInstance().;
+        img.saveToFile("123.png",true);
+
     },
 
     play:function()
