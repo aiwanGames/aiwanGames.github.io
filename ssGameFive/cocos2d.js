@@ -74,7 +74,7 @@
         else {
             alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');
         }
-       //s.src = 'ssGameFive.js';
+       s.src = 'ssGameFive.js';
         d.body.appendChild(s);
         document.ccConfig = c;
         s.id = 'cocos2d-html5';
