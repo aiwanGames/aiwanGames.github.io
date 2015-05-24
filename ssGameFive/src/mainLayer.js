@@ -269,6 +269,7 @@ var mainLayer = cc.LayerColor.extend({
         if(this.getChildByTag(87))this.getChildByTag(87).setEnabled(true);
         if(this.getChildByTag(88))this.getChildByTag(88).setEnabled(true);
         this.removeChild(sprite,true);
+        document.body.style.backgroundColor="#98D8FB";
     },
 
     setHole:function(_lb)
@@ -420,6 +421,7 @@ var mainLayer = cc.LayerColor.extend({
                             if (!this.inWarning)
                             {
                                 this.inWarning = true;
+                                document.body.style.backgroundColor="#2C424D";
                                 if(this.getChildByTag(87))this.getChildByTag(87).setEnabled(false);
                                 if(this.getChildByTag(88))this.getChildByTag(88).setEnabled(false);
                                 var shld = cc.Sprite.create(s_shld);
