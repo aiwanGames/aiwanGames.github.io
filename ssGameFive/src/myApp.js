@@ -128,6 +128,10 @@ var beginLayer = cc.LayerColor.extend({
 
     startGame:function()
     {
+        if (this.sound)
+        {
+            this.audio.playEffect(s_button);
+        }
         var scene=mainLayer.create(this.sound);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
         if (this.sound == true)

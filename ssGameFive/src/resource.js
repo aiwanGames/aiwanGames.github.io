@@ -36,7 +36,11 @@ var s_tipr="tipr.png";
 var s_tipl1="tipl1.png";
 var s_tipr1="tipr1.png";
 var s_music="res/HD/music.mp3";
-var s_effect="res/HD/effect.mp3";
+var s_cat="res/HD/cat.mp3";
+var s_qin="res/HD/qin.mp3";
+var s_bird="res/HD/bird.mp3";
+var s_gold="res/HD/gold.mp3";
+var s_button="res/HD/button.mp3";
 
 var g_resources = [
     //image
@@ -78,5 +82,9 @@ var g_resources = [
     {src:s_add30},
     {src:s_add20},
     {src:s_music},
-    {src:s_effect}
+    {src:s_cat},
+    {src:s_qin},
+    {src:s_bird},
+    {src:s_gold},
+    {src:s_button}
 ];

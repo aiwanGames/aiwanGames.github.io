@@ -121,7 +121,7 @@ var mainLayer = cc.LayerColor.extend({
 
     gotoOverLayer:function()
     {
-        var scene=overLayer.create(this.gameScore);
+        var scene=overLayer.create(this.gameScore,this.sound);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
         this.audio.stopMusic();
     },
@@ -361,20 +361,32 @@ var mainLayer = cc.LayerColor.extend({
             {
                 scoresp=cc.Sprite.create(s_add50);
                 this.gameScore+=50;
+                if (this.sound)
+                {
+                    this.audio.playEffect(s_gold);
+                }
             }
             if(_tag>=215&&_tag<230)
             {
                 scoresp=cc.Sprite.create(s_add20);
                 this.gameScore+=20;
+                if (this.sound)
+                {
+                    this.audio.playEffect(s_bird);
+                }
             }
             if(_tag>=230&&_tag<245)
             {
                 scoresp=cc.Sprite.create(s_add30);
                 this.gameScore+=30;
+                if (this.sound)
+                {
+                    this.audio.playEffect(s_cat);
+                }
             }
             if(_tag>=245&&_tag<260)
             {
-                //this.inWarning=true;
+
             }
             this.scoreLabel.setString(" × "+this.gameScore);
             this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.2),cc.ScaleTo.create(0.1,1.0)));
@@ -433,7 +445,7 @@ var mainLayer = cc.LayerColor.extend({
                                 clip.setZOrder(61);
                                 if (this.sound)
                                 {
-                                    this.audio.playEffect(s_effect);
+                                    this.audio.playEffect(s_qin);
                                 }
                             }
                         }

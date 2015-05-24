@@ -1,12 +1,14 @@
 var overLayer = cc.LayerColor.extend({
     winsize:null,
     score:0,
+    sound:false,
     isShared:false,
 
     init:function ()
     {
         this._super();
         this.winsize = cc.Director.getInstance().getWinSize();
+        this.audio=cc.AudioEngine.getInstance();
         document.body.style.backgroundColor="#98D8FB";
 
         var sp_back1=cc.Sprite.create(s_00);
@@ -29,6 +31,13 @@ var overLayer = cc.LayerColor.extend({
         var sp_back3=cc.Sprite.create(s_14);
         sp_back3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.644));
         this.addChild(sp_back3, 2);
+
+        var sp_star=cc.Sprite.create(s_06);
+        sp_star.setScale(0.01);
+        sp_star.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.8));
+        this.addChild(sp_star, 1);
+        var ae=cc.Sequence.create(cc.DelayTime.create(0.6),cc.Repeat.create(cc.Sequence.create(cc.EaseElasticOut.create(cc.ScaleTo.create(0.3,1)),cc.DelayTime.create(1.0),cc.ScaleTo.create(0.02,0.01)),9999));
+        sp_star.runAction(ae);
 
         var tip=cc.LabelTTF.create("此活动为随手记官方举办, 与Apple Inc. 无关","Arial",18);
         tip.setPosition(cc.p(320,20));
@@ -67,19 +76,16 @@ var overLayer = cc.LayerColor.extend({
 
     gotoMainLayer:function()
     {
+        if (this.sound)
+        {
+            this.audio.playEffect(s_button);
+        }
         var scene=beginLayer.create();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
     },
 
     showResult:function()
     {
-        var sp_star=cc.Sprite.create(s_06);
-        sp_star.setScale(0.01);
-        sp_star.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.644));
-        this.addChild(sp_star, 2);
-        var ae=cc.Sequence.create(cc.DelayTime.create(0.2),cc.Repeat.create(cc.Sequence.create(cc.Spawn.create(cc.EaseElasticOut.create(cc.ScaleTo.create(0.4,1)),cc.FadeOut.create(0.4)),cc.ScaleTo.create(0.02,0.01),cc.FadeIn.create(0.01),cc.DelayTime.create(1.0)),9999));
-        sp_star.runAction(ae);
-
         var tipl=cc.Sprite.create(s_tipl);
         tipl.setPosition(cc.p(this.winsize.width*0.266,this.winsize.height*0.89));
         this.addChild(tipl,5);
@@ -120,6 +126,10 @@ var overLayer = cc.LayerColor.extend({
 
     share2Friend:function()
     {
+        if (this.sound)
+        {
+            this.audio.playEffect(s_button);
+        }
         if(this.isShared==false)
         {
             document.body.style.backgroundColor="#2C424D";
@@ -146,6 +156,10 @@ var overLayer = cc.LayerColor.extend({
 
    enterBBS:function()
     {
+        if (this.sound)
+        {
+            this.audio.playEffect(s_button);
+        }
         var newURL="http://bbs.feidee.com/m/";
         window.location.href=newURL;
     },
@@ -165,17 +179,18 @@ var overLayer = cc.LayerColor.extend({
         }
     },
 
-    setScore:function(_score)
+    setScore:function(_score,_sound)
     {
         this.score=_score;
+        this.sound=_sound;
     }
 
 });
 
-overLayer.create=function(_score)
+overLayer.create=function(_score,_sound)
 {
     var _overLayer=new overLayer();
-    _overLayer.setScore(_score);
+    _overLayer.setScore(_score,_sound);
     _overLayer.init();
     var _scene=cc.Scene.create();
     _scene.addChild(_overLayer);
