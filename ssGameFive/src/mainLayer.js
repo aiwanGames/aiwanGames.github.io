@@ -2,7 +2,7 @@ var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
     schdSpeed:0.7,
-    gameTime:35,
+    gameTime:0,
     gameScore:0,
     gameOver:false,
     scoreLabel:null,

@@ -103,7 +103,7 @@ var overLayer = cc.LayerColor.extend({
         scorelb.setPosition(cc.p(this.winsize.width*0.587,this.winsize.height*0.89));
         scorelb.setColor(cc.c3(235,57,33));
         this.addChild(scorelb,5);
-        var percent=((this.score/8000.0)*100).toFixed(1);
+        var percent=((this.score/2500.0)*100).toFixed(1);
 
         if(percent<1)
         {
