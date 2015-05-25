@@ -28,7 +28,7 @@ var overLayer = cc.LayerColor.extend({
         var ac=cc.Sequence.create(cc.DelayTime.create(0.2),cc.EaseElasticOut.create(cc.ScaleTo.create(0.7,1)),cc.Repeat.create(cc.RotateBy.create(5,360),9999));
         sp_back2.runAction(ac);
 
-        var sp_back3=cc.Sprite.create(s_14);
+        var sp_back3=cc.Sprite.create(s_141);
         sp_back3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.644));
         this.addChild(sp_back3, 2);
 
@@ -103,7 +103,7 @@ var overLayer = cc.LayerColor.extend({
         scorelb.setPosition(cc.p(this.winsize.width*0.587,this.winsize.height*0.89));
         scorelb.setColor(cc.c3(235,57,33));
         this.addChild(scorelb,5);
-        var percent=((this.score/2500.0)*100).toFixed(1);
+        var percent=((this.score/2800.0)*100).toFixed(1);
 
         if(percent<1)
         {

@@ -45,7 +45,7 @@ var beginLayer = cc.LayerColor.extend({
         var kaishiItem = cc.MenuItemImage.create(s_04,s_05,this.startGame,this);
         kaishiItem.setOpacity(0);
         var menu = cc.Menu.create(kaishiItem);
-        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.36));
+        menu.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.33));
         this.addChild(menu, 1);
         kaishiItem.runAction(cc.FadeIn.create(0.6));
 
@@ -57,7 +57,7 @@ var beginLayer = cc.LayerColor.extend({
         sp_back2.runAction(ac);
 
         var sp_back3=cc.Sprite.create(s_01);
-        sp_back3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.7));
+        sp_back3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.67));
         this.addChild(sp_back3, 1);
 
         var sp_back4=cc.Sprite.create(s_02);

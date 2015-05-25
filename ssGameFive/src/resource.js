@@ -13,6 +13,7 @@ var s_11="11.png";
 var s_12="12.png";
 var s_13="13.png";
 var s_14="14.png";
+var s_141="141.png";
 var s_15="15.png";
 var s_16="16.png";
 var s_17="17.png";
@@ -59,6 +60,7 @@ var g_resources = [
     {src:s_12},
     {src:s_13},
     {src:s_14},
+    {src:s_141},
     {src:s_15},
     {src:s_16},
     {src:s_17},

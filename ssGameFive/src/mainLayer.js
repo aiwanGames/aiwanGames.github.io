@@ -1,7 +1,7 @@
 var mainLayer = cc.LayerColor.extend({
     winsize:null,
     sp_catch:null,
-    schdSpeed:0.7,
+    schdSpeed:0.5,
     gameTime:0,
     gameScore:0,
     gameOver:false,
@@ -69,14 +69,14 @@ var mainLayer = cc.LayerColor.extend({
         //this.timeLabel=cc.LabelAtlas.create(this.gameScore,s_13,25,38,'0');
         //this.timeLabel.setScale(0.4);
         this.timeLabel=cc.LabelTTF.create(this.gameTime+"s","Arial",34);
-        this.timeLabel.setColor(cc.c3(248,206,58));
+        this.timeLabel.setColor(cc.c3(230,50,50));
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.82,this.winsize.height*0.92));
         this.addChild(this.timeLabel,1);
        // this.scoreLabel=cc.LabelAtlas.create(this.gameScore,s_13,30,38,'0');
         //this.scoreLabel.setScale(0.4);
         this.scoreLabel=cc.LabelTTF.create(" × "+this.gameScore,"Arial",34);
-        this.scoreLabel.setColor(cc.c3(248,206,58));
+        this.scoreLabel.setColor(cc.c3(230,50,50));
         this.scoreLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.scoreLabel.setPosition(cc.p(this.winsize.width*0.14,this.winsize.height*0.92));
         this.addChild(this.scoreLabel,1);
@@ -289,22 +289,22 @@ var mainLayer = cc.LayerColor.extend({
         {
             if(this.gameTime==300)
             {
-                this.schdSpeed=0.6;
+                this.schdSpeed=0.45;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else if(this.gameTime==600)
             {
-                this.schdSpeed=0.5;
+                this.schdSpeed=0.35;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else if(this.gameTime==900)
             {
-                this.schdSpeed=0.4;
+                this.schdSpeed=0.3;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else if(this.gameTime==1200)
             {
-                this.schdSpeed=0.3;
+                this.schdSpeed=0.25;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
             else
