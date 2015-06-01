@@ -93,7 +93,7 @@ var beginLayer = cc.LayerColor.extend({
 
     musicOn:function()
     {
-        cc.AudioEngine.getInstance().playMusic(s_music, true);
+        this.audio.playMusic(s_music, true);
     },
 
     setMusicOn:function()

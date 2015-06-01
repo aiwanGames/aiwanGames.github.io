@@ -103,7 +103,7 @@ var mainLayer = cc.LayerColor.extend({
             soundMenu.setTag(88);
             soundMenu.setPosition(cc.p(this.winsize.width - 5, this.winsize.height * 0.01));
             this.addChild(soundMenu, 15);
-            cc.AudioEngine.getInstance().playMusic(s_music, true);
+            this.audio.playMusic(s_music, true);
         }
         else {
             this.sound = false;
@@ -115,7 +115,7 @@ var mainLayer = cc.LayerColor.extend({
             soundMenu.setTag(88);
             soundMenu.setPosition(cc.p(this.winsize.width - 5, this.winsize.height * 0.01));
             this.addChild(soundMenu, 15);
-            cc.AudioEngine.getInstance().stopMusic();
+            this.audio.stopMusic();
         }
     },
 
