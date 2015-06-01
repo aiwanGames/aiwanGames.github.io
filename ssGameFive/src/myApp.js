@@ -130,7 +130,14 @@ var beginLayer = cc.LayerColor.extend({
     {
         if (this.sound)
         {
-            this.audio.playEffect(s_button);
+            if(navigator.userAgent.indexOf('Android')>-1)
+            {
+
+            }
+            else
+            {
+                this.audio.playEffect(s_button);
+            }
         }
         var scene=mainLayer.create(this.sound);
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));

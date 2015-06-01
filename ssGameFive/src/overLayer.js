@@ -78,7 +78,14 @@ var overLayer = cc.LayerColor.extend({
     {
         if (this.sound)
         {
-            this.audio.playEffect(s_button);
+            if(navigator.userAgent.indexOf('Android')>-1)
+            {
+
+            }
+            else
+            {
+                this.audio.playEffect(s_button);
+            }
         }
         var scene=beginLayer.create();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,scene));
@@ -128,7 +135,14 @@ var overLayer = cc.LayerColor.extend({
     {
         if (this.sound)
         {
-            this.audio.playEffect(s_button);
+            if(navigator.userAgent.indexOf('Android')>-1)
+            {
+
+            }
+            else
+            {
+                this.audio.playEffect(s_button);
+            }
         }
         if(this.isShared==false)
         {
@@ -158,7 +172,14 @@ var overLayer = cc.LayerColor.extend({
     {
         if (this.sound)
         {
-            this.audio.playEffect(s_button);
+            if(navigator.userAgent.indexOf('Android')>-1)
+            {
+
+            }
+            else
+            {
+                this.audio.playEffect(s_button);
+            }
         }
         var newURL="http://bbs.feidee.com/m/";
         window.location.href=newURL;

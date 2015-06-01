@@ -103,7 +103,7 @@ var mainLayer = cc.LayerColor.extend({
             soundMenu.setTag(88);
             soundMenu.setPosition(cc.p(this.winsize.width - 5, this.winsize.height * 0.01));
             this.addChild(soundMenu, 15);
-            cc.AudioEngine.getInstance().playMusic(s_music, true);
+            this.audio.playMusic(s_music, true);
         }
         else {
             this.sound = false;
@@ -115,7 +115,7 @@ var mainLayer = cc.LayerColor.extend({
             soundMenu.setTag(88);
             soundMenu.setPosition(cc.p(this.winsize.width - 5, this.winsize.height * 0.01));
             this.addChild(soundMenu, 15);
-            cc.AudioEngine.getInstance().stopMusic();
+            this.audio.stopMusic();
         }
     },
 
@@ -364,7 +364,14 @@ var mainLayer = cc.LayerColor.extend({
                 this.gameScore+=50;
                 if (this.sound)
                 {
-                    this.audio.playEffect(s_gold);
+                    if(navigator.userAgent.indexOf('Android')>-1)
+                    {
+
+                    }
+                    else
+                    {
+                        this.audio.playEffect(s_gold);
+                    }
                 }
             }
             if(_tag>=215&&_tag<230)
@@ -373,7 +380,14 @@ var mainLayer = cc.LayerColor.extend({
                 this.gameScore+=20;
                 if (this.sound)
                 {
-                    this.audio.playEffect(s_bird);
+                    if(navigator.userAgent.indexOf('Android')>-1)
+                    {
+
+                    }
+                    else
+                    {
+                        this.audio.playEffect(s_bird);
+                    }
                 }
             }
             if(_tag>=230&&_tag<245)
@@ -382,7 +396,14 @@ var mainLayer = cc.LayerColor.extend({
                 this.gameScore+=30;
                 if (this.sound)
                 {
-                    this.audio.playEffect(s_cat);
+                    if(navigator.userAgent.indexOf('Android')>-1)
+                    {
+
+                    }
+                    else
+                    {
+                        this.audio.playEffect(s_cat);
+                    }
                 }
             }
             if(_tag>=245&&_tag<260)
@@ -447,7 +468,14 @@ var mainLayer = cc.LayerColor.extend({
                                 clip.setZOrder(61);
                                 if (this.sound)
                                 {
-                                    this.audio.playEffect(s_qin);
+                                    if(navigator.userAgent.indexOf('Android')>-1)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        this.audio.playEffect(s_qin);
+                                    }
                                 }
                             }
                         }
