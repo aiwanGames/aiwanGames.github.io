@@ -19,6 +19,8 @@ var mainLayer = cc.LayerColor.extend({
     timeCntl:0,
     beginCntl:false,
     inWarning:false,
+    beginTime:null,
+    curTime:null,
 
     init:function ()
     {
@@ -68,7 +70,7 @@ var mainLayer = cc.LayerColor.extend({
 
         //this.timeLabel=cc.LabelAtlas.create(this.gameScore,s_13,25,38,'0');
         //this.timeLabel.setScale(0.4);
-        this.timeLabel=cc.LabelTTF.create(this.gameTime+"s","Arial",34);
+        this.timeLabel=cc.LabelTTF.create("35s","Arial",34);
         this.timeLabel.setColor(cc.c3(230,50,50));
         this.timeLabel.setAnchorPoint(cc.p(0.0,0.5));
         this.timeLabel.setPosition(cc.p(this.winsize.width*0.82,this.winsize.height*0.92));
@@ -88,6 +90,8 @@ var mainLayer = cc.LayerColor.extend({
         this.setTouchEnabled(true);
         this.schedule(this.addDropItems,this.schdSpeed);
         this.scheduleUpdate();
+        this.beginTime=new Date();
+        this.curTime=this.beginTime;
     },
 
     setMusicOn:function() {
@@ -280,29 +284,35 @@ var mainLayer = cc.LayerColor.extend({
 
     update:function(dt)
     {
-        this.gameTime+=1;
-        if(this.gameTime==2100)
+        this.curTime=new Date();
+        if(this.curTime.getTime()-this.beginTime.getTime()<0)
+        {
+            this.gameScore=0;
+            return;
+        }
+        this.gameTime=Math.floor((this.curTime.getTime()-this.beginTime.getTime())/1000);
+        if(this.gameTime>=35)
         {
             this.gotoOverLayer();
         }
         else
         {
-            if(this.gameTime==300)
+            if(this.gameTime==5)
             {
                 this.schdSpeed=0.45;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
-            else if(this.gameTime==600)
+            else if(this.gameTime==10)
             {
                 this.schdSpeed=0.35;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
-            else if(this.gameTime==900)
+            else if(this.gameTime==15)
             {
                 this.schdSpeed=0.3;
                 this.schedule(this.addDropItems,this.schdSpeed);
             }
-            else if(this.gameTime==1200)
+            else if(this.gameTime==20)
             {
                 this.schdSpeed=0.25;
                 this.schedule(this.addDropItems,this.schdSpeed);
@@ -312,7 +322,7 @@ var mainLayer = cc.LayerColor.extend({
 
             }
         }
-        this.timeLabel.setString(Math.round(35-this.gameTime/60)+"s");
+        this.timeLabel.setString(Math.round(35-this.gameTime)+"s");
     },
 
     getRandom:function(maxsize)
@@ -409,6 +419,10 @@ var mainLayer = cc.LayerColor.extend({
             if(_tag>=245&&_tag<260)
             {
 
+            }
+            if(this.gameScore>4000)
+            {
+                this.gameScore=4000;
             }
             this.scoreLabel.setString(" × "+this.gameScore);
             this.scoreLabel.runAction(cc.Sequence.create(cc.ScaleTo.create(0.1,1.2),cc.ScaleTo.create(0.1,1.0)));
