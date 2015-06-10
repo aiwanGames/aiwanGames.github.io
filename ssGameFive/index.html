@@ -22,23 +22,37 @@
 </head>
 <body style="padding:0; margin: 0; background: #98D8FB;" oncontextmenu=self.event.returnValue=false>
 <div style="display:none">
-    <img id="shareImage" src="http://bbs.feidee.com/ssGameFive/res/HD/shareImg.png"/>
+    <img id="shareImage" src="http://sq.feidee.net/weixin/ssGameFive/res/HD/shareImg.png"/>
 </div>
 <canvas id="gameCanvas" width="640" height="1036"></canvas>
 <script src="cocos2d.js"></script>
 <script type="text/javascript" src="WeixinApi.js"></script>
 <script>
+    var ssjShare = {
+        check : function () {
+            var ua = navigator.userAgent;
+            if (/MyMoneySms/i.test(ua)) {
+                return true;
+            } else if (/feideeAndroid|MyMoney/i.test(ua)) {
+                return true;
+            }
+            return false;
+        },
+        share : function (paramImgUrl, paramLink, paramTitle, paramDesc) {
+            window.location.href = 'feidee://BBS/requestShare'+'/?p='+JSON.stringify({"img":paramImgUrl, "title":paramTitle, "content":paramDesc, "url":paramLink})+'&cb='+'&e=';
+        }
+    };
     window.wxData = {
         "appId": "wxdbadef0c9642fcfd",
-        "imgUrl":'http://bbs.feidee.com/ssGameFive/res/HD/shareImg.png',
-        "link":'http://bbs.feidee.com/ssGameFive/',
+        "imgUrl":'http://sq.feidee.net/weixin/ssGameFive/res/HD/shareImg.png',
+        "link":'http://sq.feidee.net/weixin/ssGameFive/',
         "desc":"啪啪啪，与小伙伴击掌，一起Give me five！",
         "title":"Give me five"
     };
     window.wxFriend = {
         "appId": "wxdbadef0c9642fcfd",
-        "imgUrl":'http://bbs.feidee.com/ssGameFive/res/HD/shareImg.png',
-        "link":'http://bbs.feidee.com/ssGameFive/',
+        "imgUrl":'http://sq.feidee.net/weixin/ssGameFive/res/HD/shareImg.png',
+        "link":'http://sq.feidee.net/weixin/ssGameFive/',
         "desc":"啪啪啪，与小伙伴击掌，一起Give me five！",
         "title":"Give me five"
     };

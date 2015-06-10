@@ -144,27 +144,35 @@ var overLayer = cc.LayerColor.extend({
                 this.audio.playEffect(s_button);
             }
         }
-        if(this.isShared==false)
+        if (ssjShare.check())
         {
-            document.body.style.backgroundColor="#2C424D";
-            var shield1=cc.Sprite.create(s_shld);
-            shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
-            shield1.setTag(102);
-            shield1.setScaleY(1.5);
-            this.addChild(shield1,5);
-            var shield2=cc.Sprite.create(s_arrow);
-            shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
-            shield2.setTag(103);
-            this.addChild(shield2,5);
-            var shield3=cc.Sprite.create(s_tip);
-            shield3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.8));
-            shield3.setTag(104);
-            this.addChild(shield3,5);
+            ssjShare.share(window.wxFriend.imgUrl, window.wxFriend.link, window.wxFriend.title, window.wxFriend.desc);
+        }
+        else
+        {
+            // 弹出箭头的地方
+            if(this.isShared==false)
+            {
+                document.body.style.backgroundColor="#2C424D";
+                var shield1=cc.Sprite.create(s_shld);
+                shield1.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.5));
+                shield1.setTag(102);
+                shield1.setScaleY(1.5);
+                this.addChild(shield1,5);
+                var shield2=cc.Sprite.create(s_arrow);
+                shield2.setPosition(cc.p(this.winsize.width*0.8,this.winsize.height*0.9));
+                shield2.setTag(103);
+                this.addChild(shield2,5);
+                var shield3=cc.Sprite.create(s_tip);
+                shield3.setPosition(cc.p(this.winsize.width*0.5,this.winsize.height*0.8));
+                shield3.setTag(104);
+                this.addChild(shield3,5);
 
-            if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(false);
-            if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(false);
-            if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
-            this.isShared=true;
+                if(this.getChildByTag(100))this.getChildByTag(100).setEnabled(false);
+                if(this.getChildByTag(101))this.getChildByTag(101).setEnabled(false);
+                if(this.getChildByTag(105))this.getChildByTag(105).setEnabled(false);
+                this.isShared=true;
+            }
         }
     },
 
