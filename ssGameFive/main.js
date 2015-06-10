@@ -58,6 +58,9 @@ var cocos2dApp = cc.Application.extend({
         //director.setDisplayStats(this.config['showFPS']);
         director.setAnimationInterval(1.0 / this.config['frameRate']);
 
+        window.wxData.appId="wxdbadef0c9642fcfd";
+        window.wxFriend.appId="wxdbadef0c9642fcfd";
+
         cc.LoaderSceneForGame01.preload(g_resources, function () {
             director.replaceScene(new this.startScene());
         }, this);
