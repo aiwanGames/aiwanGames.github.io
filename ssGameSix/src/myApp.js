@@ -38,7 +38,7 @@ var beginLayer = cc.LayerColor.extend({
         this.winsize = cc.Director.getInstance().getWinSize();
         this.audio=cc.AudioEngine.getInstance();
         document.body.style.backgroundColor="#FFF6E2";
-        var content="七夕到了，为什么你还没有桃花！";
+        var content="终于明白我为什么还是单身狗，太准了！";
         document.title = window.wxData.desc = content;
         document.title = window.wxFriend.desc = content;
 
