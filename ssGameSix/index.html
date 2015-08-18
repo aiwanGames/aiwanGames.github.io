@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>你为什么还是单身狗</title>
+    <link rel="icon" type="image/GIF" href="res/icon32.ico"/>
+    <meta name="viewport" content="user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="yes"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <style>
+        body, canvas, div {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body style="padding:0; margin: 0; background: #FFF6E2;" oncontextmenu=self.event.returnValue=false>
+<div style="display:none">
+    <img id="shareImage" src="http://aiwangames.com/ssGameSix/res/HD/shareImage.png"/>
+</div>
+<canvas id="gameCanvas" width="640" height="1036"></canvas>
+<script src="cocos2d.js"></script>
+<script type="text/javascript" src="WeixinApi.js"></script>
+<script>
+    window.wxData = {
+        "appId": "",
+        "imgUrl":'http://aiwangames.com/ssGameSix/res/HD/shareImg.png',
+        "link":'http://aiwangames.com/ssGameSix/',
+        "desc":"七夕到了，为什么你还没有桃花！",
+        "title":"七夕到了，为什么还你没有桃花！"
+    };
+    window.wxFriend = {
+        "appId": "",
+        "imgUrl":'http://aiwangames.com/ssGameSix/res/HD/shareImg.png',
+        "link":'http://aiwangames.com/ssGameSix/',
+        "desc":"七夕到了，为什么你还没有桃花！",
+        "title":"七夕到了，为什么你还没有桃花！"
+    };
+    WeixinApi.ready(function(Api) {
+        var wxCallbacks = {
+            ready : function() {
+            },
+            cancel : function(resp) {
+            },
+            fail : function(resp) {
+            },
+            confirm : function(resp) {
+            },
+            all : function(resp) {
+            }
+        };
+        Api.shareToFriend(wxFriend, wxCallbacks);
+        Api.shareToTimeline(wxData, wxCallbacks);
+    });
+</script>
+</body>
+</html>
