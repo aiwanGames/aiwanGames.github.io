@@ -170,7 +170,7 @@ var beginLayer = cc.LayerColor.extend({
         this.addDropItems();
         this.addDropItems();
         this.addDropItems();
-        this.schedule(this.addDropItems,1);
+        this.schedule(this.addDropItems,0.9);
 
         this.setTouchEnabled(true);
         return true;
@@ -178,13 +178,27 @@ var beginLayer = cc.LayerColor.extend({
 
     addDropItems:function()
     {
-        var id=this.getRandom(3);
+        var id=this.getRandom(5);
         if(id==0)
         {
             var sflower=cc.Sprite.create(flower1);
             sflower.setPosition(cc.p(this.winsize.width*1.3,this.winsize.height*0.85));
             this.addChild(sflower,4);
-            sflower.runAction(cc.Sequence.create(cc.Spawn.create(cc.RotateBy.create(3,360),cc.MoveTo.create(3,cc.p(this.winsize.width*0.1,this.winsize.height*0.2))),cc.CallFunc.create(this.removeItem,this)));
+            sflower.runAction(cc.Sequence.create(cc.Spawn.create(cc.RotateBy.create(5,360),cc.MoveTo.create(5,cc.p(this.winsize.width*0.1,this.winsize.height*0.2))),cc.CallFunc.create(this.removeItem,this)));
+        }
+        else if(id==3)
+        {
+            var sflower=cc.Sprite.create(flower3);
+            sflower.setPosition(cc.p(this.winsize.width*1.3,this.winsize.height*0.85));
+            this.addChild(sflower,4);
+            sflower.runAction(cc.Sequence.create(cc.Spawn.create(cc.RotateBy.create(5,360),cc.MoveTo.create(5,cc.p(this.winsize.width*0.1,this.winsize.height*0.6))),cc.CallFunc.create(this.removeItem,this)));
+        }
+        else if(id==4)
+        {
+            var sflower=cc.Sprite.create(flower2);
+            sflower.setPosition(cc.p(this.winsize.width*1.3,this.winsize.height*0.85));
+            this.addChild(sflower,4);
+            sflower.runAction(cc.Sequence.create(cc.Spawn.create(cc.RotateBy.create(5,360),cc.MoveTo.create(5,cc.p(this.winsize.width*0.1,-this.winsize.height*0.5))),cc.CallFunc.create(this.removeItem,this)));
         }
         else if(id==1)
         {
@@ -252,7 +266,7 @@ var beginLayer = cc.LayerColor.extend({
                         {
                             this.showed=true;
 
-                            this.unschedule(this.addDropItems);
+                            //this.unschedule(this.addDropItems);
 
                             for(var j=18;j<=28;j++)
                             {
@@ -434,7 +448,7 @@ var beginLayer = cc.LayerColor.extend({
     mmm:function()
     {
         this.audio.playEffect(s_button);
-        var newURL="http://m.yhd.com/downloads/10600518746/TheStoreApp.apk";
+        var newURL="http://android.myapp.com/myapp/detail.htm?apkName=com.thestore.main";
         window.location.href=newURL;
     },
 
